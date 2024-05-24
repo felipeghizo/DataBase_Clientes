@@ -17,7 +17,7 @@ public class CameraDAO {
     ArrayList minhaLista = new ArrayList();
     Conexao conexao = new Conexao();
     
-    public void setModelo(int cameraid, String novoModelo){  
+    public void setModeloDAO(int cameraid, String novoModelo){  
     String sql = """
                  UPDATE tb_cameras
                  SET modelo = (?)
@@ -34,7 +34,7 @@ public class CameraDAO {
         }
     }
     
-    public void setMAC(int cameraid, String novoMAC){
+    public void setMACDAO(int cameraid, String novoMAC){
       String sql = """
                  UPDATE tb_cameras
                  SET MAC = (?)
@@ -52,7 +52,7 @@ public class CameraDAO {
     }
     
     // Retorna a Lista de Amigos(objetos)
-    public ArrayList getCameras() {
+    public ArrayList getCamerasDAO() {
         minhaLista.clear(); // Limpa nosso ArrayList
         try {
             Statement stmt = conexao.getConexao().createStatement();
@@ -71,7 +71,7 @@ public class CameraDAO {
     }
     
     // Adiciona Camera
-    public void addCamera(String modelo, String MAC) {
+    public void addCameraDAO(String modelo, String MAC) {
         String sql = "INSERT INTO tb_cameras(modelo,MAC) VALUES(?,?)";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
@@ -86,12 +86,11 @@ public class CameraDAO {
     }
     
     // Exclui Camera
-    public void removeCamera(String modelo, String MAC) {
-        String sql = "DELETE FROM tb_cameras WHERE modelo = (?) AND MAC = (?)";
+    public void delCameraDAO(int cameraid) {
+        String sql = "DELETE FROM tb_cameras WHERE cameraid = (?)";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
-            stmt.setString(1, modelo);
-            stmt.setString(2, MAC);
+            stmt.setInt(1, cameraid);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -100,7 +99,7 @@ public class CameraDAO {
         }
     }
     
-    public int editarCamera(String modeloEditar, String MACEditar) {
+    public int getCameraidDAO(String modeloEditar, String MACEditar) {
         String sql = "SELECT COUNT(*) AS total FROM tb_cameras WHERE modelo = ? AND MAC = ?";
         int cameraid = 0;
 

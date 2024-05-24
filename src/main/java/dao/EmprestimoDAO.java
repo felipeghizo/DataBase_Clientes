@@ -128,7 +128,7 @@ public class EmprestimoDAO {
     
     // Adiciona Emprestimo
     public void addEmprestimo(int clienteid, int cameraid, String acesso, String usuario, String senha, String porta, String data_entrega) {
-        String sql = "INSERT INTO tb_emprestimos(acesso, usuario, senha, porta, data_entrega) VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO tb_emprestimos(clienteid, cameraid, acesso, usuario, senha, porta, data_entrega) VALUES(?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setInt(1, clienteid);

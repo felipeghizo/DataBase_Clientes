@@ -18,7 +18,7 @@ public class ClienteDAO {
     ArrayList minhaLista = new ArrayList();
     Conexao conexao = new Conexao();
     
-    public void setNome(int clienteid, String novoNome){  
+    public void setNomeDAO(int clienteid, String novoNome){  
     String sql = """
                  UPDATE tb_clientes
                  SET nome = (?)
@@ -35,7 +35,7 @@ public class ClienteDAO {
         }
     }
     
-    public void setTelefone(int clienteid, String novoTelefone){
+    public void setTelefoneDAO(int clienteid, String novoTelefone){
       String sql = """
                  UPDATE tb_clientes
                  SET telefone = (?)
@@ -52,7 +52,7 @@ public class ClienteDAO {
         }
     }
     
-    public void setEmail(int clienteid, String novoEmail){
+    public void setEmailDAO(int clienteid, String novoEmail){
       String sql = """
                  UPDATE tb_clientes
                  SET email = (?)
@@ -69,7 +69,7 @@ public class ClienteDAO {
         }
     }
     
-    public void setNotaFiscal(int clienteid, String novaNotaFiscal){
+    public void setNotaFiscalDAO(int clienteid, String novaNotaFiscal){
       String sql = """
                  UPDATE tb_clientes
                  SET NotaFiscal = (?)
@@ -86,7 +86,7 @@ public class ClienteDAO {
         }
     }
     
-    public void setEndereco(int clienteid, String novoEndereco){
+    public void setEnderecoDAO(int clienteid, String novoEndereco){
       String sql = """
                  UPDATE tb_clientes
                  SET endereco = (?)
@@ -104,7 +104,7 @@ public class ClienteDAO {
     }
     
     // Retorna a Lista de clientes
-    public ArrayList getClientes() {
+    public ArrayList getClientesDAO() {
         minhaLista.clear(); // Limpa nosso ArrayList
         try {
             Statement stmt = conexao.getConexao().createStatement();
@@ -126,7 +126,7 @@ public class ClienteDAO {
     }
     
     // Adiciona cliente
-    public void addCliente(String nome, String telefone, String email, String NotaFiscal, String endereco) {
+    public void addClienteDAO(String nome, String telefone, String email, String NotaFiscal, String endereco) {
         String sql = "INSERT INTO tb_clientes(nome, telefone, email, NotaFiscal, endereco) VALUES(?,?, ?, ?, ?)";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
@@ -144,12 +144,11 @@ public class ClienteDAO {
     }
     
     // Exclui Cliente
-    public void removeCliente(String nome, String telefone) {
-        String sql = "DELETE FROM tb_clientes WHERE nome = (?) AND telefone = (?)";
+    public void delClienteDAO(int clienteid) {
+        String sql = "DELETE FROM tb_clientes WHERE clienteid = (?)";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
-            stmt.setString(1, nome);
-            stmt.setString(2, telefone);
+            stmt.setInt(1, clienteid);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -158,7 +157,7 @@ public class ClienteDAO {
         }
     }
     
-    public int editarCliente(String nome, String telefone) {
+    public int getClienteidDAO(String nome, String NotaFiscal) {
         String sql = "SELECT COUNT(*) AS total FROM tb_clientes WHERE nome = ? AND telefone = ?";
         int cameraid = 0;
 
@@ -167,7 +166,7 @@ public class ClienteDAO {
 
             // Configura os parâmetros da query
             stmt.setString(1, nome);
-            stmt.setString(2, telefone);
+            stmt.setString(2, NotaFiscal);
 
             // Executa a query
             try (ResultSet res = stmt.executeQuery()) {
@@ -179,7 +178,7 @@ public class ClienteDAO {
                         sql = "SELECT clienteid FROM tb_clientes WHERE nome = ? AND telefone = ?";
                         try (PreparedStatement stmt2 = conn.prepareStatement(sql)) {
                             stmt2.setString(1, nome);
-                            stmt2.setString(2, telefone);
+                            stmt2.setString(2, NotaFiscal);
 
                             // Executa a segunda query
                             ResultSet res2 = stmt2.executeQuery();
