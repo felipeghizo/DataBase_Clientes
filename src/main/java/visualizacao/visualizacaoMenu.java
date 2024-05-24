@@ -159,7 +159,7 @@ public class visualizacaoMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuCamerasActionPerformed
 
     private void menuEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEmprestimosActionPerformed
-        visualizacaoEmprestimo emprestimo = new visualizacaoEmprestimo();
+        visualizacaoEnvio emprestimo = new visualizacaoEnvio();
         emprestimo.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_menuEmprestimosActionPerformed

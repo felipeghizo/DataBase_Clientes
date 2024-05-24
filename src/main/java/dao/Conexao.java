@@ -14,7 +14,7 @@ public class Conexao {
             Class.forName(driver);
             // Configurar a conexão
             String server = "localhost";
-            String database = "emprestimo";
+            String database = "envio";
             String url = "jdbc:mysql://" + server + ":3306/"
             +database + "?useTimezone=true&serverTimezone=UTC";
             String user = "root";
