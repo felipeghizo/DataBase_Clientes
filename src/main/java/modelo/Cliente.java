@@ -1,4 +1,4 @@
-
+// @author fe060311
 package modelo;
 
 import dao.ClienteDAO;
@@ -7,80 +7,81 @@ public class Cliente {
     private String nome;
     private String telefone;
     private String email;
-    private String NotaFiscal;
+    private String NumeroCliente;
     private String endereco;
-    ClienteDAO cliente = new ClienteDAO();
+    ClienteDAO clienteDAO = new ClienteDAO();
 
     public Cliente() {
         this("","", "", "", "");
     }
 
-    public Cliente(String nome, String telefone, String email, String NotaFiscal, String endereco) {
+    public Cliente(String nome, String telefone, String email, String NumeroCliente, String endereco) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
-        this.NotaFiscal = NotaFiscal;
+        this.NumeroCliente = NumeroCliente;
         this.endereco = endereco;
         
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getNotaFiscal() {
-        return NotaFiscal;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-    
+    // gets
     public int getClienteid(String nome, String NotaFiscal){
-        return cliente.getClienteidDAO(nome, NotaFiscal);
+        return clienteDAO.getClienteidDAO(nome, NotaFiscal);
     }
+    public String getNome() {
+        return clienteDAO.getNomeDAO(getClienteid(this.nome, this.NumeroCliente));
+    }
+    public String getTelefone() {
+        return clienteDAO.getTelefoneDAO(getClienteid(this.nome, this.NumeroCliente));
+    }
+    public String getEmail() {
+        return clienteDAO.getEmailDAO(getClienteid(this.nome, this.NumeroCliente));
+    }
+    public String getEndereco() {
+        return clienteDAO.getEnderecoDAO(getClienteid(this.nome, this.NumeroCliente));
+    }
+    public int getNumeroCliente() {
+        return clienteDAO.getNumeroClienteDAO(getClienteid(this.nome, this.NumeroCliente));
+    }
+
     
+
+    
+    // sets
     public void setNome(String nome) {
         String auxNome = this.nome;
         this.nome = nome;
-        cliente.setNomeDAO(this.getClienteid(auxNome, this.NotaFiscal), nome);
+        clienteDAO.setNomeDAO(this.getClienteid(auxNome, this.NumeroCliente), nome);
     }
     
     public void setTelefone(String telefone){
         this.telefone = telefone;
-        cliente.setNomeDAO(this.getClienteid(this.nome, this.NotaFiscal), telefone);
+        clienteDAO.setTelefoneDAO(this.getClienteid(this.nome, this.NumeroCliente), telefone);
     }
 
     public void setEmail(String email) {
         this.email = email;
-        cliente.setNomeDAO(this.getClienteid(this.nome, this.NotaFiscal), email);
+        clienteDAO.setEmailDAO(this.getClienteid(this.nome, this.NumeroCliente), email);
     }
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-        cliente.setNomeDAO(this.getClienteid(this.nome, this.NotaFiscal), endereco);
+        clienteDAO.setEnderecoDAO(this.getClienteid(this.nome, this.NumeroCliente), endereco);
     }
 
-    public void setNotaFiscal(String NotaFiscal) {
-        String auxNotaFiscal = this.NotaFiscal;
-        this.NotaFiscal = NotaFiscal;
-        cliente.setNomeDAO(this.getClienteid(this.nome, auxNotaFiscal), NotaFiscal);
+    public void setNumeroCliente(String NumeroCliente) {
+        String auxNumeroCliente = this.NumeroCliente;
+        this.NumeroCliente = NumeroCliente;
+        clienteDAO.setNumeroClienteDAO(this.getClienteid(this.nome, auxNumeroCliente), NumeroCliente);
     }
     
+    // Adiciona cliente ao banco de dados
     public void addCliente(){
-        cliente.addClienteDAO(this.nome, this.telefone, this.email, this.NotaFiscal, this.endereco);
+        clienteDAO.addClienteDAO(this.nome, this.telefone, this.email, this.NumeroCliente, this.endereco);
     }
-    
+   // Deleta cliente do banco de dados
     public void delCliente(String nome, String NotaFiscal){
-        cliente.delClienteDAO(this.getClienteid(nome, NotaFiscal));
+        clienteDAO.delClienteDAO(this.getClienteid(nome, NotaFiscal));
     }
     
 }

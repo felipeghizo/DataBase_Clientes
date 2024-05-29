@@ -153,13 +153,13 @@ public class visualizacaoCliente extends javax.swing.JFrame {
         String nome = JOptionPane.showInputDialog("Nome: ");
         String telefone = JOptionPane.showInputDialog("Telefone: ");
         String email = JOptionPane.showInputDialog("E-mail: ");
-        String NotaFiscal = JOptionPane.showInputDialog("Nota Fiscal: ");
+        String numero_cliente = JOptionPane.showInputDialog("Número do cliente: ");
         String endereco = JOptionPane.showInputDialog("Endereço: ");
 
         cliente.setNome(nome);
         cliente.setTelefone(telefone);
         cliente.setEmail(email);
-        cliente.setNotaFiscal(NotaFiscal);
+        cliente.setNumeroCliente(numero_cliente);
         cliente.setEndereco(endereco);
         cliente.addCliente();
         
@@ -216,7 +216,7 @@ public class visualizacaoCliente extends javax.swing.JFrame {
                 break;
                 case 3: // Nota fiscal
                 String novaNotaFiscal = JOptionPane.showInputDialog("Nova nota Fiscal: ");
-                cliente.setNotaFiscal(novaNotaFiscal);
+                cliente.setNumeroCliente(novaNotaFiscal);
                 break;
                 case 4: // Endereço
                 String novaEndereco = JOptionPane.showInputDialog("Novo Endereço: ");
@@ -234,9 +234,9 @@ public class visualizacaoCliente extends javax.swing.JFrame {
 
     private void DelClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DelClienteActionPerformed
         String nome = JOptionPane.showInputDialog("Nome: ");
-        String NotaFiscal = JOptionPane.showInputDialog("Nota fiscal: ");
+        String numero_cliente = JOptionPane.showInputDialog("Número do cliente: ");
 
-        cliente.delCliente(nome, NotaFiscal);
+        cliente.delCliente(nome, numero_cliente);
     }//GEN-LAST:event_DelClienteActionPerformed
 
     private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
