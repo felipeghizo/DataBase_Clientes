@@ -2,10 +2,11 @@
 package visualizacao;
 
 
-
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableModel;
 import modelo.Camera;
 
 /**
@@ -19,6 +20,7 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         setTitle("Cameras");
         initComponents();
         this.setLocationRelativeTo(null); // Centraliza o JFrame na tela
+        this.tabelaATT();
     }
 
     Camera camera = new Camera();
@@ -29,11 +31,17 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        addCamera = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        botaoVoltar = new javax.swing.JButton();
-        botaoExcluir = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jPaneltabela = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaCameras = new javax.swing.JTable();
+        addCamera5 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
+        botaoExcluir5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,37 +51,108 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(14, 163, 74));
         jLabel1.setText("Intelbras");
 
-        addCamera.setText("Adiciona câmera");
-        addCamera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addCameraActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Editar câmera");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Câmeras");
 
-        botaoVoltar.setBackground(new java.awt.Color(150, 150, 150));
-        botaoVoltar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        botaoVoltar.setForeground(new java.awt.Color(255, 255, 255));
-        botaoVoltar.setText(" < ");
-        botaoVoltar.addActionListener(new java.awt.event.ActionListener() {
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+
+        jButton2.setText("Clientes");
+
+        jButton3.setText("Câmeras");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoVoltarActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
-        botaoExcluir.setText("Excluir câmera");
-        botaoExcluir.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setText("Envios");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jButton3)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPaneltabela.setBackground(new java.awt.Color(204, 204, 204));
+
+        tabelaCameras.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Modelo", "MAC"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabelaCameras);
+        if (tabelaCameras.getColumnModel().getColumnCount() > 0) {
+            tabelaCameras.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        javax.swing.GroupLayout jPaneltabelaLayout = new javax.swing.GroupLayout(jPaneltabela);
+        jPaneltabela.setLayout(jPaneltabelaLayout);
+        jPaneltabelaLayout.setHorizontalGroup(
+            jPaneltabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 846, Short.MAX_VALUE)
+            .addGroup(jPaneltabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPaneltabelaLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPaneltabelaLayout.setVerticalGroup(
+            jPaneltabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 446, Short.MAX_VALUE)
+            .addGroup(jPaneltabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPaneltabelaLayout.createSequentialGroup()
+                    .addContainerGap(9, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(10, Short.MAX_VALUE)))
+        );
+
+        addCamera5.setText("Adicionar câmera");
+        addCamera5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoExcluirActionPerformed(evt);
+                addCamera5ActionPerformed(evt);
+            }
+        });
+
+        jButton21.setText("Editar câmera");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+
+        botaoExcluir5.setText("Excluir câmera");
+        botaoExcluir5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluir5ActionPerformed(evt);
             }
         });
 
@@ -82,35 +161,40 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(addCamera)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(botaoExcluir)
-                        .addGap(0, 37, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addCamera5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botaoExcluir5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addComponent(jPaneltabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(16, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jLabel2)
+                        .addGap(390, 390, 390))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(botaoVoltar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addCamera, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPaneltabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(addCamera5, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botaoExcluir5, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 254, Short.MAX_VALUE))))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -119,7 +203,7 @@ public class visualizacaoCamera extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(152, 152, 152)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -140,91 +224,117 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addCameraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCameraActionPerformed
-        
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void addCamera5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCamera5ActionPerformed
+
         String modelo = JOptionPane.showInputDialog("Modelo");
         String MAC = JOptionPane.showInputDialog("MAC");
         camera.setModelo(modelo);
         camera.setMAC(MAC);
         camera.addCamera();
         
-    }//GEN-LAST:event_addCameraActionPerformed
+        DefaultTableModel dtmCameras = (DefaultTableModel) tabelaCameras.getModel();
+        Object[] dados = {camera.getModelo(), camera.getMAC()};
+        dtmCameras.addRow(dados);
+        tabelaATT();
+    }//GEN-LAST:event_addCamera5ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         String editModelo = JOptionPane.showInputDialog("Modelo da câmera: ");
         String editMac = JOptionPane.showInputDialog("Mac da câmera: ");
         int cameraid = camera.getCameraid(editModelo, editMac);
         if(cameraid == -1){
-           JOptionPane.showMessageDialog(null, "Dados não encontrados!"); 
+            JOptionPane.showMessageDialog(null, "Dados não encontrados!");
         }else{
             // Definindo o look and feel do sistema operacional
-           try {
-               UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-           } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-               e.printStackTrace();
-           }
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+                e.printStackTrace();
+            }
 
-           // Opções de botões
-           String[] options = {"Modelo", "Mac", "Cancelar"};
+            // Opções de botões
+            String[] options = {"Modelo", "Mac", "Cancelar"};
 
-           // Mensagem da caixa de diálogo
-           String message = "Qual dado você gostaria de alterar?";
+            // Mensagem da caixa de diálogo
+            String message = "Qual dado você gostaria de alterar?";
 
-           // Título da caixa de diálogo
-           String title = "Editando dados de câmera";
+            // Título da caixa de diálogo
+            String title = "Editando dados de câmera";
 
-           // Exibindo o JOptionPane com botões personalizados
-           int option = JOptionPane.showOptionDialog(
-                   null,                                 // Componente pai
-                   message,                              // Mensagem
-                   title,                                // Título
-                   JOptionPane.YES_NO_CANCEL_OPTION,     // Tipo de opção
-                   JOptionPane.QUESTION_MESSAGE,         // Tipo de mensagem
-                   null,                                 // Ícone
-                   options,                              // Botões personalizados
-                   options[0]                            // Botão padrão
-           );
+            // Exibindo o JOptionPane com botões personalizados
+            int option = JOptionPane.showOptionDialog(
+                null,                                 // Componente pai
+                message,                              // Mensagem
+                title,                                // Título
+                JOptionPane.YES_NO_CANCEL_OPTION,     // Tipo de opção
+                JOptionPane.QUESTION_MESSAGE,         // Tipo de mensagem
+                null,                                 // Ícone
+                options,                              // Botões personalizados
+                options[0]                            // Botão padrão
+            );
 
-           // Tratamento da opção selecionada
-           switch (option) {
-               case 0: // Modelo
-                   String novoModelo = JOptionPane.showInputDialog("Novo Modelo: ");
-                   camera.setModelo(novoModelo);
-                   break;
-               case 1: // MAC
-                   String novoMAC = JOptionPane.showInputDialog("Novo MAC: ");
-                   camera.setMAC(novoMAC);
-                   break;
-               case 2: // Cancelar
-                   JOptionPane.showMessageDialog(null, "Operação cancelada!");
-                   break;
-               default:
-                   System.out.println("Nenhuma opção selecionada");
-                   break;
-           }
+            // Tratamento da opção selecionada
+            switch (option) {
+                case 0: // Modelo
+                String novoModelo = JOptionPane.showInputDialog("Novo Modelo: ");
+                camera.setModelo(novoModelo);
+                break;
+                case 1: // MAC
+                String novoMAC = JOptionPane.showInputDialog("Novo MAC: ");
+                camera.setMAC(novoMAC);
+                break;
+                case 2: // Cancelar
+                JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                break;
+                default:
+                System.out.println("Nenhuma opção selecionada");
+                break;
+            }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        tabelaATT();
+    }//GEN-LAST:event_jButton21ActionPerformed
 
-    private void botaoVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarActionPerformed
-        this.setVisible(false);
-        visualizacaoMenu menu = new visualizacaoMenu();
-        menu.setVisible(true);
-    }//GEN-LAST:event_botaoVoltarActionPerformed
-
-    private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
+    private void botaoExcluir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluir5ActionPerformed
         String modeloCamera = JOptionPane.showInputDialog(null, "Modelo: ");
         String macCamera = JOptionPane.showInputDialog(null, "MAC: ");
         camera.delCamera(modeloCamera, macCamera);
-    }//GEN-LAST:event_botaoExcluirActionPerformed
+        tabelaATT();
+    }//GEN-LAST:event_botaoExcluir5ActionPerformed
 
+    public void tabelaATT() {
+    DefaultTableModel dtmCameras = (DefaultTableModel) tabelaCameras.getModel();
+    ArrayList lista = camera.getCameras();
+    
+    // Limpa todas as linhas da tabela antes de atualizar com novos dados
+    dtmCameras.setRowCount(0);
+
+    // Itera sobre a lista de câmeras e atualiza a tabela
+    for (Object obj : lista) {
+        // Verifica se o objeto é uma instância de Camera
+        if (obj instanceof Camera) {
+            Camera cam = (Camera) obj;
+            String modelo = cam.getModelo();
+            String MAC = cam.getMAC();
+            int ID = cam.getCameraid(modelo, MAC);
+
+            // Cria um novo array de objetos para adicionar à tabela
+            Object[] dados = { ID, modelo, MAC };
+            dtmCameras.addRow(dados);
+        } else {
+            System.out.println("O objeto na lista não é do tipo Camera.");
+        }
+    }
+}
     /**
      * @param args the command line arguments
      */
@@ -264,13 +374,19 @@ public class visualizacaoCamera extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addCamera;
-    private javax.swing.JButton botaoExcluir;
-    private javax.swing.JButton botaoVoltar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton addCamera5;
+    private javax.swing.JButton botaoExcluir5;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPaneltabela;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabelaCameras;
     // End of variables declaration//GEN-END:variables
 }

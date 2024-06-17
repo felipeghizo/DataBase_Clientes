@@ -2,6 +2,7 @@
 package modelo;
 
 import dao.CameraDAO;
+import java.util.ArrayList;
 
 public class Camera {
     
@@ -27,6 +28,9 @@ public class Camera {
     }
     public String getMAC() {
         return cameraDAO.getMACDAO(getCameraid(this.modelo, this.MAC));
+    }
+    public ArrayList getCameras(){
+        return cameraDAO.getCamerasDAO();
     }
 
     // Sets

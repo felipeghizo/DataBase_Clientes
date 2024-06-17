@@ -97,7 +97,7 @@ public class CameraDAO {
             // Executa a query
             try (ResultSet res = stmt.executeQuery()) {
                 if (res.next()) {
-                    MAC = res.getString("modelo");
+                    MAC = res.getString("MAC");
                 } else {
                     // Nenhum amigo foi encontrado, você pode lidar com isso aqui
                     System.out.println("Nenhum MAC encontrado com o id: " + cameraid);
