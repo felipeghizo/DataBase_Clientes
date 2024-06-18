@@ -439,7 +439,7 @@ public class EnvioDAO {
         minhaLista.clear(); // Limpa nosso ArrayList
         try {
             Statement stmt = conexao.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT * FROM tb_emprestimos");
+            ResultSet res = stmt.executeQuery("SELECT * FROM envios");
             while (res.next()) {
                 int clienteid = res.getInt("clienteid");
                 int cameraid = res.getInt("cameraid");
@@ -455,7 +455,7 @@ public class EnvioDAO {
             }
             stmt.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Deu ruim paizao!");
+            JOptionPane.showMessageDialog(null, "Deu ruim paizaoooooo!");
         }
         return minhaLista;
     }

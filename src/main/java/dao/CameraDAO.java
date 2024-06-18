@@ -19,7 +19,7 @@ public class CameraDAO {
     
     // Gets
     public int getCameraidDAO(String modeloEditar, String MACEditar) {
-        String sql = "SELECT COUNT(*) AS total FROM tb_cameras WHERE modelo = ? AND MAC = ?";
+        String sql = "SELECT COUNT(*) AS total FROM cameras WHERE modelo = ? AND MAC = ?";
         int cameraid = 0;
 
         try (Connection conn = conexao.getConexao();
@@ -36,7 +36,7 @@ public class CameraDAO {
                     int totalFerramentas = res.getInt("total");
                     if (totalFerramentas > 0) {
                         // Pelo menos um amigo foi encontrado, vamos obter o amigoid
-                        sql = "SELECT cameraid FROM tb_cameras WHERE modelo = ? AND MAC = ?";
+                        sql = "SELECT cameraid FROM cameras WHERE modelo = ? AND MAC = ?";
                         try (PreparedStatement stmt2 = conn.prepareStatement(sql)) {
                             stmt2.setString(1, modeloEditar);
                             stmt2.setString(2, MACEditar);
@@ -61,7 +61,7 @@ public class CameraDAO {
     public String getModeloDAO(int cameraid){  
     String sql = """
                  SELECT modelo 
-                 FROM tb_cameras 
+                 FROM cameras 
                  WHERE cameraid = ?
                  """;
         String modelo = "";
@@ -86,7 +86,7 @@ public class CameraDAO {
     public String getMACDAO(int cameraid){  
     String sql = """
                  SELECT MAC 
-                 FROM tb_cameras 
+                 FROM cameras 
                  WHERE cameraid = ?
                  """;
         String MAC = "";
@@ -112,7 +112,7 @@ public class CameraDAO {
     // Sets
     public void setModeloDAO(int cameraid, String novoModelo){  
     String sql = """
-                 UPDATE tb_cameras
+                 UPDATE cameras
                  SET modelo = (?)
                  WHERE cameraid = (?);""";
         try {
@@ -129,7 +129,7 @@ public class CameraDAO {
     
     public void setMACDAO(int cameraid, String novoMAC){
       String sql = """
-                 UPDATE tb_cameras
+                 UPDATE cameras
                  SET MAC = (?)
                  WHERE cameraid = (?);""";
         try {
@@ -149,7 +149,7 @@ public class CameraDAO {
         minhaLista.clear(); // Limpa nosso ArrayList
         try {
             Statement stmt = conexao.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT * FROM tb_cameras");
+            ResultSet res = stmt.executeQuery("SELECT * FROM cameras");
             while (res.next()) {
                 String nome = res.getString("modelo");
                 String MAC = res.getString("MAC");
@@ -166,7 +166,7 @@ public class CameraDAO {
     // Adiciona Camera
     public void addCameraDAO(String modelo, String MAC) {
         String sql = """
-                    INSERT INTO tb_cameras(modelo,MAC) 
+                    INSERT INTO cameras(modelo,MAC) 
                     VALUES(?,?)
                      """;
         try {
@@ -184,7 +184,7 @@ public class CameraDAO {
     // Exclui Camera
     public void delCameraDAO(int cameraid) {
         String sql = """
-                     DELETE FROM tb_cameras 
+                     DELETE FROM cameras 
                      WHERE cameraid = (?)
                      """;
         try {

@@ -66,7 +66,11 @@ public class Envio {
     public int getNumero_Pedido(){
         return envioDAO.getNumero_PedidoDAO(getEnvioid(this.clienteid, this.cameraid));
     }
-
+    // Get lista de envios 
+    public ArrayList getEnvios() {
+        return envioDAO.getEnviosDAO();
+    }
+    
     // Sets
     public void setClienteid(int clienteid) {
         envioDAO.setClienteidDAO(getEnvioid(this.clienteid, this.cameraid), clienteid);
@@ -103,11 +107,6 @@ public class Envio {
     public void setNumero_Pedido(int Numero_pedido) {
         envioDAO.setNumero_PedidoDAO(getEnvioid(this.clienteid, this.cameraid), Numero_pedido);
         this.numero_pedido = Numero_pedido;
-    }
-    
-    // Get lista de envios 
-    public ArrayList getEmprestimos() {
-        return envioDAO.getEnviosDAO();
     }
     
     // Adiciona Envio ao banco de dados

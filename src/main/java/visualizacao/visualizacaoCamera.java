@@ -19,6 +19,8 @@ public class visualizacaoCamera extends javax.swing.JFrame {
     
     public TableRowSorter sorter;
     public int cameraID;
+    Camera camera = new Camera();
+    
     public visualizacaoCamera() {
         // Configurações do JFrame
         setTitle("Cameras");
@@ -33,7 +35,6 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         tabelaATT();
     }
     
-    Camera camera = new Camera();
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -292,7 +293,10 @@ public class visualizacaoCamera extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenuActionPerformed
+        // Esconde a janela de clientes
         this.setVisible(false);
+        
+        // Cria uma instância de Menu e a torna visivel
         visualizacaoMenu menu = new visualizacaoMenu();
         menu.setVisible(true);
     }//GEN-LAST:event_botaoMenuActionPerformed
@@ -443,29 +447,29 @@ public class visualizacaoCamera extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaCamerasMouseClicked
 
     public void tabelaATT() {
-    DefaultTableModel dtmCameras = (DefaultTableModel) tabelaCameras.getModel();
-    ArrayList lista = camera.getCameras();
+        DefaultTableModel dtmCameras = (DefaultTableModel) tabelaCameras.getModel();
+        ArrayList lista = camera.getCameras();
     
-    // Limpa todas as linhas da tabela antes de atualizar com novos dados
-    dtmCameras.setRowCount(0);
+        // Limpa todas as linhas da tabela antes de atualizar com novos dados
+        dtmCameras.setRowCount(0);
 
-    // Itera sobre a lista de câmeras e atualiza a tabela
-    for (Object obj : lista) {
-        // Verifica se o objeto é uma instância de Camera
-        if (obj instanceof Camera) {
-            Camera cam = (Camera) obj;
-            String modelo = cam.getModelo();
-            String MAC = cam.getMAC();
-            int ID = cam.getCameraid(modelo, MAC);
+        // Itera sobre a lista de câmeras e atualiza a tabela
+        for (Object obj : lista) {
+            // Verifica se o objeto é uma instância de Camera
+            if (obj instanceof Camera) {
+                Camera cam = (Camera) obj;
+                String modelo = cam.getModelo();
+                String MAC = cam.getMAC();
+                int ID = cam.getCameraid(modelo, MAC);
 
-            // Cria um novo array de objetos para adicionar à tabela
-            Object[] dados = { ID, modelo, MAC };
-            dtmCameras.addRow(dados);
-        } else {
-            System.out.println("O objeto na lista não é do tipo Camera.");
+                // Cria um novo array de objetos para adicionar à tabela
+                Object[] dados = { ID, modelo, MAC };
+                dtmCameras.addRow(dados);
+            } else {
+                System.out.println("O objeto na lista não é do tipo Camera.");
+            }
         }
     }
-}
     /**
      * @param args the command line arguments
      */

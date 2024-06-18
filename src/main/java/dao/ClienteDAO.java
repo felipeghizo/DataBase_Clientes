@@ -21,7 +21,7 @@ public class ClienteDAO {
     public int getClienteidDAO(String nome, int NumeroCliente) {
         String sql = """
                     SELECT COUNT(*) AS total 
-                    FROM tb_clientes 
+                    FROM clientes 
                     WHERE nome = ? AND numero_cliente = ?
                     """;
         int clienteid = 0;
@@ -42,7 +42,7 @@ public class ClienteDAO {
                         // Pelo menos um amigo foi encontrado, vamos obter o amigoid
                         sql = """
                               SELECT clienteid 
-                              FROM tb_clientes 
+                              FROM clientes 
                               WHERE nome = ? AND numero_cliente = ?
                               """;
                         try (PreparedStatement stmt2 = conn.prepareStatement(sql)) {
@@ -69,7 +69,7 @@ public class ClienteDAO {
     public String getNomeDAO(int clienteid){  
     String sql = """
                  SELECT nome 
-                 FROM tb_clientes 
+                 FROM clientes 
                  WHERE clienteid = ?
                  """;
         String nome = "";
@@ -94,7 +94,7 @@ public class ClienteDAO {
     public String getTelefoneDAO(int clienteid){  
     String sql = """
                  SELECT telefone 
-                 FROM tb_clientes 
+                 FROM clientes 
                  WHERE clienteid = ?
                  """;
         String telefone = "";
@@ -119,7 +119,7 @@ public class ClienteDAO {
     public String getEmailDAO(int clienteid){  
     String sql = """
                  SELECT email 
-                 FROM tb_clientes 
+                 FROM clientes 
                  WHERE clienteid = ?
                  """;
         String email = "";
@@ -144,7 +144,7 @@ public class ClienteDAO {
     public String getEnderecoDAO(int clienteid){  
     String sql = """
                  SELECT endereco 
-                 FROM tb_clientes 
+                 FROM clientes 
                  WHERE clienteid = ?
                  """;
         String endereco = "";
@@ -169,7 +169,7 @@ public class ClienteDAO {
     public int getNumeroClienteDAO(int clienteid){  
     String sql = """
                  SELECT numero_cliente 
-                 FROM tb_clientes 
+                 FROM clientes 
                  WHERE clienteid = ?
                  """;
         int numero_cliente = 0;
@@ -195,7 +195,7 @@ public class ClienteDAO {
     // Sets
     public void setNomeDAO(int clienteid, String novoNome){  
     String sql = """
-                 UPDATE tb_clientes
+                 UPDATE clientes
                  SET nome = (?)
                  WHERE clienteid = (?);""";
         try {
@@ -211,7 +211,7 @@ public class ClienteDAO {
     }   
     public void setTelefoneDAO(int clienteid, String novoTelefone){
       String sql = """
-                 UPDATE tb_clientes
+                 UPDATE clientes
                  SET telefone = (?)
                  WHERE clienteid = (?);""";
         try {
@@ -227,7 +227,7 @@ public class ClienteDAO {
     }   
     public void setEmailDAO(int clienteid, String novoEmail){
       String sql = """
-                 UPDATE tb_clientes
+                 UPDATE clientes
                  SET email = (?)
                  WHERE clienteid = (?);""";
         try {
@@ -243,7 +243,7 @@ public class ClienteDAO {
     }
     public void setEnderecoDAO(int clienteid, String novoEndereco){
       String sql = """
-                 UPDATE tb_clientes
+                 UPDATE clientes
                  SET endereco = (?)
                  WHERE clienteid = (?);""";
         try {
@@ -259,7 +259,7 @@ public class ClienteDAO {
     }
     public void setNumeroClienteDAO(int clienteid, int novaNumeroCliente){
       String sql = """
-                 UPDATE tb_clientes
+                 UPDATE clientes
                  SET numero_cliente = (?)
                  WHERE clienteid = (?);""";
         try {
@@ -279,7 +279,7 @@ public class ClienteDAO {
         minhaLista.clear(); // Limpa nosso ArrayList
         try {
             Statement stmt = conexao.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT * FROM tb_clientes");
+            ResultSet res = stmt.executeQuery("SELECT * FROM clientes");
             while (res.next()) {
                 String nome = res.getString("nome");
                 String telefone = res.getString("telefone");
@@ -298,7 +298,7 @@ public class ClienteDAO {
     
     // Adiciona cliente
     public void addClienteDAO(String nome, String telefone, String email, int numeroCliente, String endereco) {
-        String sql = "INSERT INTO tb_clientes(nome, telefone, email, numero_cliente, endereco) VALUES(?,?, ?, ?, ?)";
+        String sql = "INSERT INTO clientes(nome, telefone, email, numero_cliente, endereco) VALUES(?,?, ?, ?, ?)";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setString(1, nome);
@@ -316,7 +316,7 @@ public class ClienteDAO {
     
     // Exclui Cliente
     public void delClienteDAO(int clienteid) {
-        String sql = "DELETE FROM tb_clientes WHERE clienteid = (?)";
+        String sql = "DELETE FROM clientes WHERE clienteid = (?)";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setInt(1, clienteid);

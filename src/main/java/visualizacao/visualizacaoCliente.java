@@ -16,6 +16,7 @@ public class visualizacaoCliente extends javax.swing.JFrame {
     public TableRowSorter sorter;
     public int clienteID;
     Cliente cliente = new Cliente();
+    
     public visualizacaoCliente() {
         // Configurações do JFrame
         setTitle("Cliente");
