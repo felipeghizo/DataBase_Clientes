@@ -83,9 +83,9 @@
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton21" alignment="0" max="32767" attributes="0"/>
-                          <Component id="addCamera5" alignment="0" max="32767" attributes="0"/>
-                          <Component id="botaoExcluir5" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
+                          <Component id="botaoEditar" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botaoAdicionar" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botaoExcluir" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -121,11 +121,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jPaneltabela" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="addCamera5" min="-2" pref="54" max="-2" attributes="0"/>
+                              <Component id="botaoAdicionar" min="-2" pref="54" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton21" min="-2" pref="54" max="-2" attributes="0"/>
+                              <Component id="botaoEditar" min="-2" pref="54" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="botaoExcluir5" min="-2" pref="54" max="-2" attributes="0"/>
+                              <Component id="botaoExcluir" min="-2" pref="54" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="248" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -289,28 +289,28 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="addCamera5">
+            <Component class="javax.swing.JButton" name="botaoAdicionar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Adicionar c&#xe2;mera"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCamera5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAdicionarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton21">
+            <Component class="javax.swing.JButton" name="botaoEditar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editar c&#xe2;mera"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton21ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoEditarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="botaoExcluir5">
+            <Component class="javax.swing.JButton" name="botaoExcluir">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Excluir c&#xe2;mera"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExcluir5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExcluirActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="textProcurar">

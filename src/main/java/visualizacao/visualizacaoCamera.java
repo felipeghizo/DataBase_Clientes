@@ -49,9 +49,9 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         jPaneltabela = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaCameras = new javax.swing.JTable();
-        addCamera5 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        botaoExcluir5 = new javax.swing.JButton();
+        botaoAdicionar = new javax.swing.JButton();
+        botaoEditar = new javax.swing.JButton();
+        botaoExcluir = new javax.swing.JButton();
         textProcurar = new javax.swing.JTextField();
         botaoProcurar = new javax.swing.JButton();
         botaoLimpar = new javax.swing.JButton();
@@ -169,24 +169,24 @@ public class visualizacaoCamera extends javax.swing.JFrame {
                     .addContainerGap(10, Short.MAX_VALUE)))
         );
 
-        addCamera5.setText("Adicionar câmera");
-        addCamera5.addActionListener(new java.awt.event.ActionListener() {
+        botaoAdicionar.setText("Adicionar câmera");
+        botaoAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addCamera5ActionPerformed(evt);
+                botaoAdicionarActionPerformed(evt);
             }
         });
 
-        jButton21.setText("Editar câmera");
-        jButton21.addActionListener(new java.awt.event.ActionListener() {
+        botaoEditar.setText("Editar câmera");
+        botaoEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton21ActionPerformed(evt);
+                botaoEditarActionPerformed(evt);
             }
         });
 
-        botaoExcluir5.setText("Excluir câmera");
-        botaoExcluir5.addActionListener(new java.awt.event.ActionListener() {
+        botaoExcluir.setText("Excluir câmera");
+        botaoExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoExcluir5ActionPerformed(evt);
+                botaoExcluirActionPerformed(evt);
             }
         });
 
@@ -218,9 +218,9 @@ public class visualizacaoCamera extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addCamera5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoExcluir5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -249,11 +249,11 @@ public class visualizacaoCamera extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPaneltabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(addCamera5, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(botaoExcluir5, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 248, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -298,26 +298,31 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         menu.setVisible(true);
     }//GEN-LAST:event_botaoMenuActionPerformed
 
-    private void addCamera5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCamera5ActionPerformed
-
+    private void botaoAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarActionPerformed
+        // Input de dados da câmera a ser adicionada
         String modelo = JOptionPane.showInputDialog("Modelo");
         String MAC = JOptionPane.showInputDialog("MAC");
+        
+        // Criação da câmera
         camera.setModelo(modelo);
         camera.setMAC(MAC);
         camera.addCamera();
         
+        // Adição da câmera à tabela
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaCameras.getModel();
         Object[] dados = {camera.getModelo(), camera.getMAC()};
         dtmCameras.addRow(dados);
+        
+        // Atualização da tabela
         tabelaATT();
-    }//GEN-LAST:event_addCamera5ActionPerformed
+    }//GEN-LAST:event_botaoAdicionarActionPerformed
 
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+    private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
+        // Caso nenhum dado da tabela seja selecionado
         if (this.cameraID == 0){
             JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada!");
         }
         else{
-            // Definindo o look and feel do sistema operacional
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
@@ -364,22 +369,27 @@ public class visualizacaoCamera extends javax.swing.JFrame {
                 }
             tabelaATT();
         }
-    }//GEN-LAST:event_jButton21ActionPerformed
+    }//GEN-LAST:event_botaoEditarActionPerformed
 
-    private void botaoExcluir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluir5ActionPerformed
+    private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
+        // Input do id da câmera a ser excluída
         int cameraid = Integer.parseInt(JOptionPane.showInputDialog("ID da câmera: "));
         camera.delCameraid(cameraid);
+        
+        // Atualização da tabela
         tabelaATT();
-    }//GEN-LAST:event_botaoExcluir5ActionPerformed
+    }//GEN-LAST:event_botaoExcluirActionPerformed
 
     private void textProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textProcurarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textProcurarActionPerformed
 
     private void botaoProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProcurarActionPerformed
-        String textoPesquisa =  textProcurar.getText().trim();
+        // Input do dado a ser procurado
+        String textoPesquisa = textProcurar.getText().trim();
+        
         tabelaCameras.setRowSorter(sorter);
-        if (textoPesquisa.length() == 0) {
+        if (textoPesquisa.length() == 0) { // Caso não haja Input
             sorter.setRowFilter(null);
         } else {
             sorter.setRowFilter(RowFilter.regexFilter(textoPesquisa));
@@ -387,18 +397,27 @@ public class visualizacaoCamera extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoProcurarActionPerformed
 
     private void botaoLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimparActionPerformed
+        // Define o filtro de pesquisa como vazio
         sorter.setRowFilter(null);
+        
+        // Atualiza a tabela
         tabelaATT();
     }//GEN-LAST:event_botaoLimparActionPerformed
 
     private void botaoClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoClientesActionPerformed
+        // Esconde a janela de câmeras
         this.setVisible(false);
+        
+        // Cria uma instância de cliente e a torna visivel
         visualizacaoCliente cliente = new visualizacaoCliente();
         cliente.setVisible(true);
     }//GEN-LAST:event_botaoClientesActionPerformed
 
     private void botaoEnviosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEnviosActionPerformed
+        // Esconde a janela de câmeras
         this.setVisible(false);
+        
+        // Cria uma instância de menu e a torna visivel
         visualizacaoEnvio envio = new visualizacaoEnvio();
         envio.setVisible(true);
     }//GEN-LAST:event_botaoEnviosActionPerformed
@@ -409,14 +428,17 @@ public class visualizacaoCamera extends javax.swing.JFrame {
 
     private void tabelaCamerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaCamerasMouseClicked
         // Obtém a linha e coluna onde ocorreu o clique
-                int row = tabelaCameras.rowAtPoint(evt.getPoint());
-                int col = tabelaCameras.columnAtPoint(evt.getPoint());
+        int row = tabelaCameras.rowAtPoint(evt.getPoint());
+        int col = tabelaCameras.columnAtPoint(evt.getPoint());
 
-                // Verifica se o clique foi dentro dos limites da tabela
-                if (row >= 0) {
-                    this.cameraID = (int) tabelaCameras.getValueAt(row, 0);
-                }
-    tabelaATT();
+        // Verifica se o clique foi dentro dos limites da tabela
+        if (row >= 0) {
+            // Passa o ID da câmera para o atributo 'cameraID'
+            this.cameraID = (int) tabelaCameras.getValueAt(row, 0);
+        }
+        
+        // Atualiza a tabela
+        tabelaATT();
     }//GEN-LAST:event_tabelaCamerasMouseClicked
 
     public void tabelaATT() {
@@ -482,14 +504,14 @@ public class visualizacaoCamera extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addCamera5;
+    private javax.swing.JButton botaoAdicionar;
     private javax.swing.JButton botaoClientes;
+    private javax.swing.JButton botaoEditar;
     private javax.swing.JButton botaoEnvios;
-    private javax.swing.JButton botaoExcluir5;
+    private javax.swing.JButton botaoExcluir;
     private javax.swing.JButton botaoLimpar;
     private javax.swing.JButton botaoMenu;
     private javax.swing.JButton botaoProcurar;
-    private javax.swing.JButton jButton21;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
