@@ -62,6 +62,9 @@ public class Camera {
     public void delCamera(String modelo, String MAC){
         cameraDAO.delCameraDAO(this.getCameraid(modelo, MAC));
     }
+    public void delCameraid(int id){
+        cameraDAO.delCameraDAO(id);
+    }
     
     
 }

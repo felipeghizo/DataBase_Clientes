@@ -18,6 +18,7 @@ import modelo.Camera;
 public class visualizacaoCamera extends javax.swing.JFrame {
     
     public TableRowSorter sorter;
+    public int cameraID;
     public visualizacaoCamera() {
         // Configurações do JFrame
         setTitle("Cameras");
@@ -312,59 +313,62 @@ public class visualizacaoCamera extends javax.swing.JFrame {
     }//GEN-LAST:event_addCamera5ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        int cameraid = Integer.parseInt(JOptionPane.showInputDialog("ID da câmera: "));
-        // Definindo o look and feel do sistema operacional
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-                e.printStackTrace();
-            }
+        if (this.cameraID == 0){
+            JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada!");
+        }
+        else{
+            // Definindo o look and feel do sistema operacional
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+                    e.printStackTrace();
+                }
 
-            // Opções de botões
-            String[] options = {"Modelo", "Mac", "Cancelar"};
+                // Opções de botões
+                String[] options = {"Modelo", "Mac", "Cancelar"};
 
-            // Mensagem da caixa de diálogo
-            String message = "Qual dado você gostaria de alterar?";
+                // Mensagem da caixa de diálogo
+                String message = "Qual dado você gostaria de alterar?";
 
-            // Título da caixa de diálogo
-            String title = "Editando dados de câmera";
+                // Título da caixa de diálogo
+                String title = "Editando dados de câmera";
 
-            // Exibindo o JOptionPane com botões personalizados
-            int option = JOptionPane.showOptionDialog(
-                null,                                 // Componente pai
-                message,                              // Mensagem
-                title,                                // Título
-                JOptionPane.YES_NO_CANCEL_OPTION,     // Tipo de opção
-                JOptionPane.QUESTION_MESSAGE,         // Tipo de mensagem
-                null,                                 // Ícone
-                options,                              // Botões personalizados
-                options[0]                            // Botão padrão
-            );
+                // Exibindo o JOptionPane com botões personalizados
+                int option = JOptionPane.showOptionDialog(
+                    null,                                 // Componente pai
+                    message,                              // Mensagem
+                    title,                                // Título
+                    JOptionPane.YES_NO_CANCEL_OPTION,     // Tipo de opção
+                    JOptionPane.QUESTION_MESSAGE,         // Tipo de mensagem
+                    null,                                 // Ícone
+                    options,                              // Botões personalizados
+                    options[0]                            // Botão padrão
+                );
 
-            // Tratamento da opção selecionada
-            switch (option) {
-                case 0: // Modelo
-                String novoModelo = JOptionPane.showInputDialog("Novo Modelo: ");
-                camera.setModeloid(cameraid, novoModelo);
-                break;
-                case 1: // MAC
-                String novoMAC = JOptionPane.showInputDialog("Novo MAC: ");
-                camera.setMACid(cameraid, novoMAC);
-                break;
-                case 2: // Cancelar
-                JOptionPane.showMessageDialog(null, "Operação cancelada!");
-                break;
-                default:
-                System.out.println("Nenhuma opção selecionada");
-                break;
-            }
-        tabelaATT();    
+                // Tratamento da opção selecionada
+                switch (option) {
+                    case 0: // Modelo
+                    String novoModelo = JOptionPane.showInputDialog("Novo Modelo: ");
+                    camera.setModeloid(this.cameraID, novoModelo);
+                    break;
+                    case 1: // MAC
+                    String novoMAC = JOptionPane.showInputDialog("Novo MAC: ");
+                    camera.setMACid(this.cameraID, novoMAC);
+                    break;
+                    case 2: // Cancelar
+                    JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                    break;
+                    default:
+                    System.out.println("Nenhuma opção selecionada");
+                    break;
+                }
+            tabelaATT();
+        }
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void botaoExcluir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluir5ActionPerformed
-        String modeloCamera = JOptionPane.showInputDialog(null, "Modelo: ");
-        String macCamera = JOptionPane.showInputDialog(null, "MAC: ");
-        camera.delCamera(modeloCamera, macCamera);
+        int cameraid = Integer.parseInt(JOptionPane.showInputDialog("ID da câmera: "));
+        camera.delCameraid(cameraid);
         tabelaATT();
     }//GEN-LAST:event_botaoExcluir5ActionPerformed
 
@@ -410,15 +414,7 @@ public class visualizacaoCamera extends javax.swing.JFrame {
 
                 // Verifica se o clique foi dentro dos limites da tabela
                 if (row >= 0) {
-                    int cameraid = (int) tabelaCameras.getValueAt(row, 0);
-                    String novoValor;
-                    if (col == 1){
-                        novoValor = JOptionPane.showInputDialog(null, "Novo modelo: ");
-                        camera.setModeloid(cameraid, novoValor);
-                    } else if (col == 2){
-                        novoValor = JOptionPane.showInputDialog(null, "Novo MAC: ");
-                        camera.setMACid(cameraid, novoValor);
-                    }
+                    this.cameraID = (int) tabelaCameras.getValueAt(row, 0);
                 }
     tabelaATT();
     }//GEN-LAST:event_tabelaCamerasMouseClicked
