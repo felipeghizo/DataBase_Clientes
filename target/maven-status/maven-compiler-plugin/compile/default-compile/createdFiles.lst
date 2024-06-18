@@ -16,6 +16,7 @@ visualizacao\visualizacaoCamera$3.class
 visualizacao\visualizacaoCliente$5.class
 modelo\Envio.class
 visualizacao\visualizacaoEnvio$1.class
+visualizacao\visualizacaoCamera$13.class
 dao\EnvioDAO.class
 visualizacao\visualizacaoCliente$8.class
 visualizacao\visualizacaoMenu$2.class
@@ -32,6 +33,7 @@ visualizacao\visualizacaoCamera$9.class
 visualizacao\visualizacaoEnvio$9.class
 visualizacao\visualizacaoCliente$7.class
 visualizacao\visualizacaoMenu$3.class
+visualizacao\visualizacaoCamera$12.class
 modelo\Camera.class
 visualizacao\visualizacaoCamera$5.class
 visualizacao\visualizacaoMenu.class

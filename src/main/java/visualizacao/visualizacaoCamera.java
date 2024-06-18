@@ -132,6 +132,16 @@ public class visualizacaoCamera extends javax.swing.JFrame {
             }
         });
         tabelaCameras.setShowGrid(false);
+        tabelaCameras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaCamerasMouseClicked(evt);
+            }
+        });
+        tabelaCameras.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tabelaCamerasPropertyChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaCameras);
         if (tabelaCameras.getColumnModel().getColumnCount() > 0) {
             tabelaCameras.getColumnModel().getColumn(2).setResizable(false);
@@ -302,15 +312,10 @@ public class visualizacaoCamera extends javax.swing.JFrame {
     }//GEN-LAST:event_addCamera5ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        String editModelo = JOptionPane.showInputDialog("Modelo da câmera: ");
-        String editMac = JOptionPane.showInputDialog("Mac da câmera: ");
-        int cameraid = camera.getCameraid(editModelo, editMac);
-        if(cameraid == -1){
-            JOptionPane.showMessageDialog(null, "Dados não encontrados!");
-        }else{
-            // Definindo o look and feel do sistema operacional
-            try {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        int cameraid = Integer.parseInt(JOptionPane.showInputDialog("ID da câmera: "));
+        // Definindo o look and feel do sistema operacional
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
                 e.printStackTrace();
             }
@@ -340,11 +345,11 @@ public class visualizacaoCamera extends javax.swing.JFrame {
             switch (option) {
                 case 0: // Modelo
                 String novoModelo = JOptionPane.showInputDialog("Novo Modelo: ");
-                camera.setModelo(novoModelo);
+                camera.setModeloid(cameraid, novoModelo);
                 break;
                 case 1: // MAC
                 String novoMAC = JOptionPane.showInputDialog("Novo MAC: ");
-                camera.setMAC(novoMAC);
+                camera.setMACid(cameraid, novoMAC);
                 break;
                 case 2: // Cancelar
                 JOptionPane.showMessageDialog(null, "Operação cancelada!");
@@ -353,8 +358,7 @@ public class visualizacaoCamera extends javax.swing.JFrame {
                 System.out.println("Nenhuma opção selecionada");
                 break;
             }
-        }
-        tabelaATT();
+        tabelaATT();    
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void botaoExcluir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluir5ActionPerformed
@@ -394,6 +398,30 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         visualizacaoEnvio envio = new visualizacaoEnvio();
         envio.setVisible(true);
     }//GEN-LAST:event_botaoEnviosActionPerformed
+
+    private void tabelaCamerasPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tabelaCamerasPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabelaCamerasPropertyChange
+
+    private void tabelaCamerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaCamerasMouseClicked
+        // Obtém a linha e coluna onde ocorreu o clique
+                int row = tabelaCameras.rowAtPoint(evt.getPoint());
+                int col = tabelaCameras.columnAtPoint(evt.getPoint());
+
+                // Verifica se o clique foi dentro dos limites da tabela
+                if (row >= 0) {
+                    int cameraid = (int) tabelaCameras.getValueAt(row, 0);
+                    String novoValor;
+                    if (col == 1){
+                        novoValor = JOptionPane.showInputDialog(null, "Novo modelo: ");
+                        camera.setModeloid(cameraid, novoValor);
+                    } else if (col == 2){
+                        novoValor = JOptionPane.showInputDialog(null, "Novo MAC: ");
+                        camera.setMACid(cameraid, novoValor);
+                    }
+                }
+    tabelaATT();
+    }//GEN-LAST:event_tabelaCamerasMouseClicked
 
     public void tabelaATT() {
     DefaultTableModel dtmCameras = (DefaultTableModel) tabelaCameras.getModel();

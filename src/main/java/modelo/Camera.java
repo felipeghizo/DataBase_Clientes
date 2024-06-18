@@ -39,10 +39,18 @@ public class Camera {
         this.MAC = MAC;
         cameraDAO.setMACDAO(this.getCameraid(this.modelo, auxMAC), this.MAC);
     }
+    public void setMACid(int id, String MAC) {
+        this.MAC = MAC;
+        cameraDAO.setMACDAO(id, this.MAC);
+    }
     public void setModelo(String modelo) {
         String auxModelo = this.modelo;
         this.modelo = modelo;
         cameraDAO.setModeloDAO(this.getCameraid(auxModelo, this.MAC), this.modelo);
+    }
+    public void setModeloid(int id, String modelo) {
+        this.modelo = modelo;
+        cameraDAO.setModeloDAO(id, this.modelo);
     }
     
     // Adiciona camera ao banco de dados
