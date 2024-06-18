@@ -54,26 +54,46 @@ public class Cliente {
         this.nome = nome;
         clienteDAO.setNomeDAO(this.getClienteid(auxNome, this.NumeroCliente), nome);
     }
+    public void setNomeID(int id, String nome) {
+        this.nome = nome;
+        clienteDAO.setNomeDAO(id, nome);
+    }
     
     public void setTelefone(String telefone){
         this.telefone = telefone;
         clienteDAO.setTelefoneDAO(this.getClienteid(this.nome, this.NumeroCliente), telefone);
+    }
+    public void setTelefoneID(int id, String telefone){
+        this.telefone = telefone;
+        clienteDAO.setTelefoneDAO(id, telefone);
     }
 
     public void setEmail(String email) {
         this.email = email;
         clienteDAO.setEmailDAO(this.getClienteid(this.nome, this.NumeroCliente), email);
     }
+    public void setEmailID(int id, String email) {
+        this.email = email;
+        clienteDAO.setEmailDAO(id, email);
+    }
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
         clienteDAO.setEnderecoDAO(this.getClienteid(this.nome, this.NumeroCliente), endereco);
+    }
+    public void setEnderecoID(int id, String endereco) {
+        this.endereco = endereco;
+        clienteDAO.setEnderecoDAO(id, endereco);
     }
 
     public void setNumeroCliente(int NumeroCliente) {
         int auxNumeroCliente = this.NumeroCliente;
         this.NumeroCliente = NumeroCliente;
         clienteDAO.setNumeroClienteDAO(this.getClienteid(this.nome, auxNumeroCliente), NumeroCliente);
+    }
+    public void setNumeroClienteID(int id, int NumeroCliente) {
+        this.NumeroCliente = NumeroCliente;
+        clienteDAO.setNumeroClienteDAO(id, NumeroCliente);
     }
     
     // Adiciona cliente ao banco de dados
