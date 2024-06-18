@@ -48,9 +48,9 @@ public class visualizacaoCliente extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         botaoExcluir = new javax.swing.JButton();
         jPanel19 = new javax.swing.JPanel();
-        jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
+        botaoCamera = new javax.swing.JButton();
+        botaoMenu = new javax.swing.JButton();
+        botaoEnvio = new javax.swing.JButton();
         jPanel20 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaClientes = new javax.swing.JTable();
@@ -229,16 +229,26 @@ public class visualizacaoCliente extends javax.swing.JFrame {
 
         jPanel19.setBackground(new java.awt.Color(153, 153, 153));
 
-        jButton22.setText("Clientes");
-
-        jButton23.setText("Câmeras");
-        jButton23.addActionListener(new java.awt.event.ActionListener() {
+        botaoCamera.setText("Cameras");
+        botaoCamera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton23ActionPerformed(evt);
+                botaoCameraActionPerformed(evt);
             }
         });
 
-        jButton24.setText("Envios");
+        botaoMenu.setText("Menu");
+        botaoMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoMenuActionPerformed(evt);
+            }
+        });
+
+        botaoEnvio.setText("Envios");
+        botaoEnvio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEnvioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -247,20 +257,20 @@ public class visualizacaoCliente extends javax.swing.JFrame {
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton23, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                    .addComponent(jButton22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botaoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                    .addComponent(botaoCamera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoEnvio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addComponent(jButton23)
+                .addComponent(botaoMenu)
                 .addGap(18, 18, 18)
-                .addComponent(jButton22)
+                .addComponent(botaoCamera)
                 .addGap(18, 18, 18)
-                .addComponent(jButton24)
+                .addComponent(botaoEnvio)
                 .addContainerGap(352, Short.MAX_VALUE))
         );
 
@@ -496,9 +506,14 @@ public class visualizacaoCliente extends javax.swing.JFrame {
         }else{JOptionPane.showMessageDialog(null, "Operação cancelada!");}
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
-    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton23ActionPerformed
+    private void botaoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenuActionPerformed
+        // Esconde a janela de clientes
+        this.setVisible(false);
+        
+        // Cria uma instância de Menu e a torna visivel
+        visualizacaoMenu menu = new visualizacaoMenu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_botaoMenuActionPerformed
 
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
         // Obtém a linha e coluna onde ocorreu o clique
@@ -513,6 +528,24 @@ public class visualizacaoCliente extends javax.swing.JFrame {
         // Atualiza a tabela
         tabelaATT();
     }//GEN-LAST:event_tabelaClientesMouseClicked
+
+    private void botaoCameraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCameraActionPerformed
+        // Esconde a janela de clientes
+        this.setVisible(false);
+        
+        // Cria uma instância de Menu e a torna visivel
+        visualizacaoCamera camera = new visualizacaoCamera();
+        camera.setVisible(true);
+    }//GEN-LAST:event_botaoCameraActionPerformed
+
+    private void botaoEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEnvioActionPerformed
+        // Esconde a janela de câmeras
+        this.setVisible(false);
+        
+        // Cria uma instância de menu e a torna visivel
+        visualizacaoEnvio envio = new visualizacaoEnvio();
+        envio.setVisible(true);
+    }//GEN-LAST:event_botaoEnvioActionPerformed
     public void tabelaATT() {
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaClientes.getModel();
         ArrayList lista = cliente.getClientes();
@@ -581,12 +614,12 @@ public class visualizacaoCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCamera1;
     private javax.swing.JButton botaoAdicionar;
+    private javax.swing.JButton botaoCamera;
     private javax.swing.JButton botaoEditar;
+    private javax.swing.JButton botaoEnvio;
     private javax.swing.JButton botaoExcluir;
     private javax.swing.JButton botaoExcluir1;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
+    private javax.swing.JButton botaoMenu;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
