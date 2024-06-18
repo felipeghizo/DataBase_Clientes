@@ -18,7 +18,7 @@ public class ClienteDAO {
     Conexao conexao = new Conexao();
     
     // Gets
-    public int getClienteidDAO(String nome, String NumeroCliente) {
+    public int getClienteidDAO(String nome, int NumeroCliente) {
         String sql = """
                     SELECT COUNT(*) AS total 
                     FROM tb_clientes 
@@ -31,7 +31,7 @@ public class ClienteDAO {
 
             // Configura os parâmetros da query
             stmt.setString(1, nome);
-            stmt.setString(2, NumeroCliente);
+            stmt.setInt(2, NumeroCliente);
 
             // Executa a query
             try (ResultSet res = stmt.executeQuery()) {
@@ -47,7 +47,7 @@ public class ClienteDAO {
                               """;
                         try (PreparedStatement stmt2 = conn.prepareStatement(sql)) {
                             stmt2.setString(1, nome);
-                            stmt2.setString(2, NumeroCliente);
+                            stmt2.setInt(2, NumeroCliente);
 
                             // Executa a segunda query
                             ResultSet res2 = stmt2.executeQuery();
@@ -257,14 +257,14 @@ public class ClienteDAO {
             throw new RuntimeException(erro);
         }
     }
-    public void setNumeroClienteDAO(int clienteid, String novaNotaFiscal){
+    public void setNumeroClienteDAO(int clienteid, int novaNumeroCliente){
       String sql = """
                  UPDATE tb_clientes
-                 SET NotaFiscal = (?)
+                 SET numero_cliente = (?)
                  WHERE clienteid = (?);""";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
-            stmt.setString(1, novaNotaFiscal);
+            stmt.setInt(1, novaNumeroCliente);
             stmt.setInt(2, clienteid);
             stmt.execute();
             stmt.close();
@@ -284,9 +284,9 @@ public class ClienteDAO {
                 String nome = res.getString("nome");
                 String telefone = res.getString("telefone");
                 String email = res.getString("email");
-                String NotaFiscal = res.getString("NotaFiscal");
+                int numeroCliente = res.getInt("numero_cliente");
                 String endereco = res.getString("endereco");
-                Cliente cliente = new Cliente(nome, telefone, email, NotaFiscal, endereco);
+                Cliente cliente = new Cliente(nome, telefone, email, numeroCliente, endereco);
                 minhaLista.add(cliente);
             }
             stmt.close();
@@ -297,14 +297,14 @@ public class ClienteDAO {
     }
     
     // Adiciona cliente
-    public void addClienteDAO(String nome, String telefone, String email, String NotaFiscal, String endereco) {
-        String sql = "INSERT INTO tb_clientes(nome, telefone, email, NotaFiscal, endereco) VALUES(?,?, ?, ?, ?)";
+    public void addClienteDAO(String nome, String telefone, String email, int numeroCliente, String endereco) {
+        String sql = "INSERT INTO tb_clientes(nome, telefone, email, numero_cliente, endereco) VALUES(?,?, ?, ?, ?)";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setString(1, nome);
             stmt.setString(2, telefone);
             stmt.setString(3, email);
-            stmt.setString(4, NotaFiscal);
+            stmt.setInt(4, numeroCliente);
             stmt.setString(5, endereco);
             stmt.execute();
             stmt.close();
