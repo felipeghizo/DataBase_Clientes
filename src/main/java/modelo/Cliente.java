@@ -2,20 +2,21 @@
 package modelo;
 
 import dao.ClienteDAO;
+import java.util.ArrayList;
 
 public class Cliente {
     private String nome;
     private String telefone;
     private String email;
-    private String NumeroCliente;
+    private int NumeroCliente;
     private String endereco;
     ClienteDAO clienteDAO = new ClienteDAO();
 
     public Cliente() {
-        this("","", "", "", "");
+        this("","", "", 0, "");
     }
 
-    public Cliente(String nome, String telefone, String email, String NumeroCliente, String endereco) {
+    public Cliente(String nome, String telefone, String email, int NumeroCliente, String endereco) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
@@ -25,8 +26,8 @@ public class Cliente {
     }
 
     // gets
-    public int getClienteid(String nome, String NotaFiscal){
-        return clienteDAO.getClienteidDAO(nome, NotaFiscal);
+    public int getClienteid(String nome, int NumeroCliente){
+        return clienteDAO.getClienteidDAO(nome, NumeroCliente);
     }
     public String getNome() {
         return clienteDAO.getNomeDAO(getClienteid(this.nome, this.NumeroCliente));
@@ -43,9 +44,9 @@ public class Cliente {
     public int getNumeroCliente() {
         return clienteDAO.getNumeroClienteDAO(getClienteid(this.nome, this.NumeroCliente));
     }
-
-    
-
+    public ArrayList getClientes(){
+        return clienteDAO.getClientesDAO();
+    }
     
     // sets
     public void setNome(String nome) {
@@ -69,8 +70,8 @@ public class Cliente {
         clienteDAO.setEnderecoDAO(this.getClienteid(this.nome, this.NumeroCliente), endereco);
     }
 
-    public void setNumeroCliente(String NumeroCliente) {
-        String auxNumeroCliente = this.NumeroCliente;
+    public void setNumeroCliente(int NumeroCliente) {
+        int auxNumeroCliente = this.NumeroCliente;
         this.NumeroCliente = NumeroCliente;
         clienteDAO.setNumeroClienteDAO(this.getClienteid(this.nome, auxNumeroCliente), NumeroCliente);
     }
@@ -79,9 +80,12 @@ public class Cliente {
     public void addCliente(){
         clienteDAO.addClienteDAO(this.nome, this.telefone, this.email, this.NumeroCliente, this.endereco);
     }
-   // Deleta cliente do banco de dados
-    public void delCliente(String nome, String NotaFiscal){
-        clienteDAO.delClienteDAO(this.getClienteid(nome, NotaFiscal));
+    // Deleta cliente do banco de dados
+    public void delCliente(String nome, int numeroCliente){
+        clienteDAO.delClienteDAO(this.getClienteid(nome, numeroCliente));
+    }
+    public void delClienteID(int id){
+        clienteDAO.delClienteDAO(id);
     }
     
 }
