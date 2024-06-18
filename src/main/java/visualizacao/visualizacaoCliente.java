@@ -269,13 +269,10 @@ public class visualizacaoCliente extends javax.swing.JFrame {
 
         tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Cliente ID", "Nome", "Telefone", "E-mail", "Endereço", "Numero"
             }
         ));
         jScrollPane1.setViewportView(tabelaClientes);
@@ -382,7 +379,7 @@ public class visualizacaoCliente extends javax.swing.JFrame {
 
     private void botaoExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluir1ActionPerformed
         String nome = JOptionPane.showInputDialog("Nome: ");
-        String numero_cliente = JOptionPane.showInputDialog("Número do cliente: ");
+        int numero_cliente = Integer.parseInt(JOptionPane.showInputDialog("Número do cliente: "));
 
         cliente.delCliente(nome, numero_cliente);
     }//GEN-LAST:event_botaoExcluir1ActionPerformed
@@ -392,25 +389,34 @@ public class visualizacaoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void botaoAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarActionPerformed
- String nome = JOptionPane.showInputDialog("Nome: ");
+        // Input de dados do cliente a ser adicionado
+        String nome = JOptionPane.showInputDialog("Nome: ");
         String telefone = JOptionPane.showInputDialog("Telefone: ");
         String email = JOptionPane.showInputDialog("E-mail: ");
-        String numero_cliente = JOptionPane.showInputDialog("Número do cliente: ");
+        int numero_cliente = Integer.parseInt(JOptionPane.showInputDialog("Número do cliente: "));
         String endereco = JOptionPane.showInputDialog("Endereço: ");
 
+        // Criação do cliente
         cliente.setNome(nome);
         cliente.setTelefone(telefone);
         cliente.setEmail(email);
         cliente.setNumeroCliente(numero_cliente);
         cliente.setEndereco(endereco);
         cliente.addCliente();
-
+        
+        // Adição da câmera à tabela
+        DefaultTableModel dtmClientes = (DefaultTableModel) tabelaClientes.getModel();
+        Object[] dados = {cliente.getClienteid(cliente.getNome(), cliente.getNumeroCliente()), cliente.getNome(), cliente.getTelefone(), cliente.getEmail(), cliente.getNumeroCliente(), cliente.getEndereco()};
+        dtmClientes.addRow(dados);
+        
+        // Atualização da tabela
+        tabelaATT();
     }//GEN-LAST:event_botaoAdicionarActionPerformed
 
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
         String clienteNome = JOptionPane.showInputDialog("Nome do cliente: ");
-        String clienteNotaFiscal = JOptionPane.showInputDialog("Nota fiscal do cliente: ");
-        int clienteid = cliente.getClienteid(clienteNome, clienteNotaFiscal);
+        int numero_cliente = Integer.parseInt(JOptionPane.showInputDialog("Nota fiscal do cliente: "));
+        int clienteid = cliente.getClienteid(clienteNome, numero_cliente);
         if(clienteid == -1){
             JOptionPane.showMessageDialog(null, "Dados não encontrados!");
         }else{
@@ -457,7 +463,7 @@ public class visualizacaoCliente extends javax.swing.JFrame {
                 cliente.setEmail(novoEmail);
                 break;
                 case 3: // Nota fiscal
-                String novaNotaFiscal = JOptionPane.showInputDialog("Nova nota Fiscal: ");
+                int novaNotaFiscal = Integer.parseInt(JOptionPane.showInputDialog("Nova nota Fiscal: "));
                 cliente.setNumeroCliente(novaNotaFiscal);
                 break;
                 case 4: // Endereço

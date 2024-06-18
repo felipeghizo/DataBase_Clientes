@@ -18,7 +18,7 @@ public class Conexao {
             String url = "jdbc:mysql://" + server + ":3306/"
             +database + "?useTimezone=true&serverTimezone=UTC";
             String user = "root";
-            String password = "CamerasIP123";
+            String password = "admin123";
             // Conectando..
             connection = DriverManager.getConnection(url, user, password);
             return connection;
