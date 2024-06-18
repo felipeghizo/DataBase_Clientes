@@ -21,12 +21,6 @@ public class Conexao {
             String password = "CamerasIP123";
             // Conectando..
             connection = DriverManager.getConnection(url, user, password);
-            // Testando..
-            if (connection != null) {
-                System.out.println("Status: Conectado!");
-            } else {
-                System.out.println("Status: NÃO CONECTADO!");
-            }
             return connection;
         } catch (ClassNotFoundException e) { // Driver não encontrado
             System.out.println("O driver não foi encontrado.");
