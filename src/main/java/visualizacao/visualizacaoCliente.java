@@ -3,14 +3,17 @@ package visualizacao;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import modelo.Cliente;
 
 
 public class visualizacaoCliente extends javax.swing.JFrame {
 
+    public TableRowSorter sorter;
     public int clienteID;
     Cliente cliente = new Cliente();
     public visualizacaoCliente() {
@@ -19,7 +22,11 @@ public class visualizacaoCliente extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null); // Centraliza o JFrame na tela
         
-        // Atualização da tabela
+        // Criação do TableRowSorter com o modelo da tabela
+        sorter = new TableRowSorter<>(tabelaClientes.getModel());
+        tabelaClientes.setRowSorter(sorter);
+        
+        // Carrega os dados iniciais da tabela
         tabelaATT();
     }
 
@@ -312,8 +319,18 @@ public class visualizacaoCliente extends javax.swing.JFrame {
         );
 
         botaoProcurar.setText("Procurar");
+        botaoProcurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoProcurarActionPerformed(evt);
+            }
+        });
 
         botaoLimpar.setText("Limpar");
+        botaoLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -558,6 +575,26 @@ public class visualizacaoCliente extends javax.swing.JFrame {
         visualizacaoEnvio envio = new visualizacaoEnvio();
         envio.setVisible(true);
     }//GEN-LAST:event_botaoEnvioActionPerformed
+
+    private void botaoProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProcurarActionPerformed
+        // Input do dado a ser procurado
+        String textoPesquisa = textProcurar.getText().trim();
+        
+        tabelaClientes.setRowSorter(sorter);
+        if (textoPesquisa.length() == 0) { // Caso não haja Input
+            sorter.setRowFilter(null);
+        } else {
+            sorter.setRowFilter(RowFilter.regexFilter(textoPesquisa));
+        }
+    }//GEN-LAST:event_botaoProcurarActionPerformed
+
+    private void botaoLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimparActionPerformed
+        // Define o filtro de pesquisa como vazio
+        sorter.setRowFilter(null);
+        
+        // Atualiza a tabela
+        tabelaATT();
+    }//GEN-LAST:event_botaoLimparActionPerformed
     public void tabelaATT() {
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaClientes.getModel();
         ArrayList lista = cliente.getClientes();
