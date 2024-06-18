@@ -486,12 +486,14 @@ public class visualizacaoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEditarActionPerformed
 
     private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
-        // Input do id da câmera a ser excluída
-        int clienteid = Integer.parseInt(JOptionPane.showInputDialog("ID da câmera: "));
-        cliente.delClienteID(clienteid);
-        
-        // Atualização da tabela
-        tabelaATT();
+        // Confirmação dacâmera que deve ser excluída
+        int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o cliente de ID: "+this.clienteID+" ?");
+        if (confirm == 0) {
+            // Exclui a camera do banco de dados
+            cliente.delClienteID(this.clienteID);
+            // Atualização da tabela
+            tabelaATT();
+        }else{JOptionPane.showMessageDialog(null, "Operação cancelada!");}
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
