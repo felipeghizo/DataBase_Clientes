@@ -56,6 +56,7 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
         botaoCamera = new javax.swing.JButton();
         botaoMenu = new javax.swing.JButton();
         botaoClientes = new javax.swing.JButton();
+        botaoHistorico = new javax.swing.JButton();
         textProcurar = new javax.swing.JTextField();
         botaoProcurar = new javax.swing.JButton();
         botaoLimpar = new javax.swing.JButton();
@@ -127,6 +128,13 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
             }
         });
 
+        botaoHistorico.setText("Histórico");
+        botaoHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoHistoricoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
@@ -134,6 +142,7 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoCamera, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -148,6 +157,8 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
                 .addComponent(botaoCamera)
                 .addGap(18, 18, 18)
                 .addComponent(botaoClientes)
+                .addGap(18, 18, 18)
+                .addComponent(botaoHistorico)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -341,8 +352,8 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
         this.setVisible(false);
 
         // Cria uma instância de Menu e a torna visivel
-        visualizacaoCamera camera = new visualizacaoCamera();
-        camera.setVisible(true);
+        visualizacaoCamera cameraV = new visualizacaoCamera();
+        cameraV.setVisible(true);
     }//GEN-LAST:event_botaoCameraActionPerformed
 
     private void botaoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenuActionPerformed
@@ -359,8 +370,8 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
         this.setVisible(false);
 
         // Cria uma instância de menu e a torna visivel
-        visualizacaoEnvio envio = new visualizacaoEnvio();
-        envio.setVisible(true);
+        visualizacaoEnvio envioV = new visualizacaoEnvio();
+        envioV.setVisible(true);
     }//GEN-LAST:event_botaoClientesActionPerformed
 
     private void tabelaEnviosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEnviosMouseClicked
@@ -396,6 +407,15 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
         // Atualiza a tabela
         tabelaATT();
     }//GEN-LAST:event_botaoLimparActionPerformed
+
+    private void botaoHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoHistoricoActionPerformed
+        // Esconde a janela de câmeras
+        this.setVisible(false);
+
+        // Cria uma instância de menu e a torna visivel
+        visualizacaoHistorico historicoV = new visualizacaoHistorico();
+        historicoV.setVisible(true);
+    }//GEN-LAST:event_botaoHistoricoActionPerformed
    
     public void tabelaATT() {
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaEnvios.getModel();
@@ -407,24 +427,23 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
         // Itera sobre a lista de câmeras e atualiza a tabela
         for (Object obj : lista) {
             // Verifica se o objeto é uma instância de Camera
-            if (obj instanceof Envio) {
-                Envio envio = (Envio) obj;
-                int clienteID = envio.getClienteid();
+            if (obj instanceof Envio envioO) {
+                int clienteID = envioO.getClienteid();
                 int clienteNumero = cliente.getNumeroClienteID(clienteID);
                 String clienteNome = cliente.getNomeID(clienteID);
                 
-                int cameraID = envio.getCameraid();
+                int cameraID = envioO.getCameraid();
                 String cameraModelo = camera.getModeloID(cameraID);
                 String cameraMAC = camera.getMACID(cameraID);
                 
-                String acesso = envio.getAcesso();
-                String dataEnvio = envio.getData_Envio();
-                String DataEntrega = envio.getData_Entrega();
-                String dataInstalacao = envio.getData_Instalacao();
-                int nota_fiscal = envio.getNotaFiscal();
-                int sequencia = envio.getSequencia();
-                int numero_pedido = envio.getNumero_Pedido();
-                int ID = envio.getEnvioid(clienteID, cameraID);
+                String acesso = envioO.getAcesso();
+                String dataEnvio = envioO.getData_Envio();
+                String DataEntrega = envioO.getData_Entrega();
+                String dataInstalacao = envioO.getData_Instalacao();
+                int nota_fiscal = envioO.getNotaFiscal();
+                int sequencia = envioO.getSequencia();
+                int numero_pedido = envioO.getNumero_Pedido();
+                int ID = envioO.getEnvioid(clienteID, cameraID);
 
                 // Cria um novo array de objetos para adicionar à tabela
                 Object[] dados = { clienteNumero, clienteNome, cameraModelo, cameraMAC, acesso, dataEnvio, DataEntrega, dataInstalacao, nota_fiscal, sequencia, numero_pedido };
@@ -436,10 +455,8 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
     }
 
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new visualizacaoEnvio().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new visualizacaoEnvio().setVisible(true);
         });
     }
 
@@ -449,6 +466,7 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
     private javax.swing.JButton botaoClientes;
     private javax.swing.JButton botaoEditar;
     private javax.swing.JButton botaoExcluir;
+    private javax.swing.JButton botaoHistorico;
     private javax.swing.JButton botaoLimpar;
     private javax.swing.JButton botaoMenu;
     private javax.swing.JButton botaoProcurar;

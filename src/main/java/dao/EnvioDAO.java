@@ -477,11 +477,11 @@ public class EnvioDAO {
     }
     
     // Exclui Cliente
-    public void removeEnvioDAO(int emprestimoid) {
-        String sql = "DELETE FROM envios WHERE emprestimoid = (?)";
+    public void removeEnvioDAO(int envioid) {
+        String sql = "DELETE FROM envios WHERE envioid = (?)";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
-            stmt.setInt(1, emprestimoid);
+            stmt.setInt(1, envioid);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {

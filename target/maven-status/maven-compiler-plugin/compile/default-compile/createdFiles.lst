@@ -6,6 +6,8 @@ visualizacao\visualizacaoEnvio$7.class
 visualizacao\visualizacaoEnvio.class
 visualizacao\visualizacaoCliente$14.class
 visualizacao\visualizacaoIniciarTeste$3.class
+visualizacao\visualizacaoHistorico$7.class
+visualizacao\visualizacaoHistorico.class
 visualizacao\visualizacaoCamera.class
 visualizacao\visualizacaoEnvio$4.class
 visualizacao\visualizacaoIniciarTeste$7.class
@@ -15,6 +17,7 @@ dao\ClienteDAO.class
 visualizacao\visualizacaoCamera$3.class
 visualizacao\visualizacaoCliente$5.class
 modelo\Envio.class
+visualizacao\visualizacaoHistorico$6.class
 visualizacao\visualizacaoEnvio$1.class
 visualizacao\visualizacaoCamera$13.class
 visualizacao\visualizacaoIniciarTeste$4.class
@@ -24,6 +27,8 @@ visualizacao\visualizacaoCliente$8.class
 visualizacao\visualizacaoMenu$2.class
 visualizacao\visualizacaoCamera$1.class
 visualizacao\visualizacaoEnvio$8.class
+modelo\Historico.class
+visualizacao\visualizacaoHistorico$3.class
 visualizacao\visualizacaoIniciarTeste$1.class
 visualizacao\visualizacaoCamera$4.class
 visualizacao\visualizacaoIniciarTeste.class
@@ -35,6 +40,8 @@ visualizacao\visualizacaoCliente$1.class
 visualizacao\visualizacaoCliente$13.class
 visualizacao\visualizacaoCamera$2.class
 visualizacao\visualizacaoIniciarTeste$12.class
+visualizacao\visualizacaoHistorico$5.class
+dao\HistoricoDAO.class
 visualizacao\visualizacaoCliente$4.class
 visualizacao\visualizacaoCamera$9.class
 visualizacao\visualizacaoEnvio$9.class
@@ -44,6 +51,7 @@ visualizacao\visualizacaoCamera$12.class
 modelo\Camera.class
 visualizacao\visualizacaoCamera$5.class
 visualizacao\visualizacaoIniciarTeste$2.class
+visualizacao\visualizacaoHistorico$2.class
 visualizacao\visualizacaoMenu.class
 visualizacao\visualizacaoCliente$12.class
 visualizacao\visualizacaoIniciarTeste$8.class
@@ -57,12 +65,14 @@ dao\Conexao.class
 visualizacao\visualizacaoIniciarTeste$6.class
 visualizacao\visualizacaoCamera$6.class
 visualizacao\visualizacaoEnvio$3.class
+visualizacao\visualizacaoHistorico$4.class
 visualizacao\visualizacaoCliente$3.class
 visualizacao\visualizacaoCliente$11.class
 visualizacao\visualizacaoCliente$6.class
 modelo\Cliente.class
 visualizacao\visualizacaoEnvio$6.class
 dao\CameraDAO.class
+visualizacao\visualizacaoHistorico$1.class
 visualizacao\visualizacaoIniciarTeste$9.class
 principal\Principal.class
 visualizacao\visualizacaoEnvio$10.class
