@@ -8,21 +8,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import modelo.Envio;
+import modelo.Historico;
 
 
-public class EnvioDAO {
+public class HistoricoDAO {
     
-
     ArrayList minhaLista = new ArrayList();
     Conexao conexao = new Conexao();
-    
+   
     // gets
-    public int getEnvioidDAO(int clienteid, int cameraid) {
+    public int getHistoricoidDAO(String nome_cliente, String modelo_camera) {
         String sql = """
                      SELECT COUNT(*) AS total 
-                     FROM envios 
-                     WHERE clienteid = ? AND cameraid = ?
+                     FROM historico 
+                     WHERE nome_cliente = ? AND modelo_camera = ?
                      """;
         int envioid = 0;
 
@@ -30,18 +29,18 @@ public class EnvioDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             // Configura os parâmetros da query
-            stmt.setInt(1, clienteid);
-            stmt.setInt(2, cameraid);
+            stmt.setString(1, nome_cliente);
+            stmt.setString(2, modelo_camera);
 
             // Executa a query
             try (ResultSet res = stmt.executeQuery()) {
                 if (res.next()) {
-                    int totalFerramentas = res.getInt("total");  // Obtém o total de envios encontrados
+                    int totalFerramentas = res.getInt("total");  // Obtém o total de historico encontrados
                     if (totalFerramentas > 0) {  // Pelo menos um envio foi encontrado
-                        sql = "SELECT envioid FROM envios WHERE clienteid = ? AND cameraid = ?";
+                        sql = "SELECT envioid FROM historico WHERE nome_cliente = ? AND modelo_camera = ?";
                         try (PreparedStatement stmt2 = conn.prepareStatement(sql)) {
-                            stmt2.setInt(1, clienteid);
-                            stmt2.setInt(2, cameraid);
+                            stmt2.setString(1, nome_cliente);
+                            stmt2.setString(2, modelo_camera);
 
                             // Executa a segunda query
                             ResultSet res2 = stmt2.executeQuery();
@@ -56,17 +55,17 @@ public class EnvioDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao procurar clienteid : " + e.getMessage());
+            System.out.println("Erro ao procurar historicoid : " + e.getMessage());
         }
         return envioid;
     }
-    public int getClienteidDAO(int envioid){  
+    public String getNomeClienteDAO(int envioid){  
     String sql = """
-                 SELECT clienteid 
-                 FROM envios 
-                 WHERE envioid = ?
+                 SELECT nome_cliente 
+                 FROM historico 
+                 WHERE envioid = ? 
                  """;
-        int clienteid = 0;
+        String nomeCliente = "";
         try (Connection conn = conexao.getConexao();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             // Configura os parâmetros da query
@@ -74,24 +73,24 @@ public class EnvioDAO {
             // Executa a query
             try (ResultSet res = stmt.executeQuery()) {
                 if (res.next()) {
-                    clienteid = res.getInt("clienteid");
+                    nomeCliente = res.getString("nome_cliente");
                 } else {
                     // Nenhum clienteid foi encontrado
-                    System.out.println("Nenhum clienteid encontrado com o id: " + clienteid);
+                    System.out.println("Nenhum nome_cliente encontrado com o id: " + envioid);
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar o clienteid do envio: " + e.getMessage());
+            System.out.println("Erro ao buscar o nome_cliente do historico: " + e.getMessage());
         }
-        return clienteid;
+        return nomeCliente;
     }
-    public int getCameraidDAO(int envioid){  
+    public String getModeloCameraDAO(int envioid){  
     String sql = """
-                 SELECT cameraid 
-                 FROM envios 
-                 WHERE envioid = ? 
+                 SELECT modelo_camera 
+                 FROM historico 
+                 WHERE envioid = ?
                  """;
-        int cameraid = 0;
+        String cameraModelo = "";
         try (Connection conn = conexao.getConexao();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             // Configura os parâmetros da query
@@ -99,46 +98,21 @@ public class EnvioDAO {
             // Executa a query
             try (ResultSet res = stmt.executeQuery()) {
                 if (res.next()) {
-                    cameraid = res.getInt("cameraid");
+                    cameraModelo = res.getString("modelo_camera");
                 } else {
                     // Nenhum cameraid foi encontrado
-                    System.out.println("Nenhum cameraid encontrado com o id: " + cameraid);
+                    System.out.println("Nenhum cameraid encontrado com o id: " + envioid);
                 }
             }
         } catch (SQLException e) {
             System.out.println("Erro ao buscar o cameraid do envio: " + e.getMessage());
         }
-        return cameraid;
-    }
-    public String getAcessoDAO(int envioid){  
-    String sql = """
-                 SELECT acesso 
-                 FROM envios 
-                 WHERE envioid = ?
-                 """;
-        String acesso = "";
-        try (Connection conn = conexao.getConexao();
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
-            // Configura os parâmetros da query
-            stmt.setInt(1, envioid);
-            // Executa a query
-            try (ResultSet res = stmt.executeQuery()) {
-                if (res.next()) {
-                    acesso = res.getString("acesso");
-                } else {
-                    // Nenhum acesso foi encontrado
-                    System.out.println("Nenhum acesso encontrado com o id: " + acesso);
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Erro ao buscar o acesso do envio: " + e.getMessage());
-        }
-        return acesso;
+        return cameraModelo;
     }
     public String getData_EntregaDAO(int envioid){  
     String sql = """
                  SELECT data_entrega 
-                 FROM envios 
+                 FROM historico 
                  WHERE envioid = ?
                  """;
         String data_entrega = "";
@@ -163,7 +137,7 @@ public class EnvioDAO {
     public String getData_EnvioDAO(int envioid){  
     String sql = """
                  SELECT data_envio 
-                 FROM envios 
+                 FROM historico 
                  WHERE envioid = ?
                  """;
         String data_envio = "";
@@ -188,7 +162,7 @@ public class EnvioDAO {
     public String getData_InstalacaoDAO(int envioid){  
     String sql = """
                  SELECT data_instalacao 
-                 FROM envios 
+                 FROM historico 
                  WHERE envioid = ?
                  """;
         String data_instalacao = "";
@@ -213,7 +187,7 @@ public class EnvioDAO {
     public int getNotaFiscalDAO(int envioid){  
     String sql = """
                  SELECT nota_fiscal 
-                 FROM envios 
+                 FROM historico 
                  WHERE envioid = ?
                  """;
         int nota_fiscal = 0;
@@ -238,7 +212,7 @@ public class EnvioDAO {
     public int getSequenciaDAO(int envioid){  
     String sql = """
                  SELECT sequencia 
-                 FROM envios 
+                 FROM historico 
                  WHERE envioid = ?
                  """;
         int sequencia = 0;
@@ -263,7 +237,7 @@ public class EnvioDAO {
     public int getNumero_PedidoDAO(int envioid){  
     String sql = """
                  SELECT numero_pedido 
-                 FROM envios 
+                 FROM historico 
                  WHERE envioid = ?
                  """;
         int numero_pedido = 0;
@@ -286,170 +260,24 @@ public class EnvioDAO {
         return numero_pedido;
     }
     
-    // sets
-    public void setClienteidDAO(int emprestimoid, int novoClienteid){  
-    String sql = """
-                 UPDATE envios
-                 SET clienteid = (?)
-                 WHERE emprestimoid = (?);""";
-        try {
-            PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
-            stmt.setInt(1, novoClienteid);
-            stmt.setInt(2, emprestimoid);
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException erro) {
-            System.out.println("Erro:" + erro);
-            throw new RuntimeException(erro);
-        }
-    }
-    public void setCameraidDAO(int emprestimoid, int novoCameraid){  
-    String sql = """
-                 UPDATE envios
-                 SET cameraid = (?)
-                 WHERE emprestimoid = (?);""";
-        try {
-            PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
-            stmt.setInt(1, novoCameraid);
-            stmt.setInt(2, emprestimoid);
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException erro) {
-            System.out.println("Erro:" + erro);
-            throw new RuntimeException(erro);
-        }
-    }
-    public void setAcessoDAO(int emprestimoid, String novoAcesso){  
-    String sql = """
-                 UPDATE envios
-                 SET acesso = (?)
-                 WHERE emprestimoid = (?);""";
-        try {
-            PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
-            stmt.setString(1, novoAcesso);
-            stmt.setInt(2, emprestimoid);
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException erro) {
-            System.out.println("Erro:" + erro);
-            throw new RuntimeException(erro);
-        }
-    }
-    public void setData_EntregaDAO(int emprestimoid, String novaData_entrega){  
-    String sql = """
-                 UPDATE envios
-                 SET data_entrega = (?)
-                 WHERE emprestimoid = (?);""";
-        try {
-            PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
-            stmt.setString(1, novaData_entrega);
-            stmt.setInt(2, emprestimoid);
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException erro) {
-            System.out.println("Erro:" + erro);
-            throw new RuntimeException(erro);
-        }
-    }
-    public void setData_EnvioDAO(int emprestimoid, String novaData_envio){  
-    String sql = """
-                 UPDATE envios
-                 SET data_envio = (?)
-                 WHERE emprestimoid = (?);""";
-        try {
-            PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
-            stmt.setString(1, novaData_envio);
-            stmt.setInt(2, emprestimoid);
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException erro) {
-            System.out.println("Erro:" + erro);
-            throw new RuntimeException(erro);
-        }
-    }
-    public void setData_InstalacaoDAO(int emprestimoid, String novaData_instalacao){  
-    String sql = """
-                 UPDATE envios
-                 SET data_instalacao = (?)
-                 WHERE emprestimoid = (?);""";
-        try {
-            PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
-            stmt.setString(1, novaData_instalacao);
-            stmt.setInt(2, emprestimoid);
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException erro) {
-            System.out.println("Erro:" + erro);
-            throw new RuntimeException(erro);
-        }
-    }
-    public void setNota_FiscalDAO(int emprestimoid, int novaNota_fiscal){  
-    String sql = """
-                 UPDATE envios
-                 SET nota_fiscal = (?)
-                 WHERE emprestimoid = (?);""";
-        try {
-            PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
-            stmt.setInt(1, novaNota_fiscal);
-            stmt.setInt(2, emprestimoid);
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException erro) {
-            System.out.println("Erro:" + erro);
-            throw new RuntimeException(erro);
-        }
-    }
-    public void setSequenciaDAO(int emprestimoid, int novaSequencia){  
-    String sql = """
-                 UPDATE envios
-                 SET sequencia = (?)
-                 WHERE emprestimoid = (?);""";
-        try {
-            PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
-            stmt.setInt(1, novaSequencia);
-            stmt.setInt(2, emprestimoid);
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException erro) {
-            System.out.println("Erro:" + erro);
-            throw new RuntimeException(erro);
-        }
-    }
-    public void setNumero_PedidoDAO(int emprestimoid, int novoNumero_pedido){  
-    String sql = """
-                 UPDATE envios
-                 SET numero_pedido = (?)
-                 WHERE emprestimoid = (?);""";
-        try {
-            PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
-            stmt.setInt(1, novoNumero_pedido);
-            stmt.setInt(2, emprestimoid);
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException erro) {
-            System.out.println("Erro:" + erro);
-            throw new RuntimeException(erro);
-        }
-    }
     
     // Retorna a Lista de emprestimos
-    public ArrayList getEnviosDAO() {
+    public ArrayList getHistoricosDAO() {
         minhaLista.clear(); // Limpa nosso ArrayList
         try {
             Statement stmt = conexao.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT * FROM envios");
+            ResultSet res = stmt.executeQuery("SELECT * FROM historico");
             while (res.next()) {
-                int clienteid = res.getInt("clienteid");
-                int cameraid = res.getInt("cameraid");
-                String acesso = res.getString("acesso");
-                String data_entrega = res.getString("data_entrega");
-                String data_envio = res.getString("data_envio");
-                String data_instalacao = res.getString("data_instalacao");
-                int nota_fiscal = res.getInt("nota_fiscal");
+                String nomeCliente = res.getString("nome_cliente");
+                String modeloCamera = res.getString("modelo_camera");
+                String dataEntrega = res.getString("data_entrega");
+                String dataEnvio = res.getString("data_envio");
+                String dataInstalacao = res.getString("data_instalacao");
+                int notaFiscal = res.getInt("nota_fiscal");
                 int sequencia = res.getInt("sequencia");
-                int numero_pedido = res.getInt("numero_pedido");
-                Envio emprestimo = new Envio(clienteid, cameraid, acesso, data_entrega, data_envio, data_instalacao, nota_fiscal, sequencia, numero_pedido);
-                minhaLista.add(emprestimo);
+                int numeroPedido = res.getInt("numero_pedido");
+                Historico historico = new Historico(nomeCliente, modeloCamera, dataEntrega, dataEnvio, dataInstalacao, notaFiscal, sequencia, numeroPedido);
+                minhaLista.add(historico);
             }
             stmt.close();
         } catch (SQLException ex) {
@@ -459,15 +287,18 @@ public class EnvioDAO {
     }
     
     // Adiciona Emprestimo
-    public void addEnvioDAO(int clienteid, int cameraid, int nota_fiscal, int sequencia, int numero_pedido) {
-        String sql = "INSERT INTO envios(clienteid, cameraid, nota_fiscal, sequencia, numero_pedido) VALUES(?,?,?,?,?)";
+    public void addHistoricoDAO(String nomeCliente, String modeloCamera, String dataEntrega, String dataEnvio, String dataInstalacao, int notaFiscal, int sequencia, int numeroPedido) {
+        String sql = "INSERT INTO historico(nome_cliente, modelo_camera, data_entrega, data_envio, data_instalacao, nota_fiscal, sequencia, numero_pedido) VALUES(?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
-            stmt.setInt(1, clienteid);
-            stmt.setInt(2, cameraid);
-            stmt.setInt(3, nota_fiscal);
-            stmt.setInt(4, sequencia);
-            stmt.setInt(5, numero_pedido);
+            stmt.setString(1, nomeCliente);
+            stmt.setString(2, modeloCamera);
+            stmt.setString(3, dataEntrega);
+            stmt.setString(4, dataEnvio);
+            stmt.setString(5, dataInstalacao);
+            stmt.setInt(6, notaFiscal);
+            stmt.setInt(7, sequencia);
+            stmt.setInt(8, numeroPedido);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -477,8 +308,8 @@ public class EnvioDAO {
     }
     
     // Exclui Cliente
-    public void removeEnvioDAO(int emprestimoid) {
-        String sql = "DELETE FROM envios WHERE emprestimoid = (?)";
+    public void removeHistoricoDAO(int emprestimoid) {
+        String sql = "DELETE FROM historico WHERE envioid = (?)";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setInt(1, emprestimoid);

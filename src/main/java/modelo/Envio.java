@@ -33,37 +33,62 @@ public class Envio {
         this.numero_pedido = numero_pedido;
     }
 
-    
-
     // gets
     public int getEnvioid(int clienteid, int cameraid){
         return envioDAO.getEnvioidDAO(clienteid, cameraid);
     }
     public int getClienteid(){
-        return envioDAO.getClienteidDAO(this.sequencia, this.numero_pedido);
+        return envioDAO.getClienteidDAO(getEnvioid(this.clienteid, this.cameraid));
+    }
+    public int getClienteID(int ID){
+        return envioDAO.getClienteidDAO(ID);
     }
     public int getCameraid(){
-        return envioDAO.getCameraidDAO(this.sequencia, this.numero_pedido);
+        return envioDAO.getCameraidDAO(getEnvioid(this.clienteid, this.cameraid));
+    }
+    public int getCameraID(int ID){
+        return envioDAO.getCameraidDAO(getEnvioid(this.clienteid, this.cameraid));
     }
     public String getAcesso(){
+        return envioDAO.getAcessoDAO(getEnvioid(this.clienteid, this.cameraid));
+    }
+    public String getAcessoID(int ID){
         return envioDAO.getAcessoDAO(getEnvioid(this.clienteid, this.cameraid));
     }
     public String getData_Entrega(){
         return envioDAO.getData_EntregaDAO(getEnvioid(this.clienteid, this.cameraid));
     }
+    public String getData_EntregaID(int ID){
+        return envioDAO.getData_EntregaDAO(getEnvioid(this.clienteid, this.cameraid));
+    }
     public String getData_Envio(){
+        return envioDAO.getData_EnvioDAO(getEnvioid(this.clienteid, this.cameraid));
+    }
+    public String getData_EnvioID(int ID){
         return envioDAO.getData_EnvioDAO(getEnvioid(this.clienteid, this.cameraid));
     }
     public String getData_Instalacao(){
         return envioDAO.getData_InstalacaoDAO(getEnvioid(this.clienteid, this.cameraid));
     }
+    public String getData_InstalacaoID(int ID){
+        return envioDAO.getData_InstalacaoDAO(getEnvioid(this.clienteid, this.cameraid));
+    }
     public int getNotaFiscal(){
+        return envioDAO.getNotaFiscalDAO(getEnvioid(this.clienteid, this.cameraid));
+    }
+    public int getNotaFiscalID(int ID){
         return envioDAO.getNotaFiscalDAO(getEnvioid(this.clienteid, this.cameraid));
     }
     public int getSequencia(){
         return envioDAO.getSequenciaDAO(getEnvioid(this.clienteid, this.cameraid));
     }
+    public int getSequenciaID(int ID){
+        return envioDAO.getSequenciaDAO(getEnvioid(this.clienteid, this.cameraid));
+    }
     public int getNumero_Pedido(){
+        return envioDAO.getNumero_PedidoDAO(getEnvioid(this.clienteid, this.cameraid));
+    }
+    public int getNumero_PedidoID(int ID){
         return envioDAO.getNumero_PedidoDAO(getEnvioid(this.clienteid, this.cameraid));
     }
     // Get lista de envios 
