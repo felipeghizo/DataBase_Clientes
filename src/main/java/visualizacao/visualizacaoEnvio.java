@@ -313,17 +313,17 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Nenhum teste selecionado!");
         }else{
             // Confirmação dacâmera que deve ser excluída
-            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o cliente de ID: "+this.clienteID+" ?");
+            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja finalizar o teste de ID: "+this.envioID+" ?");
             if (confirm == 0) {
                 // Adiciona o teste ao histórico
                 String nomeCliente = cliente.getNomeID(envio.getClienteID(envioID));
                 String modeloCamera = camera.getModeloID(envio.getCameraID(envioID));
                 String dataEntrega = envio.getData_EntregaID(envioID);
-                String dataEnvio
-                String dataInstalacao
-                String notaFiscal
-                String sequencia
-                String numeroPedido
+                String dataEnvio = envio.getData_EnvioID(envioID);
+                String dataInstalacao = envio.getData_InstalacaoID(envioID);
+                int notaFiscal = envio.getNotaFiscalID(envioID);
+                int sequencia = envio.getSequenciaID(envioID);
+                int numeroPedido = envio.getNumero_PedidoID(envioID);
                                
                 historico.addHistorico(nomeCliente, modeloCamera, dataEntrega, dataEnvio, dataInstalacao, notaFiscal, sequencia, numeroPedido);
                 
