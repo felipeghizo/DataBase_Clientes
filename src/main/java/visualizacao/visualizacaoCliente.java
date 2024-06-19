@@ -9,6 +9,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Cliente;
+import modelo.Envio;
 
 
 public class visualizacaoCliente extends javax.swing.JFrame {
@@ -16,6 +17,7 @@ public class visualizacaoCliente extends javax.swing.JFrame {
     public TableRowSorter sorter;
     public int clienteID;
     Cliente cliente = new Cliente();
+    Envio envio = new Envio();
     
     public visualizacaoCliente() {
         // Configurações do JFrame
@@ -526,14 +528,31 @@ public class visualizacaoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEditarActionPerformed
 
     private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
-        // Confirmação dacâmera que deve ser excluída
-        int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o cliente de ID: "+this.clienteID+" ?");
-        if (confirm == 0) {
-            // Exclui a camera do banco de dados
-            cliente.delClienteID(this.clienteID);
-            // Atualização da tabela
-            tabelaATT();
-        }else{JOptionPane.showMessageDialog(null, "Operação cancelada!");}
+        if (this.clienteID == 0){
+            JOptionPane.showMessageDialog(null, "Nenhum cliente selecionado!");
+        }else{
+            ArrayList listaEnvios = envio.getEnvios();
+            boolean clienteRegistrado = false;
+            for(Object obj : listaEnvios){
+  
+                int ID = ((Envio) obj).getClienteid();
+                if (this.clienteID == ID){
+                    JOptionPane.showMessageDialog(null, "Cliente em teste, não será possível excluí-lo enquanto o teste estiver ativo!");
+                    clienteRegistrado = true;
+                    break;
+                }
+            }
+            if(!clienteRegistrado){
+                // Confirmação dacâmera que deve ser excluída
+                int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o cliente de ID: "+this.clienteID+" ?");
+                if (confirm == 0) {
+                    // Exclui a camera do banco de dados
+                    cliente.delClienteID(this.clienteID);
+                    // Atualização da tabela
+                    tabelaATT();
+                }else{JOptionPane.showMessageDialog(null, "Operação cancelada!");}
+            }
+        }
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
     private void botaoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenuActionPerformed

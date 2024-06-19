@@ -10,16 +10,15 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Camera;
+import modelo.Envio;
 
-/**
- *
- * @author fe060311
- */
+
 public class visualizacaoCamera extends javax.swing.JFrame {
     
     public TableRowSorter sorter;
     public int cameraID;
     Camera camera = new Camera();
+    Envio envio = new Envio();
     
     public visualizacaoCamera() {
         // Configurações do JFrame
@@ -378,14 +377,27 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         if (this.cameraID == 0){
             JOptionPane.showMessageDialog(null, "Nenhuma câmera selecionada!");
         }else{
-            // Confirmação dacâmera que deve ser excluída
-            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir a câmera de ID: "+this.cameraID+" ?");
-            if (confirm == 0) {
-                // Exclui a camera do banco de dados
-                camera.delCameraid(this.cameraID);
-                // Atualização da tabela
-                tabelaATT();
-            }else{JOptionPane.showMessageDialog(null, "Operação cancelada!");}
+            ArrayList listaEnvios = envio.getEnvios();
+            boolean clienteRegistrado = false;
+            for(Object obj : listaEnvios){
+  
+                int ID = ((Envio) obj).getCameraid();
+                if (this.cameraID == ID){
+                    JOptionPane.showMessageDialog(null, "Câmera em teste, não será possível excluí-la enquanto o teste estiver ativo!");
+                    clienteRegistrado = true;
+                    break;
+                }
+            }
+            if(!clienteRegistrado){
+                // Confirmação dacâmera que deve ser excluída
+                int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir a câmera de ID: "+this.cameraID+" ?");
+                if (confirm == 0) {
+                    // Exclui a camera do banco de dados
+                    camera.delCameraid(this.cameraID);
+                    // Atualização da tabela
+                    tabelaATT();
+                }else{JOptionPane.showMessageDialog(null, "Operação cancelada!");}
+            }
         }
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
