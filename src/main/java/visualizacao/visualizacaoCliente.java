@@ -545,20 +545,6 @@ public class visualizacaoCliente extends javax.swing.JFrame {
         menu.setVisible(true);
     }//GEN-LAST:event_botaoMenuActionPerformed
 
-    private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
-        // Obtém a linha e coluna onde ocorreu o clique
-        int row = tabelaClientes.rowAtPoint(evt.getPoint());
-
-        // Verifica se o clique foi dentro dos limites da tabela
-        if (row >= 0) {
-            // Passa o ID da câmera para o atributo 'cameraID'
-            this.clienteID = (int) tabelaClientes.getValueAt(row, 0);
-        }
-        
-        // Atualiza a tabela
-        tabelaATT();
-    }//GEN-LAST:event_tabelaClientesMouseClicked
-
     private void botaoCameraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCameraActionPerformed
         // Esconde a janela de clientes
         this.setVisible(false);
@@ -596,6 +582,20 @@ public class visualizacaoCliente extends javax.swing.JFrame {
         // Atualiza a tabela
         tabelaATT();
     }//GEN-LAST:event_botaoLimparActionPerformed
+
+    private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
+        // Obtém a linha e coluna onde ocorreu o clique
+        int row = tabelaClientes.rowAtPoint(evt.getPoint());
+
+        // Verifica se o clique foi dentro dos limites da tabela
+        if (row >= 0) {
+            // Passa o ID da câmera para o atributo 'cameraID'
+            this.clienteID = (int) tabelaClientes.getValueAt(row, 0);
+        }
+
+        // Atualiza a tabela
+        tabelaATT();
+    }//GEN-LAST:event_tabelaClientesMouseClicked
     public void tabelaATT() {
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaClientes.getModel();
         ArrayList lista = cliente.getClientes();

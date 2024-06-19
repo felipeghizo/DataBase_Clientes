@@ -6,6 +6,7 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Camera;
+import modelo.Cliente;
 import modelo.Envio;
 
 
@@ -14,6 +15,8 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
     public TableRowSorter sorter;
     public int envioID;
     Envio envio = new Envio();
+    public Camera camera = new Camera();
+    public Cliente cliente = new Cliente();
     
     public visualizacaoEnvio() {
         // Configurações do JFrame
@@ -50,12 +53,13 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
         botaoCamera = new javax.swing.JButton();
         botaoMenu = new javax.swing.JButton();
         botaoClientes = new javax.swing.JButton();
-        jPanel20 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaEnvios = new javax.swing.JTable();
         textProcurar = new javax.swing.JTextField();
         botaoProcurar = new javax.swing.JButton();
         botaoLimpar = new javax.swing.JButton();
+        jPanel20 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaEnvios = new javax.swing.JTable();
 
         menuCameras2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         menuCameras2.setText("Câmeras");
@@ -73,14 +77,14 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(14, 163, 74));
         jLabel10.setText("Intelbras");
 
-        botaoAdicionar.setText("Adicionar cliente");
+        botaoAdicionar.setText("Adicionar teste");
         botaoAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAdicionarActionPerformed(evt);
             }
         });
 
-        botaoEditar.setText("Editar cliente");
+        botaoEditar.setText("Editar teste");
         botaoEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoEditarActionPerformed(evt);
@@ -88,9 +92,9 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
         });
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel11.setText("Envios");
+        jLabel11.setText("Testes");
 
-        botaoExcluir.setText("Excluir cliente");
+        botaoExcluir.setText("Encerrar teste");
         botaoExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoExcluirActionPerformed(evt);
@@ -144,40 +148,6 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel20.setBackground(new java.awt.Color(204, 204, 204));
-
-        tabelaEnvios.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Cliente ID", "Nome", "Telefone", "E-mail", "Endereço", "Numero"
-            }
-        ));
-        tabelaEnvios.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaEnviosMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tabelaEnvios);
-
-        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 844, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
         botaoProcurar.setText("Procurar");
         botaoProcurar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,6 +161,55 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
                 botaoLimparActionPerformed(evt);
             }
         });
+
+        jPanel20.setBackground(new java.awt.Color(204, 204, 204));
+
+        tabelaEnvios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Número Cliente", "Nome", "Modelo", "MAC", "Acesso", "Data envio", "Data entrega", "Data instalação", "Número pedido", "Sequência"
+            }
+        ));
+        tabelaEnvios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaEnviosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelaEnvios);
+        if (tabelaEnvios.getColumnModel().getColumnCount() > 0) {
+            tabelaEnvios.getColumnModel().getColumn(0).setMinWidth(10);
+            tabelaEnvios.getColumnModel().getColumn(0).setPreferredWidth(150);
+            tabelaEnvios.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tabelaEnvios.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tabelaEnvios.getColumnModel().getColumn(3).setPreferredWidth(150);
+            tabelaEnvios.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tabelaEnvios.getColumnModel().getColumn(5).setPreferredWidth(150);
+            tabelaEnvios.getColumnModel().getColumn(6).setPreferredWidth(150);
+            tabelaEnvios.getColumnModel().getColumn(7).setPreferredWidth(150);
+            tabelaEnvios.getColumnModel().getColumn(8).setPreferredWidth(150);
+            tabelaEnvios.getColumnModel().getColumn(9).setPreferredWidth(150);
+        }
+
+        jScrollPane3.setViewportView(jScrollPane1);
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 844, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -252,10 +271,10 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -266,7 +285,7 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -277,7 +296,9 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_menuCameras2ActionPerformed
 
     private void botaoAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarActionPerformed
-     
+        // Cria uma instância de Menu e a torna visivel
+        visualizacaoIniciarTeste teste = new visualizacaoIniciarTeste();
+        teste.setVisible(true);        
     }//GEN-LAST:event_botaoAdicionarActionPerformed
 
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
@@ -359,14 +380,27 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
         // Itera sobre a lista de câmeras e atualiza a tabela
         for (Object obj : lista) {
             // Verifica se o objeto é uma instância de Camera
-            if (obj instanceof Camera) {
-                Camera cam = (Camera) obj;
-                String modelo = cam.getModelo();
-                String MAC = cam.getMAC();
-                int ID = cam.getCameraid(modelo, MAC);
+            if (obj instanceof Envio) {
+                Envio envio = (Envio) obj;
+                int clienteID = envio.getClienteid();
+                int clienteNumero = cliente.getNumeroClienteID(clienteID);
+                String clienteNome = cliente.getNomeID(clienteID);
+                
+                int cameraID = envio.getCameraid();
+                String cameraModelo = camera.getModeloID(cameraID);
+                String cameraMAC = camera.getMACID(cameraID);
+                
+                String acesso = envio.getAcesso();
+                String dataEnvio = envio.getData_Envio();
+                String DataEntrega = envio.getData_Entrega();
+                String dataInstalacao = envio.getData_Instalacao();
+                int nota_fiscal = envio.getNotaFiscal();
+                int sequencia = envio.getSequencia();
+                int numero_pedido = envio.getNumero_Pedido();
+                int ID = envio.getEnvioid(clienteID, cameraID);
 
                 // Cria um novo array de objetos para adicionar à tabela
-                Object[] dados = { ID, modelo, MAC };
+                Object[] dados = { clienteNumero, clienteNome, cameraModelo, cameraMAC, acesso, dataEnvio, DataEntrega, dataInstalacao, nota_fiscal, sequencia, numero_pedido };
                 dtmCameras.addRow(dados);
             } else {
                 System.out.println("O objeto na lista não é do tipo Camera.");
@@ -398,6 +432,7 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton menuCameras2;
     private javax.swing.JTable tabelaEnvios;
     private javax.swing.JTextField textProcurar;

@@ -26,8 +26,14 @@ public class Camera {
     public String getModelo() {
         return cameraDAO.getModeloDAO(getCameraid(this.modelo, this.MAC));
     }
+    public String getModeloID(int ID) {
+        return cameraDAO.getModeloDAO(ID);
+    }
     public String getMAC() {
         return cameraDAO.getMACDAO(getCameraid(this.modelo, this.MAC));
+    }
+    public String getMACID(int ID) {
+        return cameraDAO.getMACDAO(ID);
     }
     public ArrayList getCameras(){
         return cameraDAO.getCamerasDAO();

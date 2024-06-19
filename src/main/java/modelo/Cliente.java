@@ -32,6 +32,9 @@ public class Cliente {
     public String getNome() {
         return clienteDAO.getNomeDAO(getClienteid(this.nome, this.NumeroCliente));
     }
+    public String getNomeID(int ID) {
+        return clienteDAO.getNomeDAO(ID);
+    }
     public String getTelefone() {
         return clienteDAO.getTelefoneDAO(getClienteid(this.nome, this.NumeroCliente));
     }
@@ -43,6 +46,9 @@ public class Cliente {
     }
     public int getNumeroCliente() {
         return clienteDAO.getNumeroClienteDAO(getClienteid(this.nome, this.NumeroCliente));
+    }
+    public int getNumeroClienteID(int ID) {
+        return clienteDAO.getNumeroClienteDAO(ID);
     }
     public ArrayList getClientes(){
         return clienteDAO.getClientesDAO();

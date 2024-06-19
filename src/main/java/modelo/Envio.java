@@ -110,8 +110,8 @@ public class Envio {
     }
     
     // Adiciona Envio ao banco de dados
-    public void addEnvio(int clienteid, int cameraid, String acesso, String data_entrega, String data_envio, String data_instalacao, int nota_fiscal, int sequencia, int numero_pedido) {
-        envioDAO.addEnvioDAO(clienteid, cameraid, acesso, data_entrega, data_envio, data_instalacao, nota_fiscal, sequencia, numero_pedido);
+    public void addEnvio(int clienteid, int cameraid, int nota_fiscal, int sequencia, int numero_pedido) {
+        envioDAO.addEnvioDAO(clienteid, cameraid, nota_fiscal, sequencia, numero_pedido);
     }
     
     // Encerra periodo de Envio adicionando data de fin

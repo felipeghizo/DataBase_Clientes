@@ -375,14 +375,18 @@ public class visualizacaoCamera extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEditarActionPerformed
 
     private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed
-        // Confirmação dacâmera que deve ser excluída
-        int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir a câmera de ID: "+this.cameraID+" ?");
-        if (confirm == 0) {
-            // Exclui a camera do banco de dados
-            camera.delCameraid(this.cameraID);
-            // Atualização da tabela
-            tabelaATT();
-        }else{JOptionPane.showMessageDialog(null, "Operação cancelada!");}
+        if (this.cameraID == 0){
+            JOptionPane.showMessageDialog(null, "Nenhuma câmera selecionada!");
+        }else{
+            // Confirmação dacâmera que deve ser excluída
+            int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir a câmera de ID: "+this.cameraID+" ?");
+            if (confirm == 0) {
+                // Exclui a camera do banco de dados
+                camera.delCameraid(this.cameraID);
+                // Atualização da tabela
+                tabelaATT();
+            }else{JOptionPane.showMessageDialog(null, "Operação cancelada!");}
+        }
     }//GEN-LAST:event_botaoExcluirActionPerformed
 
     private void textProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textProcurarActionPerformed

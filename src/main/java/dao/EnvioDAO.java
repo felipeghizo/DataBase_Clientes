@@ -21,7 +21,7 @@ public class EnvioDAO {
     public int getEnvioidDAO(int clienteid, int cameraid) {
         String sql = """
                      SELECT COUNT(*) AS total 
-                     FROM tb_envio 
+                     FROM envios 
                      WHERE clienteid = ? AND cameraid = ?
                      """;
         int envioid = 0;
@@ -38,7 +38,7 @@ public class EnvioDAO {
                 if (res.next()) {
                     int totalFerramentas = res.getInt("total");  // Obtém o total de envios encontrados
                     if (totalFerramentas > 0) {  // Pelo menos um envio foi encontrado
-                        sql = "SELECT envioid FROM tb_envio WHERE clienteid = ? AND cameraid = ?";
+                        sql = "SELECT envioid FROM envios WHERE clienteid = ? AND cameraid = ?";
                         try (PreparedStatement stmt2 = conn.prepareStatement(sql)) {
                             stmt2.setInt(1, clienteid);
                             stmt2.setInt(2, cameraid);
@@ -63,7 +63,7 @@ public class EnvioDAO {
     public int getClienteidDAO(int sequencia, int numero_pedido){  
     String sql = """
                  SELECT clienteid 
-                 FROM tb_envio 
+                 FROM envios 
                  WHERE sequencia = ? AND numero_pedido = ?
                  """;
         int clienteid = 0;
@@ -82,14 +82,14 @@ public class EnvioDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar o clienteid da câmera: " + e.getMessage());
+            System.out.println("Erro ao buscar o clienteid do envio: " + e.getMessage());
         }
         return clienteid;
     }
     public int getCameraidDAO(int sequencia, int numero_pedido){  
     String sql = """
                  SELECT cameraid 
-                 FROM tb_envio 
+                 FROM envios 
                  WHERE sequencia = ? AND numero_pedido = ?
                  """;
         int cameraid = 0;
@@ -108,14 +108,14 @@ public class EnvioDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar o cameraid da câmera: " + e.getMessage());
+            System.out.println("Erro ao buscar o cameraid do envio: " + e.getMessage());
         }
         return cameraid;
     }
     public String getAcessoDAO(int envioid){  
     String sql = """
                  SELECT acesso 
-                 FROM tb_envio 
+                 FROM envios 
                  WHERE envioid = ?
                  """;
         String acesso = "";
@@ -133,14 +133,14 @@ public class EnvioDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar o acesso da câmera: " + e.getMessage());
+            System.out.println("Erro ao buscar o acesso do envio: " + e.getMessage());
         }
         return acesso;
     }
     public String getData_EntregaDAO(int envioid){  
     String sql = """
                  SELECT data_entrega 
-                 FROM tb_envio 
+                 FROM envios 
                  WHERE envioid = ?
                  """;
         String data_entrega = "";
@@ -158,14 +158,14 @@ public class EnvioDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar o data_entrega da câmera: " + e.getMessage());
+            System.out.println("Erro ao buscar o data_entrega do envio: " + e.getMessage());
         }
         return data_entrega;
     }
     public String getData_EnvioDAO(int envioid){  
     String sql = """
                  SELECT data_envio 
-                 FROM tb_envio 
+                 FROM envios 
                  WHERE envioid = ?
                  """;
         String data_envio = "";
@@ -183,14 +183,14 @@ public class EnvioDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar o data_envio da câmera: " + e.getMessage());
+            System.out.println("Erro ao buscar o data_envio do envio: " + e.getMessage());
         }
         return data_envio;
     }
     public String getData_InstalacaoDAO(int envioid){  
     String sql = """
                  SELECT data_instalacao 
-                 FROM tb_envio 
+                 FROM envios 
                  WHERE envioid = ?
                  """;
         String data_instalacao = "";
@@ -208,14 +208,14 @@ public class EnvioDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar o data_instalacao da câmera: " + e.getMessage());
+            System.out.println("Erro ao buscar o data_instalacao do envio: " + e.getMessage());
         }
         return data_instalacao;
     }
     public int getNotaFiscalDAO(int envioid){  
     String sql = """
                  SELECT nota_fiscal 
-                 FROM tb_envio 
+                 FROM envios 
                  WHERE envioid = ?
                  """;
         int nota_fiscal = 0;
@@ -233,14 +233,14 @@ public class EnvioDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar o nota_fiscal da câmera: " + e.getMessage());
+            System.out.println("Erro ao buscar o nota_fiscal do envio: " + e.getMessage());
         }
         return nota_fiscal;
     }
     public int getSequenciaDAO(int envioid){  
     String sql = """
                  SELECT sequencia 
-                 FROM tb_envio 
+                 FROM envios 
                  WHERE envioid = ?
                  """;
         int sequencia = 0;
@@ -258,14 +258,14 @@ public class EnvioDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar o sequencia da câmera: " + e.getMessage());
+            System.out.println("Erro ao buscar o sequencia do envio: " + e.getMessage());
         }
         return sequencia;
     }
     public int getNumero_PedidoDAO(int envioid){  
     String sql = """
                  SELECT numero_pedido 
-                 FROM tb_envio 
+                 FROM envios 
                  WHERE envioid = ?
                  """;
         int numero_pedido = 0;
@@ -283,7 +283,7 @@ public class EnvioDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar o numero_pedido da câmera: " + e.getMessage());
+            System.out.println("Erro ao buscar o numero_pedido do envio: " + e.getMessage());
         }
         return numero_pedido;
     }
@@ -291,7 +291,7 @@ public class EnvioDAO {
     // sets
     public void setClienteidDAO(int emprestimoid, int novoClienteid){  
     String sql = """
-                 UPDATE tb_emprestimos
+                 UPDATE envios
                  SET clienteid = (?)
                  WHERE emprestimoid = (?);""";
         try {
@@ -307,7 +307,7 @@ public class EnvioDAO {
     }
     public void setCameraidDAO(int emprestimoid, int novoCameraid){  
     String sql = """
-                 UPDATE tb_emprestimos
+                 UPDATE envios
                  SET cameraid = (?)
                  WHERE emprestimoid = (?);""";
         try {
@@ -323,7 +323,7 @@ public class EnvioDAO {
     }
     public void setAcessoDAO(int emprestimoid, String novoAcesso){  
     String sql = """
-                 UPDATE tb_emprestimos
+                 UPDATE envios
                  SET acesso = (?)
                  WHERE emprestimoid = (?);""";
         try {
@@ -339,7 +339,7 @@ public class EnvioDAO {
     }
     public void setData_EntregaDAO(int emprestimoid, String novaData_entrega){  
     String sql = """
-                 UPDATE tb_emprestimos
+                 UPDATE envios
                  SET data_entrega = (?)
                  WHERE emprestimoid = (?);""";
         try {
@@ -355,7 +355,7 @@ public class EnvioDAO {
     }
     public void setData_EnvioDAO(int emprestimoid, String novaData_envio){  
     String sql = """
-                 UPDATE tb_emprestimos
+                 UPDATE envios
                  SET data_envio = (?)
                  WHERE emprestimoid = (?);""";
         try {
@@ -371,7 +371,7 @@ public class EnvioDAO {
     }
     public void setData_InstalacaoDAO(int emprestimoid, String novaData_instalacao){  
     String sql = """
-                 UPDATE tb_emprestimos
+                 UPDATE envios
                  SET data_instalacao = (?)
                  WHERE emprestimoid = (?);""";
         try {
@@ -387,7 +387,7 @@ public class EnvioDAO {
     }
     public void setNota_FiscalDAO(int emprestimoid, int novaNota_fiscal){  
     String sql = """
-                 UPDATE tb_emprestimos
+                 UPDATE envios
                  SET nota_fiscal = (?)
                  WHERE emprestimoid = (?);""";
         try {
@@ -403,7 +403,7 @@ public class EnvioDAO {
     }
     public void setSequenciaDAO(int emprestimoid, int novaSequencia){  
     String sql = """
-                 UPDATE tb_emprestimos
+                 UPDATE envios
                  SET sequencia = (?)
                  WHERE emprestimoid = (?);""";
         try {
@@ -419,7 +419,7 @@ public class EnvioDAO {
     }
     public void setNumero_PedidoDAO(int emprestimoid, int novoNumero_pedido){  
     String sql = """
-                 UPDATE tb_emprestimos
+                 UPDATE envios
                  SET numero_pedido = (?)
                  WHERE emprestimoid = (?);""";
         try {
@@ -461,19 +461,15 @@ public class EnvioDAO {
     }
     
     // Adiciona Emprestimo
-    public void addEnvioDAO(int clienteid, int cameraid, String acesso, String data_entrega, String data_envio, String data_instalacao, int nota_fiscal, int sequencia, int numero_pedido) {
-        String sql = "INSERT INTO tb_emprestimos(clienteid, cameraid, acesso, data_entrega, data_envio, data_instalacao, nota_fiscal, sequencia, numero_pedido) VALUES(?,?,?,?,?,?,?,?,?)";
+    public void addEnvioDAO(int clienteid, int cameraid, int nota_fiscal, int sequencia, int numero_pedido) {
+        String sql = "INSERT INTO envios(clienteid, cameraid, nota_fiscal, sequencia, numero_pedido) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setInt(1, clienteid);
             stmt.setInt(2, cameraid);
-            stmt.setString(3, acesso);
-            stmt.setString(4, data_entrega);
-            stmt.setString(5, data_envio);
-            stmt.setString(6, data_instalacao);
-            stmt.setInt(7, nota_fiscal);
-            stmt.setInt(8, sequencia);
-            stmt.setInt(9, numero_pedido);
+            stmt.setInt(3, nota_fiscal);
+            stmt.setInt(4, sequencia);
+            stmt.setInt(5, numero_pedido);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -484,7 +480,7 @@ public class EnvioDAO {
     
     // Exclui Cliente
     public void removeEnvioDAO(int emprestimoid) {
-        String sql = "DELETE FROM tb_emprestimos WHERE emprestimoid = (?)";
+        String sql = "DELETE FROM envios WHERE emprestimoid = (?)";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setInt(1, emprestimoid);
