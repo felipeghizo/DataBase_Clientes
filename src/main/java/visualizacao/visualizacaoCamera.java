@@ -320,13 +320,14 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
         String MAC = JOptionPane.showInputDialog("MAC");
         
         // Criação da câmera
-        camera.setModelo(modelo);
-        camera.setMAC(MAC);
-        camera.addCamera();
+        Camera ADDcamera = new Camera();
+        ADDcamera.setModelo(modelo);
+        ADDcamera.setMAC(MAC);
+        ADDcamera.addCamera();
         
         // Adição da câmera à tabela
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaCameras.getModel();
-        Object[] dados = {camera.getModelo(), camera.getMAC()};
+        Object[] dados = {ADDcamera.getModelo(), ADDcamera.getMAC()};
         dtmCameras.addRow(dados);
         
         // Atualização da tabela

@@ -466,16 +466,23 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
         String endereco = JOptionPane.showInputDialog("Endereço: ");
 
         // Criação do cliente
-        cliente.setNome(nome);
-        cliente.setTelefone(telefone);
-        cliente.setEmail(email);
-        cliente.setNumeroCliente(numero_cliente);
-        cliente.setEndereco(endereco);
-        cliente.addCliente();
+        Cliente ADDcliente = new Cliente();
+        ADDcliente.setNome(nome);
+        ADDcliente.setTelefone(telefone);
+        ADDcliente.setEmail(email);
+        ADDcliente.setNumeroCliente(numero_cliente);
+        ADDcliente.setEndereco(endereco);
+        ADDcliente.addCliente();
         
         // Adição da câmera à tabela
         DefaultTableModel dtmClientes = (DefaultTableModel) tabelaClientes.getModel();
-        Object[] dados = {cliente.getClienteid(cliente.getNome(), cliente.getNumeroCliente()), cliente.getNome(), cliente.getTelefone(), cliente.getEmail(), cliente.getNumeroCliente(), cliente.getEndereco()};
+        Object[] dados = {ADDcliente.getClienteid(ADDcliente.getNome(), 
+            ADDcliente.getNumeroCliente()), 
+            ADDcliente.getNome(), 
+            ADDcliente.getTelefone(), 
+            ADDcliente.getEmail(), 
+            ADDcliente.getNumeroCliente(), 
+            ADDcliente.getEndereco()};
         dtmClientes.addRow(dados);
         
         // Atualização da tabela
