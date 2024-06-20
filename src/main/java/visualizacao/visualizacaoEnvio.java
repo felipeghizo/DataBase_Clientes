@@ -353,6 +353,7 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
                     // Acesso
                     String novoAcesso = JOptionPane.showInputDialog("Novo acesso: ");
                     envio.setAcessoID(this.envioID, novoAcesso);
+                    System.out.println(this.envioID);
                 }
                 case 1 -> {
                     // Data de envio
@@ -429,8 +430,10 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
 
         // Verifica se o clique foi dentro dos limites da tabela
         if (row >= 0) {
+            int clienteIDAtual = cliente.getClienteid((String) tabelaEnvios.getValueAt(row, 1), (int) tabelaEnvios.getValueAt(row, 0)); 
+            int cameraIDAtual = camera.getCameraid((String) tabelaEnvios.getValueAt(row, 2), (String) tabelaEnvios.getValueAt(row, 3));
             // Passa o ID da câmera para o atributo 'cameraID'
-            this.envioID = (int) tabelaEnvios.getValueAt(row, 0);
+            this.envioID = envio.getEnvioid(clienteIDAtual, cameraIDAtual);
         }
 
         // Atualiza a tabela

@@ -120,6 +120,7 @@ public class Envio {
     }
     public void setAcessoID(int id, String acesso) {
         envioDAO.setAcessoDAO(id, acesso);
+        System.out.println("ok");
         this.acesso = acesso;
     }
     public void setData_Entrega(String Data_entrega) {

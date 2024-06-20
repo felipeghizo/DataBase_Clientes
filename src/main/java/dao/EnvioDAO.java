@@ -312,15 +312,15 @@ public class EnvioDAO {
     }
     
     // sets
-    public void setClienteidDAO(int emprestimoid, int novoClienteid){  
+    public void setClienteidDAO(int envioid, int novoClienteid){  
     String sql = """
                  UPDATE envios
                  SET clienteid = (?)
-                 WHERE emprestimoid = (?);""";
+                 WHERE envioid = (?);""";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setInt(1, novoClienteid);
-            stmt.setInt(2, emprestimoid);
+            stmt.setInt(2, envioid);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -328,15 +328,15 @@ public class EnvioDAO {
             throw new RuntimeException(erro);
         }
     }
-    public void setCameraidDAO(int emprestimoid, int novoCameraid){  
+    public void setCameraidDAO(int envioid, int novoCameraid){  
     String sql = """
                  UPDATE envios
                  SET cameraid = (?)
-                 WHERE emprestimoid = (?);""";
+                 WHERE envioid = (?);""";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setInt(1, novoCameraid);
-            stmt.setInt(2, emprestimoid);
+            stmt.setInt(2, envioid);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -344,15 +344,15 @@ public class EnvioDAO {
             throw new RuntimeException(erro);
         }
     }
-    public void setAcessoDAO(int emprestimoid, String novoAcesso){  
+    public void setAcessoDAO(int envioid, String novoAcesso){  
     String sql = """
                  UPDATE envios
                  SET acesso = (?)
-                 WHERE emprestimoid = (?);""";
+                 WHERE envioid = (?);""";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setString(1, novoAcesso);
-            stmt.setInt(2, emprestimoid);
+            stmt.setInt(2, envioid);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -360,15 +360,15 @@ public class EnvioDAO {
             throw new RuntimeException(erro);
         }
     }
-    public void setData_EntregaDAO(int emprestimoid, String novaData_entrega){  
+    public void setData_EntregaDAO(int envioid, String novaData_entrega){  
     String sql = """
                  UPDATE envios
                  SET data_entrega = (?)
-                 WHERE emprestimoid = (?);""";
+                 WHERE envioid = (?);""";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setString(1, novaData_entrega);
-            stmt.setInt(2, emprestimoid);
+            stmt.setInt(2, envioid);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -376,15 +376,15 @@ public class EnvioDAO {
             throw new RuntimeException(erro);
         }
     }
-    public void setData_EnvioDAO(int emprestimoid, String novaData_envio){  
+    public void setData_EnvioDAO(int envioid, String novaData_envio){  
     String sql = """
                  UPDATE envios
                  SET data_envio = (?)
-                 WHERE emprestimoid = (?);""";
+                 WHERE envioid = (?);""";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setString(1, novaData_envio);
-            stmt.setInt(2, emprestimoid);
+            stmt.setInt(2, envioid);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -392,15 +392,15 @@ public class EnvioDAO {
             throw new RuntimeException(erro);
         }
     }
-    public void setData_InstalacaoDAO(int emprestimoid, String novaData_instalacao){  
+    public void setData_InstalacaoDAO(int envioid, String novaData_instalacao){  
     String sql = """
                  UPDATE envios
                  SET data_instalacao = (?)
-                 WHERE emprestimoid = (?);""";
+                 WHERE envioid = (?);""";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setString(1, novaData_instalacao);
-            stmt.setInt(2, emprestimoid);
+            stmt.setInt(2, envioid);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -408,15 +408,15 @@ public class EnvioDAO {
             throw new RuntimeException(erro);
         }
     }
-    public void setNota_FiscalDAO(int emprestimoid, int novaNota_fiscal){  
+    public void setNota_FiscalDAO(int envioid, int novaNota_fiscal){  
     String sql = """
                  UPDATE envios
                  SET nota_fiscal = (?)
-                 WHERE emprestimoid = (?);""";
+                 WHERE envioid = (?);""";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setInt(1, novaNota_fiscal);
-            stmt.setInt(2, emprestimoid);
+            stmt.setInt(2, envioid);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -424,15 +424,15 @@ public class EnvioDAO {
             throw new RuntimeException(erro);
         }
     }
-    public void setSequenciaDAO(int emprestimoid, int novaSequencia){  
+    public void setSequenciaDAO(int envioid, int novaSequencia){  
     String sql = """
                  UPDATE envios
                  SET sequencia = (?)
-                 WHERE emprestimoid = (?);""";
+                 WHERE envioid = (?);""";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setInt(1, novaSequencia);
-            stmt.setInt(2, emprestimoid);
+            stmt.setInt(2, envioid);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
@@ -440,15 +440,15 @@ public class EnvioDAO {
             throw new RuntimeException(erro);
         }
     }
-    public void setNumero_PedidoDAO(int emprestimoid, int novoNumero_pedido){  
+    public void setNumero_PedidoDAO(int envioid, int novoNumero_pedido){  
     String sql = """
                  UPDATE envios
                  SET numero_pedido = (?)
-                 WHERE emprestimoid = (?);""";
+                 WHERE envioid = (?);""";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setInt(1, novoNumero_pedido);
-            stmt.setInt(2, emprestimoid);
+            stmt.setInt(2, envioid);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {
