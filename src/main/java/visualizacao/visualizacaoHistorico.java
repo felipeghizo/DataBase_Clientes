@@ -2,6 +2,7 @@
 package visualizacao;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -14,6 +15,7 @@ public final class visualizacaoHistorico extends javax.swing.JFrame {
     
     public TableRowSorter sorter;
     public int historicoID;
+    public int row;
     Envio envio = new Envio();
     Cliente cliente = new Cliente();
     Camera camera = new Camera();
@@ -52,6 +54,7 @@ public final class visualizacaoHistorico extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaHistorico = new javax.swing.JTable();
+        botaoVisualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -171,6 +174,13 @@ public final class visualizacaoHistorico extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        botaoVisualizar.setText("Visualizar dados");
+        botaoVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoVisualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
@@ -185,7 +195,9 @@ public final class visualizacaoHistorico extends javax.swing.JFrame {
                         .addComponent(botaoProcurar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoLimpar)
-                        .addGap(185, 185, 185)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoVisualizar)
+                        .addGap(65, 65, 65)
                         .addComponent(jLabel11))
                     .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -198,7 +210,8 @@ public final class visualizacaoHistorico extends javax.swing.JFrame {
                     .addComponent(textProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoProcurar)
                     .addComponent(botaoLimpar)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel11)
+                    .addComponent(botaoVisualizar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -287,12 +300,12 @@ public final class visualizacaoHistorico extends javax.swing.JFrame {
 
     private void tabelaHistoricoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaHistoricoMouseClicked
         // Obtém a linha e coluna onde ocorreu o clique
-        int row = tabelaHistorico.rowAtPoint(evt.getPoint());
+        this.row = tabelaHistorico.rowAtPoint(evt.getPoint());
 
         // Verifica se o clique foi dentro dos limites da tabela
         if (row >= 0) {
             // Passa o ID da câmera para o atributo 'cameraID'
-            this.historicoID = (int) tabelaHistorico.getValueAt(row, 0);
+            this.historicoID = (int) tabelaHistorico.getValueAt(this.row, 0);
         }
 
         // Atualiza a tabela
@@ -307,6 +320,21 @@ public final class visualizacaoHistorico extends javax.swing.JFrame {
         visualizacaoEnvio envioV = new visualizacaoEnvio();
         envioV.setVisible(true);
     }//GEN-LAST:event_botaoEnviosActionPerformed
+
+    private void botaoVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVisualizarActionPerformed
+
+        JOptionPane.showMessageDialog(null,
+            "Número do cliente: "+(int) tabelaHistorico.getValueAt(this.row, 0)+
+            "\nNome do cliente: "+(String) tabelaHistorico.getValueAt(this.row, 1)+
+            "\nModelo da câmera: "+(String) tabelaHistorico.getValueAt(this.row, 2)+
+            "\nMAC da câmera: "+(String) tabelaHistorico.getValueAt(this.row, 3)+
+            "\nAcesso: "+(String) tabelaHistorico.getValueAt(this.row, 4)+
+            "\nData de envio: "+(String) tabelaHistorico.getValueAt(this.row, 5)+
+            "\nData da entrega: "+(String) tabelaHistorico.getValueAt(this.row, 6)+
+            "\nData da instalação: "+(String) tabelaHistorico.getValueAt(this.row, 7)+
+            "\nNúmero do pedido: "+(int) tabelaHistorico.getValueAt(this.row, 8)+
+            "\nSequência: "+(int) tabelaHistorico.getValueAt(this.row, 9));
+    }//GEN-LAST:event_botaoVisualizarActionPerformed
 
     public void tabelaATT() {
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaHistorico.getModel();
@@ -369,6 +397,7 @@ public final class visualizacaoHistorico extends javax.swing.JFrame {
     private javax.swing.JButton botaoLimpar;
     private javax.swing.JButton botaoMenu;
     private javax.swing.JButton botaoProcurar;
+    private javax.swing.JButton botaoVisualizar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JPanel jPanel17;

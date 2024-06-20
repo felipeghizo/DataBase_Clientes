@@ -16,6 +16,7 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
 
     public TableRowSorter sorter;
     public int clienteID;
+    public int row;
     Cliente cliente = new Cliente();
     Envio envio = new Envio();
     
@@ -68,6 +69,7 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
         textProcurar = new javax.swing.JTextField();
         botaoProcurar = new javax.swing.JButton();
         botaoLimpar = new javax.swing.JButton();
+        botaoVisualizar = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -346,6 +348,13 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
             }
         });
 
+        botaoVisualizar.setText("Visualizar dados");
+        botaoVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoVisualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
@@ -353,10 +362,12 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                    .addComponent(botaoExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                        .addComponent(botaoExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botaoVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel18Layout.createSequentialGroup()
@@ -387,6 +398,8 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
                         .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botaoVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -621,12 +634,12 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
 
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
         // Obtém a linha e coluna onde ocorreu o clique
-        int row = tabelaClientes.rowAtPoint(evt.getPoint());
+        this.row = tabelaClientes.rowAtPoint(evt.getPoint());
 
         // Verifica se o clique foi dentro dos limites da tabela
         if (row >= 0) {
             // Passa o ID da câmera para o atributo 'cameraID'
-            this.clienteID = (int) tabelaClientes.getValueAt(row, 0);
+            this.clienteID = (int) tabelaClientes.getValueAt(this.row, 0);
         }
 
         // Atualiza a tabela
@@ -634,13 +647,19 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaClientesMouseClicked
 
     private void botaoHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoHistoricoActionPerformed
-        // Esconde a janela de câmeras
-        this.setVisible(false);
-
-        // Cria uma instância de menu e a torna visivel
-        visualizacaoHistorico historicoV = new visualizacaoHistorico();
-        historicoV.setVisible(true);
+        // TODO add your handling code here:
     }//GEN-LAST:event_botaoHistoricoActionPerformed
+
+    private void botaoVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVisualizarActionPerformed
+
+        JOptionPane.showMessageDialog(null,
+            "Id: "+(int) tabelaClientes.getValueAt(this.row, 0)+
+            "\nNome: "+(String) tabelaClientes.getValueAt(this.row, 1)+
+            "\nTelefone: "+(String) tabelaClientes.getValueAt(this.row, 2)+
+            "\nEndereço: "+(String) tabelaClientes.getValueAt(this.row, 3)+
+            "\nE-mail: "+(String) tabelaClientes.getValueAt(this.row, 4)+
+            "\nNúmero: "+(int) tabelaClientes.getValueAt(this.row, 5));
+    }//GEN-LAST:event_botaoVisualizarActionPerformed
     public void tabelaATT() {
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaClientes.getModel();
         ArrayList lista = cliente.getClientes();
@@ -713,6 +732,7 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
     private javax.swing.JButton botaoLimpar;
     private javax.swing.JButton botaoMenu;
     private javax.swing.JButton botaoProcurar;
+    private javax.swing.JButton botaoVisualizar;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;

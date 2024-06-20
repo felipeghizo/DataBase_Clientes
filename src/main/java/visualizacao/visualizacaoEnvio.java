@@ -17,6 +17,7 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
 
     public TableRowSorter sorter;
     public int envioID;
+    public int row;
     Envio envio = new Envio();
     Camera camera = new Camera();
     Cliente cliente = new Cliente();
@@ -64,6 +65,7 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaEnvios = new javax.swing.JTable();
+        botaoVisualizar = new javax.swing.JButton();
 
         menuCameras2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         menuCameras2.setText("Câmeras");
@@ -225,6 +227,13 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        botaoVisualizar.setText("Visualizar dados");
+        botaoVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoVisualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
@@ -232,10 +241,12 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel18Layout.createSequentialGroup()
@@ -266,6 +277,8 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
                         .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botaoVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -426,7 +439,7 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
 
     private void tabelaEnviosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEnviosMouseClicked
         // Obtém a linha e coluna onde ocorreu o clique
-        int row = tabelaEnvios.rowAtPoint(evt.getPoint());
+        this.row = tabelaEnvios.rowAtPoint(evt.getPoint());
 
         // Verifica se o clique foi dentro dos limites da tabela
         if (row >= 0) {
@@ -468,6 +481,21 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
         visualizacaoHistorico historicoV = new visualizacaoHistorico();
         historicoV.setVisible(true);
     }//GEN-LAST:event_botaoHistoricoActionPerformed
+
+    private void botaoVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVisualizarActionPerformed
+    
+        JOptionPane.showMessageDialog(null, 
+                "Número do cliente: "+(int) tabelaEnvios.getValueAt(this.row, 0)+
+                "\nNome do cliente: "+(String) tabelaEnvios.getValueAt(this.row, 1)+
+                "\nModelo da câmera: "+(String) tabelaEnvios.getValueAt(this.row, 2)+
+                "\nMAC da câmera: "+(String) tabelaEnvios.getValueAt(this.row, 3)+
+                "\nAcesso: "+(String) tabelaEnvios.getValueAt(this.row, 4)+
+                "\nData de envio: "+(String) tabelaEnvios.getValueAt(this.row, 5)+
+                "\nData da entrega: "+(String) tabelaEnvios.getValueAt(this.row, 6)+
+                "\nData da instalação: "+(String) tabelaEnvios.getValueAt(this.row, 7)+
+                "\nNúmero do pedido: "+(int) tabelaEnvios.getValueAt(this.row, 8)+
+                "\nSequência: "+(int) tabelaEnvios.getValueAt(this.row, 9));
+    }//GEN-LAST:event_botaoVisualizarActionPerformed
    
     public void tabelaATT() {
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaEnvios.getModel();
@@ -524,6 +552,7 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
     private javax.swing.JButton botaoLimpar;
     private javax.swing.JButton botaoMenu;
     private javax.swing.JButton botaoProcurar;
+    private javax.swing.JButton botaoVisualizar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JPanel jPanel17;

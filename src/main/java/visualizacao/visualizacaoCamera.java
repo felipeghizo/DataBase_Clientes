@@ -17,6 +17,7 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
     
     public TableRowSorter sorter;
     public int cameraID;
+    public int row;
     Camera camera = new Camera();
     Envio envio = new Envio();
     
@@ -56,6 +57,7 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
         textProcurar = new javax.swing.JTextField();
         botaoProcurar = new javax.swing.JButton();
         botaoLimpar = new javax.swing.JButton();
+        botaoVisualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,7 +124,7 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
                 .addComponent(botaoEnvio)
                 .addGap(18, 18, 18)
                 .addComponent(botaoHistorico)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(322, Short.MAX_VALUE))
         );
 
         jPaneltabela.setBackground(new java.awt.Color(204, 204, 204));
@@ -221,6 +223,13 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
             }
         });
 
+        botaoVisualizar.setText("Visualizar dados");
+        botaoVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoVisualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -228,10 +237,12 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botaoVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -263,7 +274,9 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
                         .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 257, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(botaoVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPaneltabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -431,13 +444,12 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
 
     private void tabelaCamerasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaCamerasMouseClicked
         // Obtém a linha e coluna onde ocorreu o clique
-        int row = tabelaCameras.rowAtPoint(evt.getPoint());
-        int col = tabelaCameras.columnAtPoint(evt.getPoint());
+        this.row = tabelaCameras.rowAtPoint(evt.getPoint());
 
         // Verifica se o clique foi dentro dos limites da tabela
         if (row >= 0) {
             // Passa o ID da câmera para o atributo 'cameraID'
-            this.cameraID = (int) tabelaCameras.getValueAt(row, 0);
+            this.cameraID = (int) tabelaCameras.getValueAt(this.row, 0);
         }
         
         // Atualiza a tabela
@@ -479,6 +491,14 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
         visualizacaoHistorico historicoV = new visualizacaoHistorico();
         historicoV.setVisible(true);
     }//GEN-LAST:event_botaoHistoricoActionPerformed
+
+    private void botaoVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVisualizarActionPerformed
+
+        JOptionPane.showMessageDialog(null,
+            "ID: "+(int) tabelaCameras.getValueAt(this.row, 0)+
+            "\nModelo: "+(String) tabelaCameras.getValueAt(this.row, 1)+
+            "\nMAC: "+(String) tabelaCameras.getValueAt(this.row, 2));
+    }//GEN-LAST:event_botaoVisualizarActionPerformed
 
     public void tabelaATT() {
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaCameras.getModel();
@@ -548,6 +568,7 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
     private javax.swing.JButton botaoLimpar;
     private javax.swing.JButton botaoMenu;
     private javax.swing.JButton botaoProcurar;
+    private javax.swing.JButton botaoVisualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -82,10 +82,13 @@
                   <Group type="102" attributes="0">
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="botaoEditar" alignment="0" max="32767" attributes="0"/>
-                          <Component id="botaoAdicionar" alignment="0" max="32767" attributes="0"/>
-                          <Component id="botaoExcluir" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="botaoEditar" alignment="0" max="32767" attributes="0"/>
+                              <Component id="botaoAdicionar" alignment="0" max="32767" attributes="0"/>
+                              <Component id="botaoExcluir" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="botaoVisualizar" min="-2" pref="123" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -123,7 +126,9 @@
                               <Component id="botaoEditar" min="-2" pref="54" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="botaoExcluir" min="-2" pref="54" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="257" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="botaoVisualizar" min="-2" pref="54" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jPaneltabela" max="32767" attributes="0"/>
                       </Group>
@@ -175,7 +180,7 @@
                           <Component id="botaoEnvio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="botaoHistorico" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="322" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -341,6 +346,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoLimparActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="botaoVisualizar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Visualizar dados"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoVisualizarActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
