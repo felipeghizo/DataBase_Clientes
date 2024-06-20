@@ -10,7 +10,7 @@ import modelo.Cliente;
 import modelo.Envio;
 
 
-public class visualizacaoHistorico extends javax.swing.JFrame {
+public final class visualizacaoHistorico extends javax.swing.JFrame {
     
     public TableRowSorter sorter;
     public int historicoID;
@@ -44,6 +44,7 @@ public class visualizacaoHistorico extends javax.swing.JFrame {
         botaoCamera = new javax.swing.JButton();
         botaoMenu = new javax.swing.JButton();
         botaoClientes = new javax.swing.JButton();
+        botaoEnvios = new javax.swing.JButton();
         textProcurar = new javax.swing.JTextField();
         botaoProcurar = new javax.swing.JButton();
         botaoLimpar = new javax.swing.JButton();
@@ -65,7 +66,7 @@ public class visualizacaoHistorico extends javax.swing.JFrame {
 
         jPanel19.setBackground(new java.awt.Color(153, 153, 153));
 
-        botaoCamera.setText("Cameras");
+        botaoCamera.setText("Câmeras");
         botaoCamera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCameraActionPerformed(evt);
@@ -86,6 +87,13 @@ public class visualizacaoHistorico extends javax.swing.JFrame {
             }
         });
 
+        botaoEnvios.setText("Envios");
+        botaoEnvios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEnviosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
@@ -93,6 +101,7 @@ public class visualizacaoHistorico extends javax.swing.JFrame {
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoEnvios, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoCamera, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -107,6 +116,8 @@ public class visualizacaoHistorico extends javax.swing.JFrame {
                 .addComponent(botaoCamera)
                 .addGap(18, 18, 18)
                 .addComponent(botaoClientes)
+                .addGap(18, 18, 18)
+                .addComponent(botaoEnvios)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -231,9 +242,9 @@ public class visualizacaoHistorico extends javax.swing.JFrame {
         // Esconde a janela de clientes
         this.setVisible(false);
 
-        // Cria uma instância de Menu e a torna visivel
-        visualizacaoCamera camera = new visualizacaoCamera();
-        camera.setVisible(true);
+        // Cria uma instância de Camera e a torna visivel
+        visualizacaoCamera cameraV = new visualizacaoCamera();
+        cameraV.setVisible(true);
     }//GEN-LAST:event_botaoCameraActionPerformed
 
     private void botaoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenuActionPerformed
@@ -249,9 +260,9 @@ public class visualizacaoHistorico extends javax.swing.JFrame {
         // Esconde a janela de câmeras
         this.setVisible(false);
 
-        // Cria uma instância de menu e a torna visivel
-        visualizacaoEnvio envio = new visualizacaoEnvio();
-        envio.setVisible(true);
+        // Cria uma instância de Cliente e a torna visivel
+        visualizacaoCliente clienteV = new visualizacaoCliente();
+        clienteV.setVisible(true);
     }//GEN-LAST:event_botaoClientesActionPerformed
 
     private void botaoProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProcurarActionPerformed
@@ -287,6 +298,15 @@ public class visualizacaoHistorico extends javax.swing.JFrame {
         // Atualiza a tabela
         tabelaATT();
     }//GEN-LAST:event_tabelaHistoricoMouseClicked
+
+    private void botaoEnviosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEnviosActionPerformed
+        // Esconde a janela de câmeras
+        this.setVisible(false);
+
+        // Cria uma instância de Envio e a torna visivel
+        visualizacaoEnvio envioV = new visualizacaoEnvio();
+        envioV.setVisible(true);
+    }//GEN-LAST:event_botaoEnviosActionPerformed
 
     public void tabelaATT() {
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaHistorico.getModel();
@@ -326,11 +346,6 @@ public class visualizacaoHistorico extends javax.swing.JFrame {
     }
     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -338,28 +353,19 @@ public class visualizacaoHistorico extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(visualizacaoHistorico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(visualizacaoHistorico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(visualizacaoHistorico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(visualizacaoHistorico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new visualizacaoHistorico().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new visualizacaoHistorico().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCamera;
     private javax.swing.JButton botaoClientes;
+    private javax.swing.JButton botaoEnvios;
     private javax.swing.JButton botaoLimpar;
     private javax.swing.JButton botaoMenu;
     private javax.swing.JButton botaoProcurar;

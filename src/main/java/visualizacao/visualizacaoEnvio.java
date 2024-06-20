@@ -4,6 +4,8 @@ package visualizacao;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Camera;
@@ -11,7 +13,7 @@ import modelo.Cliente;
 import modelo.Envio;
 
 
-public class visualizacaoEnvio extends javax.swing.JFrame {
+public final class visualizacaoEnvio extends javax.swing.JFrame {
 
     public TableRowSorter sorter;
     public int envioID;
@@ -105,7 +107,7 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
 
         jPanel19.setBackground(new java.awt.Color(153, 153, 153));
 
-        botaoCamera.setText("Cameras");
+        botaoCamera.setText("Câmeras");
         botaoCamera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCameraActionPerformed(evt);
@@ -314,7 +316,67 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAdicionarActionPerformed
 
     private void botaoEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarActionPerformed
-       
+        // Caso nenhum dado da tabela seja selecionado
+        if (this.envioID == 0){
+            JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada!");
+        }else{
+            // Definindo o look and feel do sistema operacional
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            }
+
+            // Opções de botões
+            String[] options = {"Acesso", "Data de envio", "Data de entrega", "Data de instalação"};
+
+            // Mensagem da caixa de diálogo
+            String message = "Qual dado você gostaria de alterar?";
+
+            // Título da caixa de diálogo
+            String title = "Editando dados de câmera";
+
+            // Exibindo o JOptionPane com botões personalizados
+            int option = JOptionPane.showOptionDialog(
+                null,                                 // Componente pai
+                message,                              // Mensagem
+                title,                                // Título
+                JOptionPane.YES_NO_CANCEL_OPTION,     // Tipo de opção
+                JOptionPane.QUESTION_MESSAGE,         // Tipo de mensagem
+                null,                                 // Ícone
+                options,                              // Botões personalizados
+                options[0]                            // Botão padrão
+            );
+
+            // Tratamento da opção selecionada
+            switch (option) {
+                case 0 -> {
+                    // Acesso
+                    String novoAcesso = JOptionPane.showInputDialog("Novo acesso: ");
+                    envio.setAcessoID(this.envioID, novoAcesso);
+                }
+                case 1 -> {
+                    // Data de envio
+                    String novaDataEnvio = JOptionPane.showInputDialog("Nova data de envio: ");
+                    envio.setData_EnvioID(this.envioID, novaDataEnvio);
+                }
+                case 2 -> {
+                    // Data de entrega
+                    String novaDataEntrega = JOptionPane.showInputDialog("Nova data de entrega: ");
+                    envio.setData_EntregaID(this.envioID, novaDataEntrega);
+                }
+                case 3 -> {
+                    // Data de instalação
+                    String novaDataInstalacao = JOptionPane.showInputDialog("Nova data de instalação: ");
+                    envio.setData_InstalacaoID(this.envioID, novaDataInstalacao);
+                }
+                case 4 -> // Cancelar
+                JOptionPane.showMessageDialog(null, "Operação cancelada!");
+                default -> System.out.println("Nenhuma opção selecionada");
+            }
+            
+            // Atualização da tabela
+            tabelaATT();
+        } 
     }//GEN-LAST:event_botaoEditarActionPerformed
 
     private void botaoExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluirActionPerformed

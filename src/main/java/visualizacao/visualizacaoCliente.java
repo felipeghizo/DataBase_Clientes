@@ -12,7 +12,7 @@ import modelo.Cliente;
 import modelo.Envio;
 
 
-public class visualizacaoCliente extends javax.swing.JFrame {
+public final class visualizacaoCliente extends javax.swing.JFrame {
 
     public TableRowSorter sorter;
     public int clienteID;
@@ -61,6 +61,7 @@ public class visualizacaoCliente extends javax.swing.JFrame {
         botaoCamera = new javax.swing.JButton();
         botaoMenu = new javax.swing.JButton();
         botaoEnvio = new javax.swing.JButton();
+        botaoHistorico = new javax.swing.JButton();
         jPanel20 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaClientes = new javax.swing.JTable();
@@ -242,7 +243,7 @@ public class visualizacaoCliente extends javax.swing.JFrame {
 
         jPanel19.setBackground(new java.awt.Color(153, 153, 153));
 
-        botaoCamera.setText("Cameras");
+        botaoCamera.setText("Câmeras");
         botaoCamera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCameraActionPerformed(evt);
@@ -263,6 +264,13 @@ public class visualizacaoCliente extends javax.swing.JFrame {
             }
         });
 
+        botaoHistorico.setText("Histórico");
+        botaoHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoHistoricoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
@@ -270,6 +278,7 @@ public class visualizacaoCliente extends javax.swing.JFrame {
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoCamera, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -284,6 +293,8 @@ public class visualizacaoCliente extends javax.swing.JFrame {
                 .addComponent(botaoCamera)
                 .addGap(18, 18, 18)
                 .addComponent(botaoEnvio)
+                .addGap(18, 18, 18)
+                .addComponent(botaoHistorico)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -468,11 +479,10 @@ public class visualizacaoCliente extends javax.swing.JFrame {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-                e.printStackTrace();
             }
 
             // Opções de botões
-            String[] options = {"Nome", "telefone", "E-mail", "Nota fiscal", "Endereço", "Cancelar"};
+            String[] options = {"Nome", "telefone", "E-mail", "Nota fiscal", "Endereço", "Número", "Cancelar"};
 
             // Mensagem da caixa de diálogo
             String message = "Qual dado você gostaria de alterar?";
@@ -494,32 +504,39 @@ public class visualizacaoCliente extends javax.swing.JFrame {
 
             // Tratamento da opção selecionada
             switch (option) {
-                case 0: // Nome
-                String novoNome = JOptionPane.showInputDialog("Novo nome: ");
-                cliente.setNomeID(this.clienteID, novoNome);
-                break;
-                case 1: // Telefone
-                String novoTelefone = JOptionPane.showInputDialog("Novo telefone: ");
-                cliente.setTelefoneID(this.clienteID, novoTelefone);
-                break;
-                case 2: // E-mail
-                String novoEmail = JOptionPane.showInputDialog("Novo E-mail: ");
-                cliente.setEmailID(this.clienteID, novoEmail);
-                break;
-                case 3: // Nota fiscal
-                int novaNotaFiscal = Integer.parseInt(JOptionPane.showInputDialog("Nova número de cliente: "));
-                cliente.setNumeroClienteID(this.clienteID, novaNotaFiscal);
-                break;
-                case 4: // Endereço
-                String novaEndereco = JOptionPane.showInputDialog("Novo Endereço: ");
-                cliente.setEnderecoID(this.clienteID, novaEndereco);
-                break;
-                case 5: // Cancelar
+                case 0 -> {
+                    // Nome
+                    String novoNome = JOptionPane.showInputDialog("Novo nome: ");
+                    cliente.setNomeID(this.clienteID, novoNome);
+                }
+                case 1 -> {
+                    // Telefone
+                    String novoTelefone = JOptionPane.showInputDialog("Novo telefone: ");
+                    cliente.setTelefoneID(this.clienteID, novoTelefone);
+                }
+                case 2 -> {
+                    // E-mail
+                    String novoEmail = JOptionPane.showInputDialog("Novo E-mail: ");
+                    cliente.setEmailID(this.clienteID, novoEmail);
+                }
+                case 3 -> {
+                    // Nota fiscal
+                    int novaNotaFiscal = Integer.parseInt(JOptionPane.showInputDialog("Nova número de cliente: "));
+                    cliente.setNumeroClienteID(this.clienteID, novaNotaFiscal);
+                }
+                case 4 -> {
+                    // Endereço
+                    String novaEndereco = JOptionPane.showInputDialog("Novo Endereço: ");
+                    cliente.setEnderecoID(this.clienteID, novaEndereco);
+                }
+                case 5 -> {
+                    // Endereço
+                    int novoNumero = Integer.parseInt(JOptionPane.showInputDialog("Novo Número do cliente: "));
+                    cliente.setNumeroClienteID(this.clienteID, novoNumero);
+                }
+                case 6 -> // Cancelar
                 JOptionPane.showMessageDialog(null, "Operação cancelada!");
-                break;
-                default:
-                System.out.println("Nenhuma opção selecionada");
-                break;
+                default -> System.out.println("Nenhuma opção selecionada");
             }
             
             // Atualização da tabela
@@ -569,8 +586,8 @@ public class visualizacaoCliente extends javax.swing.JFrame {
         this.setVisible(false);
         
         // Cria uma instância de Menu e a torna visivel
-        visualizacaoCamera camera = new visualizacaoCamera();
-        camera.setVisible(true);
+        visualizacaoCamera cameraV = new visualizacaoCamera();
+        cameraV.setVisible(true);
     }//GEN-LAST:event_botaoCameraActionPerformed
 
     private void botaoEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEnvioActionPerformed
@@ -578,8 +595,8 @@ public class visualizacaoCliente extends javax.swing.JFrame {
         this.setVisible(false);
         
         // Cria uma instância de menu e a torna visivel
-        visualizacaoEnvio envio = new visualizacaoEnvio();
-        envio.setVisible(true);
+        visualizacaoEnvio envioV = new visualizacaoEnvio();
+        envioV.setVisible(true);
     }//GEN-LAST:event_botaoEnvioActionPerformed
 
     private void botaoProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProcurarActionPerformed
@@ -615,6 +632,15 @@ public class visualizacaoCliente extends javax.swing.JFrame {
         // Atualiza a tabela
         tabelaATT();
     }//GEN-LAST:event_tabelaClientesMouseClicked
+
+    private void botaoHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoHistoricoActionPerformed
+        // Esconde a janela de câmeras
+        this.setVisible(false);
+
+        // Cria uma instância de menu e a torna visivel
+        visualizacaoHistorico historicoV = new visualizacaoHistorico();
+        historicoV.setVisible(true);
+    }//GEN-LAST:event_botaoHistoricoActionPerformed
     public void tabelaATT() {
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaClientes.getModel();
         ArrayList lista = cliente.getClientes();
@@ -625,18 +651,18 @@ public class visualizacaoCliente extends javax.swing.JFrame {
         // Itera sobre a lista de câmeras e atualiza a tabela
         for (Object obj : lista) {
             // Verifica se o objeto é uma instância de Camera
-            if (obj instanceof Cliente) {
+            if (obj instanceof Cliente cliente1) {
 
-                String nome = ((Cliente) obj).getNome();
-                String telefone = ((Cliente) obj).getTelefone();
-                String email = ((Cliente) obj).getEmail();
-                String endereco = ((Cliente) obj).getEndereco();
-                int numeroCliente = ((Cliente) obj).getNumeroCliente();
-                int clienteID = ((Cliente) obj).getClienteid(nome, numeroCliente);
+                String nome = cliente1.getNome();
+                String telefone = cliente1.getTelefone();
+                String email = cliente1.getEmail();
+                String endereco = cliente1.getEndereco();
+                int numeroCliente = cliente1.getNumeroCliente();
+                int clienteIDAtual = cliente1.getClienteid(nome, numeroCliente);
 
 
                 // Cria um novo array de objetos para adicionar à tabela
-                Object[] dados = { clienteID, nome, telefone, email, endereco, numeroCliente};
+                Object[] dados = { clienteIDAtual, nome, telefone, email, endereco, numeroCliente};
                 dtmCameras.addRow(dados);
             } else {
                 System.out.println("O objeto na lista não é do tipo Camera.");
@@ -660,23 +686,18 @@ public class visualizacaoCliente extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(visualizacaoCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(visualizacaoCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(visualizacaoCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(visualizacaoCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new visualizacaoCliente().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new visualizacaoCliente().setVisible(true);
         });
     }
 
@@ -688,6 +709,7 @@ public class visualizacaoCliente extends javax.swing.JFrame {
     private javax.swing.JButton botaoEnvio;
     private javax.swing.JButton botaoExcluir;
     private javax.swing.JButton botaoExcluir1;
+    private javax.swing.JButton botaoHistorico;
     private javax.swing.JButton botaoLimpar;
     private javax.swing.JButton botaoMenu;
     private javax.swing.JButton botaoProcurar;

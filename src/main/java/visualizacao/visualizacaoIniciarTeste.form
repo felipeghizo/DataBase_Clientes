@@ -232,8 +232,10 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="botaoHistorico1" min="-2" pref="93" max="-2" attributes="0"/>
+                              <Component id="botaoHistorico" alignment="1" min="-2" pref="93" max="-2" attributes="0"/>
                               <Component id="botaoEnvio" alignment="1" min="-2" pref="93" max="-2" attributes="0"/>
-                              <Component id="botaoCamera" alignment="1" min="-2" pref="93" max="-2" attributes="0"/>
+                              <Component id="botaoClientes" alignment="1" min="-2" pref="93" max="-2" attributes="0"/>
                               <Component id="botaoMenu" alignment="1" min="-2" pref="93" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="34" max="32767" attributes="0"/>
@@ -246,23 +248,19 @@
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Component id="botaoMenu" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="botaoCamera" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoClientes" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="botaoEnvio" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="botaoHistorico" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="botaoHistorico1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="botaoCamera">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Cameras"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCameraActionPerformed"/>
-                  </Events>
-                </Component>
                 <Component class="javax.swing.JButton" name="botaoMenu">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Menu"/>
@@ -271,12 +269,36 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoMenuActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JButton" name="botaoClientes">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Clientes"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoClientesActionPerformed"/>
+                  </Events>
+                </Component>
                 <Component class="javax.swing.JButton" name="botaoEnvio">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="C&#xe2;meras"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoEnvioActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="botaoHistorico">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Envios"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoEnvioActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoHistoricoActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="botaoHistorico1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Hist&#xf3;rico"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoHistorico1ActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

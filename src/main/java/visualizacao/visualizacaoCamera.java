@@ -13,7 +13,7 @@ import modelo.Camera;
 import modelo.Envio;
 
 
-public class visualizacaoCamera extends javax.swing.JFrame {
+public final class visualizacaoCamera extends javax.swing.JFrame {
     
     public TableRowSorter sorter;
     public int cameraID;
@@ -43,9 +43,10 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        botaoClientes = new javax.swing.JButton();
         botaoMenu = new javax.swing.JButton();
-        botaoEnvios = new javax.swing.JButton();
+        botaoClientes = new javax.swing.JButton();
+        botaoEnvio = new javax.swing.JButton();
+        botaoHistorico = new javax.swing.JButton();
         jPaneltabela = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaCameras = new javax.swing.JTable();
@@ -69,13 +70,6 @@ public class visualizacaoCamera extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
-        botaoClientes.setText("Clientes");
-        botaoClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoClientesActionPerformed(evt);
-            }
-        });
-
         botaoMenu.setText("Menu");
         botaoMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,10 +77,24 @@ public class visualizacaoCamera extends javax.swing.JFrame {
             }
         });
 
-        botaoEnvios.setText("Envios");
-        botaoEnvios.addActionListener(new java.awt.event.ActionListener() {
+        botaoClientes.setText("Clientes");
+        botaoClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoEnviosActionPerformed(evt);
+                botaoClientesActionPerformed(evt);
+            }
+        });
+
+        botaoEnvio.setText("Envios");
+        botaoEnvio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEnvioActionPerformed(evt);
+            }
+        });
+
+        botaoHistorico.setText("Histórico");
+        botaoHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoHistoricoActionPerformed(evt);
             }
         });
 
@@ -95,12 +103,13 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botaoEnvios, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +119,9 @@ public class visualizacaoCamera extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(botaoClientes)
                 .addGap(18, 18, 18)
-                .addComponent(botaoEnvios)
+                .addComponent(botaoEnvio)
+                .addGap(18, 18, 18)
+                .addComponent(botaoHistorico)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -291,15 +302,6 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenuActionPerformed
-        // Esconde a janela de clientes
-        this.setVisible(false);
-        
-        // Cria uma instância de Menu e a torna visivel
-        visualizacaoMenu menu = new visualizacaoMenu();
-        menu.setVisible(true);
-    }//GEN-LAST:event_botaoMenuActionPerformed
-
     private void botaoAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarActionPerformed
         // Input de dados da câmera a ser adicionada
         String modelo = JOptionPane.showInputDialog("Modelo");
@@ -328,7 +330,6 @@ public class visualizacaoCamera extends javax.swing.JFrame {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-                    e.printStackTrace();
                 }
 
                 // Opções de botões
@@ -354,20 +355,19 @@ public class visualizacaoCamera extends javax.swing.JFrame {
 
                 // Tratamento da opção selecionada
                 switch (option) {
-                    case 0: // Modelo
-                    String novoModelo = JOptionPane.showInputDialog("Novo Modelo: ");
-                    camera.setModeloid(this.cameraID, novoModelo);
-                    break;
-                    case 1: // MAC
-                    String novoMAC = JOptionPane.showInputDialog("Novo MAC: ");
-                    camera.setMACid(this.cameraID, novoMAC);
-                    break;
-                    case 2: // Cancelar
+                    case 0 -> {
+                        // Modelo
+                        String novoModelo = JOptionPane.showInputDialog("Novo Modelo: ");
+                        camera.setModeloid(this.cameraID, novoModelo);
+                }
+                    case 1 -> {
+                        // MAC
+                        String novoMAC = JOptionPane.showInputDialog("Novo MAC: ");
+                        camera.setMACid(this.cameraID, novoMAC);
+                }
+                    case 2 -> // Cancelar
                     JOptionPane.showMessageDialog(null, "Operação cancelada!");
-                    break;
-                    default:
-                    System.out.println("Nenhuma opção selecionada");
-                    break;
+                    default -> System.out.println("Nenhuma opção selecionada");
                 }
             tabelaATT();
         }
@@ -425,24 +425,6 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         tabelaATT();
     }//GEN-LAST:event_botaoLimparActionPerformed
 
-    private void botaoClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoClientesActionPerformed
-        // Esconde a janela de câmeras
-        this.setVisible(false);
-        
-        // Cria uma instância de cliente e a torna visivel
-        visualizacaoCliente cliente = new visualizacaoCliente();
-        cliente.setVisible(true);
-    }//GEN-LAST:event_botaoClientesActionPerformed
-
-    private void botaoEnviosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEnviosActionPerformed
-        // Esconde a janela de câmeras
-        this.setVisible(false);
-        
-        // Cria uma instância de menu e a torna visivel
-        visualizacaoEnvio envio = new visualizacaoEnvio();
-        envio.setVisible(true);
-    }//GEN-LAST:event_botaoEnviosActionPerformed
-
     private void tabelaCamerasPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tabelaCamerasPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_tabelaCamerasPropertyChange
@@ -462,6 +444,42 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         tabelaATT();
     }//GEN-LAST:event_tabelaCamerasMouseClicked
 
+    private void botaoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenuActionPerformed
+        // Esconde a janela de clientes
+        this.setVisible(false);
+
+        // Cria uma instância de Menu e a torna visivel
+        visualizacaoMenu menu = new visualizacaoMenu();
+        menu.setVisible(true);
+    }//GEN-LAST:event_botaoMenuActionPerformed
+
+    private void botaoClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoClientesActionPerformed
+        // Esconde a janela de clientes
+        this.setVisible(false);
+
+        // Cria uma instância de Cliente e a torna visivel
+        visualizacaoCliente clienteV = new visualizacaoCliente();
+        clienteV.setVisible(true);
+    }//GEN-LAST:event_botaoClientesActionPerformed
+
+    private void botaoEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEnvioActionPerformed
+        // Esconde a janela de câmeras
+        this.setVisible(false);
+
+        // Cria uma instância de Envio e a torna visivel
+        visualizacaoEnvio envioV = new visualizacaoEnvio();
+        envioV.setVisible(true);
+    }//GEN-LAST:event_botaoEnvioActionPerformed
+
+    private void botaoHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoHistoricoActionPerformed
+        // Esconde a janela de câmeras
+        this.setVisible(false);
+
+        // Cria uma instância de Historico e a torna visivel
+        visualizacaoHistorico historicoV = new visualizacaoHistorico();
+        historicoV.setVisible(true);
+    }//GEN-LAST:event_botaoHistoricoActionPerformed
+
     public void tabelaATT() {
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaCameras.getModel();
         ArrayList lista = camera.getCameras();
@@ -472,8 +490,7 @@ public class visualizacaoCamera extends javax.swing.JFrame {
         // Itera sobre a lista de câmeras e atualiza a tabela
         for (Object obj : lista) {
             // Verifica se o objeto é uma instância de Camera
-            if (obj instanceof Camera) {
-                Camera cam = (Camera) obj;
+            if (obj instanceof Camera cam) {
                 String modelo = cam.getModelo();
                 String MAC = cam.getMAC();
                 int ID = cam.getCameraid(modelo, MAC);
@@ -502,25 +519,22 @@ public class visualizacaoCamera extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(visualizacaoCamera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(visualizacaoCamera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(visualizacaoCamera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(visualizacaoCamera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new visualizacaoCamera().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new visualizacaoCamera().setVisible(true);
         });
     }
 
@@ -528,8 +542,9 @@ public class visualizacaoCamera extends javax.swing.JFrame {
     private javax.swing.JButton botaoAdicionar;
     private javax.swing.JButton botaoClientes;
     private javax.swing.JButton botaoEditar;
-    private javax.swing.JButton botaoEnvios;
+    private javax.swing.JButton botaoEnvio;
     private javax.swing.JButton botaoExcluir;
+    private javax.swing.JButton botaoHistorico;
     private javax.swing.JButton botaoLimpar;
     private javax.swing.JButton botaoMenu;
     private javax.swing.JButton botaoProcurar;

@@ -17,7 +17,7 @@ public class Envio {
     private int sequencia;
     private int numero_pedido;
     private String status;
-    private EnvioDAO envioDAO = new EnvioDAO();
+    private final EnvioDAO envioDAO = new EnvioDAO();
 
     public Envio() {
     }
@@ -118,16 +118,32 @@ public class Envio {
         envioDAO.setAcessoDAO(getEnvioid(this.clienteid, this.cameraid), acesso);
         this.acesso = acesso;
     }
+    public void setAcessoID(int id, String acesso) {
+        envioDAO.setAcessoDAO(id, acesso);
+        this.acesso = acesso;
+    }
     public void setData_Entrega(String Data_entrega) {
         envioDAO.setData_EntregaDAO(getEnvioid(this.clienteid, this.cameraid), Data_entrega);
+        this.data_entrega = Data_entrega;
+    }
+    public void setData_EntregaID(int id, String Data_entrega) {
+        envioDAO.setData_EntregaDAO(id, Data_entrega);
         this.data_entrega = Data_entrega;
     }
     public void setData_Envio(String Data_envio) {
         envioDAO.setData_EnvioDAO(getEnvioid(this.clienteid, this.cameraid), Data_envio);
         this.data_envio = Data_envio;
     }
+    public void setData_EnvioID(int id, String Data_envio) {
+        envioDAO.setData_EnvioDAO(id, Data_envio);
+        this.data_envio = Data_envio;
+    }
     public void setData_Instalacao(String Data_instalacao) {
         envioDAO.setData_InstalacaoDAO(getEnvioid(this.clienteid, this.cameraid), Data_instalacao);
+        this.data_instalacao = Data_instalacao;
+    }
+    public void setData_InstalacaoID(int id, String Data_instalacao) {
+        envioDAO.setData_InstalacaoDAO(id, Data_instalacao);
         this.data_instalacao = Data_instalacao;
     }
     public void setNota_Fiscal(int Nota_fiscal) {

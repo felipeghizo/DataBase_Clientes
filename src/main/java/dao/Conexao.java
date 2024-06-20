@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class Conexao {
     public Connection getConexao() {
-        Connection connection = null; // instância da conexão
+        Connection connection; // instância da conexão
         try {
             // Carregamento do JDBC Driver
             String driver = "com.mysql.cj.jdbc.Driver";
@@ -27,7 +27,6 @@ public class Conexao {
             return null;
         } catch (SQLException e) {
             System.out.println("Não foi possível conectar...");
-            e.printStackTrace();
             return null;
         }
     }

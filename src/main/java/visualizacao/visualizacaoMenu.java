@@ -9,11 +9,12 @@ import java.time.format.DateTimeFormatter;
 public class visualizacaoMenu extends javax.swing.JFrame {
     
     public visualizacaoMenu() {// Configurações do JFrame
+        // Configurações do JFrame
         setTitle("Menu");
-        this.setUndecorated(true);
         initComponents();
-        this.setLocationRelativeTo(null);
-        atualizarData();  // Chamando o método para exibir a data inicial
+        this.setLocationRelativeTo(null); // Centraliza o JFrame na tela
+        // Atualiza a data
+        atualizarData();
     }
 
 
@@ -23,24 +24,20 @@ public class visualizacaoMenu extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         menuCameras = new javax.swing.JButton();
-        menuEmprestimos = new javax.swing.JButton();
+        menuHistorico = new javax.swing.JButton();
         menuClientes = new javax.swing.JButton();
-        Data = new javax.swing.JLabel();
+        menuEmprestimos1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        Data = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(14, 163, 74));
-        jLabel1.setText("Intelbras");
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         menuCameras.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         menuCameras.setText("Câmeras");
@@ -50,11 +47,11 @@ public class visualizacaoMenu extends javax.swing.JFrame {
             }
         });
 
-        menuEmprestimos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        menuEmprestimos.setText("Envios");
-        menuEmprestimos.addActionListener(new java.awt.event.ActionListener() {
+        menuHistorico.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        menuHistorico.setText("Histórico");
+        menuHistorico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuEmprestimosActionPerformed(evt);
+                menuHistoricoActionPerformed(evt);
             }
         });
 
@@ -66,39 +63,52 @@ public class visualizacaoMenu extends javax.swing.JFrame {
             }
         });
 
-        Data.setText("jLabel4");
+        menuEmprestimos1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        menuEmprestimos1.setText("Envios");
+        menuEmprestimos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEmprestimos1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(menuClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(menuEmprestimos1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Data))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(menuClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(menuEmprestimos, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(menuCameras, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(menuCameras, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(menuHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(menuClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(menuCameras, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menuEmprestimos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addComponent(Data)
-                .addContainerGap())
+                    .addComponent(menuClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(menuEmprestimos1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(menuHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setText("Menu");
+
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(14, 163, 74));
+        jLabel1.setText("Intelbras");
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        Data.setText("jLabel4");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -106,46 +116,39 @@ public class visualizacaoMenu extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(159, 159, 159))
+                .addGap(82, 82, 82)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Data)
+                .addGap(22, 22, 22))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(114, 114, 114))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Data)
+                .addGap(75, 75, 75))
         );
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Menu");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(16, 370, Short.MAX_VALUE))))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 293, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -158,7 +161,7 @@ public class visualizacaoMenu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 285, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -168,28 +171,37 @@ public class visualizacaoMenu extends javax.swing.JFrame {
         // Esconde a janela de câmeras
         this.setVisible(false);
         
-        // Cria uma instância de cliente e a torna visivel
-        visualizacaoCliente cliente = new visualizacaoCliente();
-        cliente.setVisible(true);
+        // Cria uma instância de Cliente e a torna visivel
+        visualizacaoCliente clienteV = new visualizacaoCliente();
+        clienteV.setVisible(true);
     }//GEN-LAST:event_menuClientesActionPerformed
 
     private void menuCamerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCamerasActionPerformed
         // Esconde a janela de clientes
         this.setVisible(false);
         
-        // Cria uma instância de Menu e a torna visivel
-        visualizacaoCamera camera = new visualizacaoCamera();
-        camera.setVisible(true);
+        // Cria uma instância de Camera e a torna visivel
+        visualizacaoCamera cameraV = new visualizacaoCamera();
+        cameraV.setVisible(true);
     }//GEN-LAST:event_menuCamerasActionPerformed
 
-    private void menuEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEmprestimosActionPerformed
+    private void menuHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHistoricoActionPerformed
         // Esconde a janela de câmeras
         this.setVisible(false);
-        
-        // Cria uma instância de menu e a torna visivel
-        visualizacaoEnvio envio = new visualizacaoEnvio();
-        envio.setVisible(true);
-    }//GEN-LAST:event_menuEmprestimosActionPerformed
+
+        // Cria uma instância de Historico e a torna visivel
+        visualizacaoHistorico historicoV = new visualizacaoHistorico();
+        historicoV.setVisible(true);
+    }//GEN-LAST:event_menuHistoricoActionPerformed
+
+    private void menuEmprestimos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEmprestimos1ActionPerformed
+        // Esconde a janela de câmeras
+        this.setVisible(false);
+
+        // Cria uma instância de Envio e a torna visivel
+        visualizacaoEnvio envioV = new visualizacaoEnvio();
+        envioV.setVisible(true);
+    }//GEN-LAST:event_menuEmprestimos1ActionPerformed
 
 // Método para atualizar a data
 private void atualizarData() {
@@ -214,6 +226,7 @@ private void atualizarData() {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton menuCameras;
     private javax.swing.JButton menuClientes;
-    private javax.swing.JButton menuEmprestimos;
+    private javax.swing.JButton menuEmprestimos1;
+    private javax.swing.JButton menuHistorico;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,7 +11,7 @@ import modelo.Cliente;
 import modelo.Envio;
 
 
-public class visualizacaoIniciarTeste extends javax.swing.JFrame {
+public final class visualizacaoIniciarTeste extends javax.swing.JFrame {
 
     public Envio envio = new Envio();
     public Camera camera = new Camera();
@@ -54,9 +54,11 @@ public class visualizacaoIniciarTeste extends javax.swing.JFrame {
         jPanel18 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
-        botaoCamera = new javax.swing.JButton();
         botaoMenu = new javax.swing.JButton();
+        botaoClientes = new javax.swing.JButton();
         botaoEnvio = new javax.swing.JButton();
+        botaoHistorico = new javax.swing.JButton();
+        botaoHistorico1 = new javax.swing.JButton();
         jPanel20 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaClientes = new javax.swing.JTable();
@@ -98,13 +100,6 @@ public class visualizacaoIniciarTeste extends javax.swing.JFrame {
 
         jPanel19.setBackground(new java.awt.Color(153, 153, 153));
 
-        botaoCamera.setText("Cameras");
-        botaoCamera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCameraActionPerformed(evt);
-            }
-        });
-
         botaoMenu.setText("Menu");
         botaoMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,10 +107,31 @@ public class visualizacaoIniciarTeste extends javax.swing.JFrame {
             }
         });
 
-        botaoEnvio.setText("Envios");
+        botaoClientes.setText("Clientes");
+        botaoClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoClientesActionPerformed(evt);
+            }
+        });
+
+        botaoEnvio.setText("Câmeras");
         botaoEnvio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoEnvioActionPerformed(evt);
+            }
+        });
+
+        botaoHistorico.setText("Envios");
+        botaoHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoHistoricoActionPerformed(evt);
+            }
+        });
+
+        botaoHistorico1.setText("Histórico");
+        botaoHistorico1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoHistorico1ActionPerformed(evt);
             }
         });
 
@@ -126,8 +142,10 @@ public class visualizacaoIniciarTeste extends javax.swing.JFrame {
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoHistorico1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoEnvio, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoCamera, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
@@ -137,9 +155,13 @@ public class visualizacaoIniciarTeste extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addComponent(botaoMenu)
                 .addGap(18, 18, 18)
-                .addComponent(botaoCamera)
+                .addComponent(botaoClientes)
                 .addGap(18, 18, 18)
                 .addComponent(botaoEnvio)
+                .addGap(18, 18, 18)
+                .addComponent(botaoHistorico)
+                .addGap(18, 18, 18)
+                .addComponent(botaoHistorico1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -393,33 +415,6 @@ public class visualizacaoIniciarTeste extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoCameraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCameraActionPerformed
-        // Esconde a janela de clientes
-        this.setVisible(false);
-
-        // Cria uma instância de Menu e a torna visivel
-        visualizacaoCamera camera = new visualizacaoCamera();
-        camera.setVisible(true);
-    }//GEN-LAST:event_botaoCameraActionPerformed
-
-    private void botaoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenuActionPerformed
-        // Esconde a janela de clientes
-        this.setVisible(false);
-
-        // Cria uma instância de Menu e a torna visivel
-        visualizacaoMenu menu = new visualizacaoMenu();
-        menu.setVisible(true);
-    }//GEN-LAST:event_botaoMenuActionPerformed
-
-    private void botaoEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEnvioActionPerformed
-        // Esconde a janela de câmeras
-        this.setVisible(false);
-
-        // Cria uma instância de menu e a torna visivel
-        visualizacaoEnvio envio = new visualizacaoEnvio();
-        envio.setVisible(true);
-    }//GEN-LAST:event_botaoEnvioActionPerformed
-
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
         // Obtém a linha e coluna onde ocorreu o clique
         int row = tabelaClientes.rowAtPoint(evt.getPoint());
@@ -508,6 +503,51 @@ public class visualizacaoIniciarTeste extends javax.swing.JFrame {
         tabelaCameraATT();
     }//GEN-LAST:event_tabelaCamerasMouseClicked
 
+    private void botaoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenuActionPerformed
+        // Esconde a janela de clientes
+        this.setVisible(false);
+
+        // Cria uma instância de Menu e a torna visivel
+        visualizacaoMenu menuV = new visualizacaoMenu();
+        menuV.setVisible(true);
+    }//GEN-LAST:event_botaoMenuActionPerformed
+
+    private void botaoClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoClientesActionPerformed
+        // Esconde a janela de clientes
+        this.setVisible(false);
+
+        // Cria uma instância de Cliente e a torna visivel
+        visualizacaoCliente clienteV = new visualizacaoCliente();
+        clienteV.setVisible(true);
+    }//GEN-LAST:event_botaoClientesActionPerformed
+
+    private void botaoEnvioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEnvioActionPerformed
+        // Esconde a janela de câmeras
+        this.setVisible(false);
+
+        // Cria uma instância de Camera e a torna visivel
+        visualizacaoCamera cameraV = new visualizacaoCamera();
+        cameraV.setVisible(true);
+    }//GEN-LAST:event_botaoEnvioActionPerformed
+
+    private void botaoHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoHistoricoActionPerformed
+        // Esconde a janela de câmeras
+        this.setVisible(false);
+
+        // Cria uma instância de Envio e a torna visivel
+        visualizacaoEnvio envioV = new visualizacaoEnvio();
+        envioV.setVisible(true);
+    }//GEN-LAST:event_botaoHistoricoActionPerformed
+
+    private void botaoHistorico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoHistorico1ActionPerformed
+        // Esconde a janela de câmeras
+        this.setVisible(false);
+
+        // Cria uma instância de Historico e a torna visivel
+        visualizacaoHistorico historicoV = new visualizacaoHistorico();
+        historicoV.setVisible(true);
+    }//GEN-LAST:event_botaoHistorico1ActionPerformed
+
     public void tabelaClienteATT() {
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaClientes.getModel();
         ArrayList lista = cliente.getClientes();
@@ -518,18 +558,18 @@ public class visualizacaoIniciarTeste extends javax.swing.JFrame {
         // Itera sobre a lista de câmeras e atualiza a tabela
         for (Object obj : lista) {
             // Verifica se o objeto é uma instância de Camera
-            if (obj instanceof Cliente) {
+            if (obj instanceof Cliente cliente1) {
 
-                String nome = ((Cliente) obj).getNome();
-                String telefone = ((Cliente) obj).getTelefone();
-                String email = ((Cliente) obj).getEmail();
-                String endereco = ((Cliente) obj).getEndereco();
-                int numeroCliente = ((Cliente) obj).getNumeroCliente();
-                int clienteID = ((Cliente) obj).getClienteid(nome, numeroCliente);
+                String nome = cliente1.getNome();
+                String telefone = cliente1.getTelefone();
+                String email = cliente1.getEmail();
+                String endereco = cliente1.getEndereco();
+                int numeroCliente = cliente1.getNumeroCliente();
+                int clienteIDAtual = cliente1.getClienteid(nome, numeroCliente);
 
 
                 // Cria um novo array de objetos para adicionar à tabela
-                Object[] dados = { clienteID, nome, telefone, email, endereco, numeroCliente};
+                Object[] dados = { clienteIDAtual, nome, telefone, email, endereco, numeroCliente};
                 dtmCameras.addRow(dados);
             } else {
                 System.out.println("O objeto na lista não é do tipo Camera.");
@@ -547,8 +587,7 @@ public class visualizacaoIniciarTeste extends javax.swing.JFrame {
         // Itera sobre a lista de câmeras e atualiza a tabela
         for (Object obj : lista) {
             // Verifica se o objeto é uma instância de Camera
-            if (obj instanceof Camera) {
-                Camera cam = (Camera) obj;
+            if (obj instanceof Camera cam) {
                 String modelo = cam.getModelo();
                 String MAC = cam.getMAC();
                 int ID = cam.getCameraid(modelo, MAC);
@@ -575,28 +614,24 @@ public class visualizacaoIniciarTeste extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(visualizacaoIniciarTeste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(visualizacaoIniciarTeste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(visualizacaoIniciarTeste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(visualizacaoIniciarTeste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new visualizacaoIniciarTeste().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new visualizacaoIniciarTeste().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoCamera;
+    private javax.swing.JButton botaoClientes;
     private javax.swing.JButton botaoEnvio;
+    private javax.swing.JButton botaoHistorico;
+    private javax.swing.JButton botaoHistorico1;
     private javax.swing.JButton botaoLimparCamera;
     private javax.swing.JButton botaoLimparCliente;
     private javax.swing.JButton botaoMenu;
