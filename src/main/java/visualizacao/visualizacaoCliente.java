@@ -348,7 +348,7 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
             }
         });
 
-        botaoVisualizar.setText("Visualizar dados");
+        botaoVisualizar.setText("<html><center>Visualizar<br>Dados</center></html>");
         botaoVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoVisualizarActionPerformed(evt);
@@ -362,12 +362,11 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                        .addComponent(botaoExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(botaoVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                    .addComponent(botaoExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoVisualizar))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel18Layout.createSequentialGroup()
@@ -651,14 +650,17 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoHistoricoActionPerformed
 
     private void botaoVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVisualizarActionPerformed
-
-        JOptionPane.showMessageDialog(null,
+        if (this.row == 0){
+            JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada!");
+        }else{
+            JOptionPane.showMessageDialog(null,
             "Id: "+(int) tabelaClientes.getValueAt(this.row, 0)+
             "\nNome: "+(String) tabelaClientes.getValueAt(this.row, 1)+
             "\nTelefone: "+(String) tabelaClientes.getValueAt(this.row, 2)+
             "\nEndereço: "+(String) tabelaClientes.getValueAt(this.row, 3)+
             "\nE-mail: "+(String) tabelaClientes.getValueAt(this.row, 4)+
             "\nNúmero: "+(int) tabelaClientes.getValueAt(this.row, 5));
+        }
     }//GEN-LAST:event_botaoVisualizarActionPerformed
     public void tabelaATT() {
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaClientes.getModel();

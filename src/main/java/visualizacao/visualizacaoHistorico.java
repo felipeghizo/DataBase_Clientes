@@ -322,8 +322,10 @@ public final class visualizacaoHistorico extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoEnviosActionPerformed
 
     private void botaoVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVisualizarActionPerformed
-
-        JOptionPane.showMessageDialog(null,
+        if (this.row == 0){
+            JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada!");
+        }else{
+            JOptionPane.showMessageDialog(null,
             "Número do cliente: "+(int) tabelaHistorico.getValueAt(this.row, 0)+
             "\nNome do cliente: "+(String) tabelaHistorico.getValueAt(this.row, 1)+
             "\nModelo da câmera: "+(String) tabelaHistorico.getValueAt(this.row, 2)+
@@ -334,6 +336,7 @@ public final class visualizacaoHistorico extends javax.swing.JFrame {
             "\nData da instalação: "+(String) tabelaHistorico.getValueAt(this.row, 7)+
             "\nNúmero do pedido: "+(int) tabelaHistorico.getValueAt(this.row, 8)+
             "\nSequência: "+(int) tabelaHistorico.getValueAt(this.row, 9));
+        }
     }//GEN-LAST:event_botaoVisualizarActionPerformed
 
     public void tabelaATT() {

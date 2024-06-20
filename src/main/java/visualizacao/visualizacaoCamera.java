@@ -223,7 +223,7 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
             }
         });
 
-        botaoVisualizar.setText("Visualizar dados");
+        botaoVisualizar.setText("<html><center>Visualizar<br>Dados</center></html>");
         botaoVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoVisualizarActionPerformed(evt);
@@ -237,12 +237,11 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(botaoVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoVisualizar))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -493,11 +492,14 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoHistoricoActionPerformed
 
     private void botaoVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVisualizarActionPerformed
-
-        JOptionPane.showMessageDialog(null,
+        if (this.row == 0){
+            JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada!");
+        }else{
+            JOptionPane.showMessageDialog(null,
             "ID: "+(int) tabelaCameras.getValueAt(this.row, 0)+
             "\nModelo: "+(String) tabelaCameras.getValueAt(this.row, 1)+
             "\nMAC: "+(String) tabelaCameras.getValueAt(this.row, 2));
+        }
     }//GEN-LAST:event_botaoVisualizarActionPerformed
 
     public void tabelaATT() {

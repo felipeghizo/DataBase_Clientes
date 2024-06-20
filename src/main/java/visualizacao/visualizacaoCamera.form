@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -82,13 +82,11 @@
                   <Group type="102" attributes="0">
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="botaoEditar" alignment="0" max="32767" attributes="0"/>
-                              <Component id="botaoAdicionar" alignment="0" max="32767" attributes="0"/>
-                              <Component id="botaoExcluir" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="botaoVisualizar" min="-2" pref="123" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="botaoEditar" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botaoAdicionar" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botaoExcluir" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botaoVisualizar" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -350,7 +348,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="botaoVisualizar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Visualizar dados"/>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;center&gt;Visualizar&lt;br&gt;Dados&lt;/center&gt;&lt;/html&gt;"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoVisualizarActionPerformed"/>

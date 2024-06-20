@@ -227,7 +227,7 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        botaoVisualizar.setText("Visualizar dados");
+        botaoVisualizar.setText("<html><center>Visualizar<br>Dados</center></html>");
         botaoVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoVisualizarActionPerformed(evt);
@@ -241,12 +241,11 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(botaoVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botaoEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                    .addComponent(botaoVisualizar))
                 .addGap(41, 41, 41)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel18Layout.createSequentialGroup()
@@ -483,18 +482,21 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoHistoricoActionPerformed
 
     private void botaoVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVisualizarActionPerformed
-    
-        JOptionPane.showMessageDialog(null, 
-                "Número do cliente: "+(int) tabelaEnvios.getValueAt(this.row, 0)+
-                "\nNome do cliente: "+(String) tabelaEnvios.getValueAt(this.row, 1)+
-                "\nModelo da câmera: "+(String) tabelaEnvios.getValueAt(this.row, 2)+
-                "\nMAC da câmera: "+(String) tabelaEnvios.getValueAt(this.row, 3)+
-                "\nAcesso: "+(String) tabelaEnvios.getValueAt(this.row, 4)+
-                "\nData de envio: "+(String) tabelaEnvios.getValueAt(this.row, 5)+
-                "\nData da entrega: "+(String) tabelaEnvios.getValueAt(this.row, 6)+
-                "\nData da instalação: "+(String) tabelaEnvios.getValueAt(this.row, 7)+
-                "\nNúmero do pedido: "+(int) tabelaEnvios.getValueAt(this.row, 8)+
-                "\nSequência: "+(int) tabelaEnvios.getValueAt(this.row, 9));
+        if (this.row == 0){
+            JOptionPane.showMessageDialog(null, "Nenhuma linha selecionada!");
+        }else{
+            JOptionPane.showMessageDialog(null, 
+                    "Número do cliente: "+(int) tabelaEnvios.getValueAt(this.row, 0)+
+                    "\nNome do cliente: "+(String) tabelaEnvios.getValueAt(this.row, 1)+
+                    "\nModelo da câmera: "+(String) tabelaEnvios.getValueAt(this.row, 2)+
+                    "\nMAC da câmera: "+(String) tabelaEnvios.getValueAt(this.row, 3)+
+                    "\nAcesso: "+(String) tabelaEnvios.getValueAt(this.row, 4)+
+                    "\nData de envio: "+(String) tabelaEnvios.getValueAt(this.row, 5)+
+                    "\nData da entrega: "+(String) tabelaEnvios.getValueAt(this.row, 6)+
+                    "\nData da instalação: "+(String) tabelaEnvios.getValueAt(this.row, 7)+
+                    "\nNúmero do pedido: "+(int) tabelaEnvios.getValueAt(this.row, 8)+
+                    "\nSequência: "+(int) tabelaEnvios.getValueAt(this.row, 9));
+        }
     }//GEN-LAST:event_botaoVisualizarActionPerformed
    
     public void tabelaATT() {
