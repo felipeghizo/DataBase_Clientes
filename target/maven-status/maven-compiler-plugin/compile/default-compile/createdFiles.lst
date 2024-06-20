@@ -1,3 +1,4 @@
+visualizacao\visualizacaoCamera$14.class
 visualizacao\visualizacaoCliente$9.class
 visualizacao\visualizacaoMenu$1.class
 visualizacao\visualizacaoCamera$7.class
@@ -11,6 +12,7 @@ visualizacao\visualizacaoHistorico.class
 visualizacao\visualizacaoCamera.class
 visualizacao\visualizacaoEnvio$4.class
 visualizacao\visualizacaoIniciarTeste$7.class
+visualizacao\visualizacaoMenu$4.class
 visualizacao\visualizacaoCamera$11.class
 visualizacao\visualizacaoIniciarTeste$10.class
 dao\ClienteDAO.class
@@ -66,6 +68,8 @@ visualizacao\visualizacaoIniciarTeste$6.class
 visualizacao\visualizacaoCamera$6.class
 visualizacao\visualizacaoEnvio$3.class
 visualizacao\visualizacaoHistorico$4.class
+visualizacao\visualizacaoHistorico$8.class
+visualizacao\visualizacaoCliente$15.class
 visualizacao\visualizacaoCliente$3.class
 visualizacao\visualizacaoCliente$11.class
 visualizacao\visualizacaoCliente$6.class
