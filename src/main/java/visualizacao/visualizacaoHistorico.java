@@ -5,15 +5,18 @@ import java.util.ArrayList;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import modelo.Camera;
 import modelo.Cliente;
-import modelo.Historico;
+import modelo.Envio;
 
 
 public class visualizacaoHistorico extends javax.swing.JFrame {
     
     public TableRowSorter sorter;
     public int historicoID;
-    Historico historico = new Historico();
+    Envio envio = new Envio();
+    Cliente cliente = new Cliente();
+    Camera camera = new Camera();
 
     public visualizacaoHistorico() {
         // Configurações do JFrame
@@ -287,31 +290,37 @@ public class visualizacaoHistorico extends javax.swing.JFrame {
 
     public void tabelaATT() {
         DefaultTableModel dtmCameras = (DefaultTableModel) tabelaHistorico.getModel();
-        ArrayList lista = historico.getHistorico();
-
+        ArrayList lista = envio.getEnvios();
+    
         // Limpa todas as linhas da tabela antes de atualizar com novos dados
         dtmCameras.setRowCount(0);
 
         // Itera sobre a lista de câmeras e atualiza a tabela
         for (Object obj : lista) {
             // Verifica se o objeto é uma instância de Camera
-            if (obj instanceof Historico) {
-
-                String nomeCliente = ((Historico) obj).getNomeCliente();
-                String modeloCamera = ((Historico) obj).getModeloCamera();
-                String dataEntrega = ((Historico) obj).getData_Entrega();
-                String dataEnvio = ((Historico) obj).getData_Envio();
-                String dataInstalacao = ((Historico) obj).getData_Instalacao();
-                int notaFiscal = ((Historico) obj).getNotaFiscal();
-                int sequencia = ((Historico) obj).getSequencia();
-                int numeroPedido = ((Historico) obj).getNumero_Pedido();
-                int ID = ((Historico) obj).getHistoricoid(nomeCliente, modeloCamera);
+            if ((obj instanceof Envio envioO) && (envioO.getStatus().compareTo("Ativo") == 0)) {
+                int clienteID = envioO.getClienteid();
+                int clienteNumero = cliente.getNumeroClienteID(clienteID);
+                String clienteNome = cliente.getNomeID(clienteID);
+                
+                int cameraID = envioO.getCameraid();
+                String cameraModelo = camera.getModeloID(cameraID);
+                String cameraMAC = camera.getMACID(cameraID);
+                
+                String acesso = envioO.getAcesso();
+                String dataEnvio = envioO.getData_Envio();
+                String DataEntrega = envioO.getData_Entrega();
+                String dataInstalacao = envioO.getData_Instalacao();
+                int nota_fiscal = envioO.getNotaFiscal();
+                int sequencia = envioO.getSequencia();
+                int numero_pedido = envioO.getNumero_Pedido();
+                int ID = envioO.getEnvioid(clienteID, cameraID);
 
                 // Cria um novo array de objetos para adicionar à tabela
-                Object[] dados = { ID, nomeCliente, modeloCamera, dataEntrega, dataEnvio, dataInstalacao, notaFiscal, sequencia, numeroPedido, };
+                Object[] dados = { clienteNumero, clienteNome, cameraModelo, cameraMAC, acesso, dataEnvio, DataEntrega, dataInstalacao, nota_fiscal, sequencia, numero_pedido };
                 dtmCameras.addRow(dados);
             } else {
-                System.out.println("O objeto na lista não é do tipo Historico.");
+                System.out.println("O objeto na lista não é do tipo Camera.");
             }
         }
     }

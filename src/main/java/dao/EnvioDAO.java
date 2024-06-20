@@ -285,6 +285,31 @@ public class EnvioDAO {
         }
         return numero_pedido;
     }
+    public String getStatusDAO(int envioid){  
+    String sql = """
+                 SELECT status 
+                 FROM envios 
+                 WHERE envioid = ?
+                 """;
+        String Status = "";
+        try (Connection conn = conexao.getConexao();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            // Configura os parâmetros da query
+            stmt.setInt(1, envioid);
+            // Executa a query
+            try (ResultSet res = stmt.executeQuery()) {
+                if (res.next()) {
+                    Status = res.getString("status");
+                } else {
+                    // Nenhum amigo foi encontrado, você pode lidar com isso aqui
+                    System.out.println("Nenhum status encontrado com o id: " + Status);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar o status do envio: " + e.getMessage());
+        }
+        return Status;
+    }
     
     // sets
     public void setClienteidDAO(int emprestimoid, int novoClienteid){  
@@ -431,6 +456,22 @@ public class EnvioDAO {
             throw new RuntimeException(erro);
         }
     }
+    public void setStatusDAO(int envioid, String novoStatus){  
+    String sql = """
+                 UPDATE envios
+                 SET status = (?)
+                 WHERE envioid = (?);""";
+        try {
+            PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
+            stmt.setString(1, novoStatus);
+            stmt.setInt(2, envioid);
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException erro) {
+            System.out.println("Erro:" + erro);
+            throw new RuntimeException(erro);
+        }
+    }
     
     // Retorna a Lista de emprestimos
     public ArrayList getEnviosDAO() {
@@ -448,7 +489,8 @@ public class EnvioDAO {
                 int nota_fiscal = res.getInt("nota_fiscal");
                 int sequencia = res.getInt("sequencia");
                 int numero_pedido = res.getInt("numero_pedido");
-                Envio emprestimo = new Envio(clienteid, cameraid, acesso, data_entrega, data_envio, data_instalacao, nota_fiscal, sequencia, numero_pedido);
+                String status = res.getString("status");
+                Envio emprestimo = new Envio(clienteid, cameraid, acesso, data_entrega, data_envio, data_instalacao, nota_fiscal, sequencia, numero_pedido, status);
                 minhaLista.add(emprestimo);
             }
             stmt.close();
@@ -459,8 +501,8 @@ public class EnvioDAO {
     }
     
     // Adiciona Emprestimo
-    public void addEnvioDAO(int clienteid, int cameraid, int nota_fiscal, int sequencia, int numero_pedido) {
-        String sql = "INSERT INTO envios(clienteid, cameraid, nota_fiscal, sequencia, numero_pedido) VALUES(?,?,?,?,?)";
+    public void addEnvioDAO(int clienteid, int cameraid, int nota_fiscal, int sequencia, int numero_pedido, String status) {
+        String sql = "INSERT INTO envios(clienteid, cameraid, nota_fiscal, sequencia, numero_pedido, status) VALUES(?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = conexao.getConexao().prepareStatement(sql);
             stmt.setInt(1, clienteid);
@@ -468,6 +510,7 @@ public class EnvioDAO {
             stmt.setInt(3, nota_fiscal);
             stmt.setInt(4, sequencia);
             stmt.setInt(5, numero_pedido);
+            stmt.setString(6, status);
             stmt.execute();
             stmt.close();
         } catch (SQLException erro) {

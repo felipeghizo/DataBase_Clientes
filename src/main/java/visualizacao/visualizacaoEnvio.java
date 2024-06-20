@@ -9,7 +9,6 @@ import javax.swing.table.TableRowSorter;
 import modelo.Camera;
 import modelo.Cliente;
 import modelo.Envio;
-import modelo.Historico;
 
 
 public class visualizacaoEnvio extends javax.swing.JFrame {
@@ -17,7 +16,6 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
     public TableRowSorter sorter;
     public int envioID;
     Envio envio = new Envio();
-    Historico historico = new Historico();
     Camera camera = new Camera();
     Cliente cliente = new Cliente();
     
@@ -326,20 +324,9 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
             // Confirmação dacâmera que deve ser excluída
             int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja finalizar o teste de ID: "+this.envioID+" ?");
             if (confirm == 0) {
-                // Adiciona o teste ao histórico
-                String nomeCliente = cliente.getNomeID(envio.getClienteID(envioID));
-                String modeloCamera = camera.getModeloID(envio.getCameraID(envioID));
-                String dataEntrega = envio.getData_EntregaID(envioID);
-                String dataEnvio = envio.getData_EnvioID(envioID);
-                String dataInstalacao = envio.getData_InstalacaoID(envioID);
-                int notaFiscal = envio.getNotaFiscalID(envioID);
-                int sequencia = envio.getSequenciaID(envioID);
-                int numeroPedido = envio.getNumero_PedidoID(envioID);
-                               
-                historico.addHistorico(nomeCliente, modeloCamera, dataEntrega, dataEnvio, dataInstalacao, notaFiscal, sequencia, numeroPedido);
-                
-                // Exclui a camera do banco de dados
-                envio.removeEnvio(this.envioID);
+                     
+                // Seta o status como inativo
+                envio.setStatus(this.envioID, "Inativo");
                 
                 // Atualização da tabela
                 tabelaATT();
@@ -428,26 +415,28 @@ public class visualizacaoEnvio extends javax.swing.JFrame {
         for (Object obj : lista) {
             // Verifica se o objeto é uma instância de Camera
             if (obj instanceof Envio envioO) {
-                int clienteID = envioO.getClienteid();
-                int clienteNumero = cliente.getNumeroClienteID(clienteID);
-                String clienteNome = cliente.getNomeID(clienteID);
-                
-                int cameraID = envioO.getCameraid();
-                String cameraModelo = camera.getModeloID(cameraID);
-                String cameraMAC = camera.getMACID(cameraID);
-                
-                String acesso = envioO.getAcesso();
-                String dataEnvio = envioO.getData_Envio();
-                String DataEntrega = envioO.getData_Entrega();
-                String dataInstalacao = envioO.getData_Instalacao();
-                int nota_fiscal = envioO.getNotaFiscal();
-                int sequencia = envioO.getSequencia();
-                int numero_pedido = envioO.getNumero_Pedido();
-                int ID = envioO.getEnvioid(clienteID, cameraID);
+                if (envioO.getStatus().compareTo("Ativo") == 0){
+                    int clienteID = envioO.getClienteid();
+                    int clienteNumero = cliente.getNumeroClienteID(clienteID);
+                    String clienteNome = cliente.getNomeID(clienteID);
 
-                // Cria um novo array de objetos para adicionar à tabela
-                Object[] dados = { clienteNumero, clienteNome, cameraModelo, cameraMAC, acesso, dataEnvio, DataEntrega, dataInstalacao, nota_fiscal, sequencia, numero_pedido };
-                dtmCameras.addRow(dados);
+                    int cameraID = envioO.getCameraid();
+                    String cameraModelo = camera.getModeloID(cameraID);
+                    String cameraMAC = camera.getMACID(cameraID);
+
+                    String acesso = envioO.getAcesso();
+                    String dataEnvio = envioO.getData_Envio();
+                    String DataEntrega = envioO.getData_Entrega();
+                    String dataInstalacao = envioO.getData_Instalacao();
+                    int nota_fiscal = envioO.getNotaFiscal();
+                    int sequencia = envioO.getSequencia();
+                    int numero_pedido = envioO.getNumero_Pedido();
+                    int ID = envioO.getEnvioid(clienteID, cameraID);
+
+                    // Cria um novo array de objetos para adicionar à tabela
+                    Object[] dados = { clienteNumero, clienteNome, cameraModelo, cameraMAC, acesso, dataEnvio, DataEntrega, dataInstalacao, nota_fiscal, sequencia, numero_pedido };
+                    dtmCameras.addRow(dados);
+                }
             } else {
                 System.out.println("O objeto na lista não é do tipo Camera.");
             }

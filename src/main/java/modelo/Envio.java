@@ -16,12 +16,13 @@ public class Envio {
     private int nota_fiscal;
     private int sequencia;
     private int numero_pedido;
+    private String status;
     private EnvioDAO envioDAO = new EnvioDAO();
 
     public Envio() {
     }
 
-    public Envio(int clienteid, int cameraid, String acesso, String data_entrega, String data_envio, String data_instalacao, int nota_fiscal, int sequencia, int numero_pedido) {
+    public Envio(int clienteid, int cameraid, String acesso, String data_entrega, String data_envio, String data_instalacao, int nota_fiscal, int sequencia, int numero_pedido, String status) {
         this.clienteid = clienteid;
         this.cameraid = cameraid;
         this.acesso = acesso;
@@ -31,6 +32,7 @@ public class Envio {
         this.nota_fiscal = nota_fiscal;
         this.sequencia = sequencia;
         this.numero_pedido = numero_pedido;
+        this.status = status;
     }
 
     // gets
@@ -91,6 +93,13 @@ public class Envio {
     public int getNumero_PedidoID(int ID){
         return envioDAO.getNumero_PedidoDAO(getEnvioid(this.clienteid, this.cameraid));
     }
+    public String getStatus() {
+        return envioDAO.getStatusDAO(getEnvioid(this.clienteid, this.cameraid));
+    }
+    public String getStatusID(int ID) {
+        return envioDAO.getStatusDAO(ID);
+    }
+    
     // Get lista de envios 
     public ArrayList getEnvios() {
         return envioDAO.getEnviosDAO();
@@ -133,10 +142,14 @@ public class Envio {
         envioDAO.setNumero_PedidoDAO(getEnvioid(this.clienteid, this.cameraid), Numero_pedido);
         this.numero_pedido = Numero_pedido;
     }
+    public void setStatus(int id, String novoStatus) {
+        envioDAO.setStatusDAO(id, novoStatus);
+        this.status = novoStatus;
+    }
     
     // Adiciona Envio ao banco de dados
-    public void addEnvio(int clienteid, int cameraid, int nota_fiscal, int sequencia, int numero_pedido) {
-        envioDAO.addEnvioDAO(clienteid, cameraid, nota_fiscal, sequencia, numero_pedido);
+    public void addEnvio(int clienteid, int cameraid, int nota_fiscal, int sequencia, int numero_pedido, String status) {
+        envioDAO.addEnvioDAO(clienteid, cameraid, nota_fiscal, sequencia, numero_pedido, status);
     }
     
     // Encerra periodo de Envio adicionando data de fin

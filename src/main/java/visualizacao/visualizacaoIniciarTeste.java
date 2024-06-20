@@ -480,7 +480,7 @@ public class visualizacaoIniciarTeste extends javax.swing.JFrame {
         int nota_fiscal = Integer.parseInt(JOptionPane.showInputDialog(null, "Nota fiscal: "));
         int sequencia = Integer.parseInt(JOptionPane.showInputDialog(null, "Sequência: "));
         int numero_pedido = Integer.parseInt(JOptionPane.showInputDialog(null, "Número do pedido: "));
-        envio.addEnvio(clienteID, cameraID, nota_fiscal, sequencia, numero_pedido);
+        envio.addEnvio(clienteID, cameraID, nota_fiscal, sequencia, numero_pedido, "Ativo");
     }//GEN-LAST:event_botaoMenu1ActionPerformed
 
     private void botaoMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMenu2ActionPerformed
