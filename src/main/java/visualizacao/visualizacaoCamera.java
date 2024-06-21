@@ -1,6 +1,5 @@
-
+// @author fe060311
 package visualizacao;
-
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -371,12 +370,12 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
                     case 0 -> {
                         // Modelo
                         String novoModelo = JOptionPane.showInputDialog("Novo Modelo: ");
-                        camera.setModeloid(this.cameraID, novoModelo);
+                        camera.setModeloID(this.cameraID, novoModelo);
                 }
                     case 1 -> {
                         // MAC
                         String novoMAC = JOptionPane.showInputDialog("Novo MAC: ");
-                        camera.setMACid(this.cameraID, novoMAC);
+                        camera.setMACID(this.cameraID, novoMAC);
                 }
                     case 2 -> // Cancelar
                     JOptionPane.showMessageDialog(null, "Operação cancelada!");
@@ -406,7 +405,7 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
                 int confirm = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir a câmera de ID: "+this.cameraID+" ?");
                 if (confirm == 0) {
                     // Exclui a camera do banco de dados
-                    camera.delCameraid(this.cameraID);
+                    camera.delCameraID(this.cameraID);
                     // Atualização da tabela
                     tabelaATT();
                 }else{JOptionPane.showMessageDialog(null, "Operação cancelada!");}
@@ -526,36 +525,9 @@ public final class visualizacaoCamera extends javax.swing.JFrame {
             }
         }
     }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(visualizacaoCamera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
+    public static void main(String args[]) {
+
         java.awt.EventQueue.invokeLater(() -> {
             new visualizacaoCamera().setVisible(true);
         });

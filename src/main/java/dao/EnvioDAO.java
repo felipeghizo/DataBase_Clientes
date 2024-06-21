@@ -12,8 +12,7 @@ import modelo.Envio;
 
 
 public class EnvioDAO {
-    
-
+   
     ArrayList minhaLista = new ArrayList();
     Conexao conexao = new Conexao();
     
@@ -56,7 +55,7 @@ public class EnvioDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao procurar clienteid : " + e.getMessage());
+            System.out.println("Erro ao procurar envioid : " + e.getMessage());
         }
         return envioid;
     }
@@ -276,7 +275,7 @@ public class EnvioDAO {
                 if (res.next()) {
                     numero_pedido = res.getInt("numero_pedido");
                 } else {
-                    // Nenhum amigo foi encontrado, você pode lidar com isso aqui
+                    // Nenhum Número de pedido foi encontrado
                     System.out.println("Nenhum numero_pedido encontrado com o id: " + numero_pedido);
                 }
             }
@@ -301,7 +300,7 @@ public class EnvioDAO {
                 if (res.next()) {
                     Status = res.getString("status");
                 } else {
-                    // Nenhum amigo foi encontrado, você pode lidar com isso aqui
+                    // Nenhum Status foi encontrado
                     System.out.println("Nenhum status encontrado com o id: " + Status);
                 }
             }
@@ -473,7 +472,7 @@ public class EnvioDAO {
         }
     }
     
-    // Retorna a Lista de emprestimos
+    // Retorna a Lista de Envios
     public ArrayList getEnviosDAO() {
         minhaLista.clear(); // Limpa nosso ArrayList
         try {
@@ -495,12 +494,12 @@ public class EnvioDAO {
             }
             stmt.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Deu ruim paizaoooooo!");
+            JOptionPane.showMessageDialog(null, "Erro: "+ex.getMessage());
         }
         return minhaLista;
     }
     
-    // Adiciona Emprestimo
+    // Adiciona Envio
     public void addEnvioDAO(int clienteid, int cameraid, int nota_fiscal, int sequencia, int numero_pedido, String status) {
         String sql = "INSERT INTO envios(clienteid, cameraid, nota_fiscal, sequencia, numero_pedido, status) VALUES(?,?,?,?,?,?)";
         try {
@@ -519,7 +518,7 @@ public class EnvioDAO {
         }
     }
     
-    // Exclui Cliente
+    // Exclui Envio
     public void removeEnvioDAO(int envioid) {
         String sql = "DELETE FROM envios WHERE envioid = (?)";
         try {

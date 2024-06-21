@@ -10,10 +10,12 @@ public class Camera {
     private String MAC;
     CameraDAO cameraDAO = new CameraDAO();
 
+    // Construtor Default
     public Camera() {
         this("","");
     }
     
+    // Construtor com parâmetros
     public Camera(String modelo, String MAC) {
         this.modelo = modelo;
         this.MAC = MAC;
@@ -35,6 +37,8 @@ public class Camera {
     public String getMACID(int ID) {
         return cameraDAO.getMACDAO(ID);
     }
+    
+    // Get lista de câmeras
     public ArrayList getCameras(){
         return cameraDAO.getCamerasDAO();
     }
@@ -45,18 +49,18 @@ public class Camera {
         this.MAC = MAC;
         cameraDAO.setMACDAO(this.getCameraid(this.modelo, auxMAC), this.MAC);
     }
-    public void setMACid(int id, String MAC) {
+    public void setMACID(int ID, String MAC) {
         this.MAC = MAC;
-        cameraDAO.setMACDAO(id, this.MAC);
+        cameraDAO.setMACDAO(ID, this.MAC);
     }
     public void setModelo(String modelo) {
         String auxModelo = this.modelo;
         this.modelo = modelo;
         cameraDAO.setModeloDAO(this.getCameraid(auxModelo, this.MAC), this.modelo);
     }
-    public void setModeloid(int id, String modelo) {
+    public void setModeloID(int ID, String modelo) {
         this.modelo = modelo;
-        cameraDAO.setModeloDAO(id, this.modelo);
+        cameraDAO.setModeloDAO(ID, this.modelo);
     }
     
     // Adiciona camera ao banco de dados
@@ -68,8 +72,8 @@ public class Camera {
     public void delCamera(String modelo, String MAC){
         cameraDAO.delCameraDAO(this.getCameraid(modelo, MAC));
     }
-    public void delCameraid(int id){
-        cameraDAO.delCameraDAO(id);
+    public void delCameraID(int ID){
+        cameraDAO.delCameraDAO(ID);
     }
     
     

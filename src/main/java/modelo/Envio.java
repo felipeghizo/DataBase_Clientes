@@ -19,9 +19,11 @@ public class Envio {
     private String status;
     private final EnvioDAO envioDAO = new EnvioDAO();
 
+    // Construtor default
     public Envio() {
     }
 
+    // Construtor passando parâmetros
     public Envio(int clienteid, int cameraid, String acesso, String data_entrega, String data_envio, String data_instalacao, int nota_fiscal, int sequencia, int numero_pedido, String status) {
         this.clienteid = clienteid;
         this.cameraid = cameraid;
@@ -118,34 +120,29 @@ public class Envio {
         envioDAO.setAcessoDAO(getEnvioid(this.clienteid, this.cameraid), acesso);
         this.acesso = acesso;
     }
-    public void setAcessoID(int id, String acesso) {
-        envioDAO.setAcessoDAO(id, acesso);
-        System.out.println("ok");
-        this.acesso = acesso;
+    public void setAcessoID(int ID, String acesso) {
+        envioDAO.setAcessoDAO(ID, acesso);
     }
     public void setData_Entrega(String Data_entrega) {
         envioDAO.setData_EntregaDAO(getEnvioid(this.clienteid, this.cameraid), Data_entrega);
         this.data_entrega = Data_entrega;
     }
-    public void setData_EntregaID(int id, String Data_entrega) {
-        envioDAO.setData_EntregaDAO(id, Data_entrega);
-        this.data_entrega = Data_entrega;
+    public void setData_EntregaID(int ID, String Data_entrega) {
+        envioDAO.setData_EntregaDAO(ID, Data_entrega);
     }
     public void setData_Envio(String Data_envio) {
         envioDAO.setData_EnvioDAO(getEnvioid(this.clienteid, this.cameraid), Data_envio);
         this.data_envio = Data_envio;
     }
-    public void setData_EnvioID(int id, String Data_envio) {
-        envioDAO.setData_EnvioDAO(id, Data_envio);
-        this.data_envio = Data_envio;
+    public void setData_EnvioID(int ID, String Data_envio) {
+        envioDAO.setData_EnvioDAO(ID, Data_envio);;
     }
     public void setData_Instalacao(String Data_instalacao) {
         envioDAO.setData_InstalacaoDAO(getEnvioid(this.clienteid, this.cameraid), Data_instalacao);
         this.data_instalacao = Data_instalacao;
     }
-    public void setData_InstalacaoID(int id, String Data_instalacao) {
-        envioDAO.setData_InstalacaoDAO(id, Data_instalacao);
-        this.data_instalacao = Data_instalacao;
+    public void setData_InstalacaoID(int ID, String Data_instalacao) {
+        envioDAO.setData_InstalacaoDAO(ID, Data_instalacao);
     }
     public void setNota_Fiscal(int Nota_fiscal) {
         envioDAO.setNota_FiscalDAO(getEnvioid(this.clienteid, this.cameraid), Nota_fiscal);
@@ -159,8 +156,8 @@ public class Envio {
         envioDAO.setNumero_PedidoDAO(getEnvioid(this.clienteid, this.cameraid), Numero_pedido);
         this.numero_pedido = Numero_pedido;
     }
-    public void setStatus(int id, String novoStatus) {
-        envioDAO.setStatusDAO(id, novoStatus);
+    public void setStatus(int ID, String novoStatus) {
+        envioDAO.setStatusDAO(ID, novoStatus);
         this.status = novoStatus;
     }
     

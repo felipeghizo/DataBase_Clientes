@@ -1,4 +1,4 @@
-
+// @author fe060311
 package visualizacao;
 
 
@@ -16,7 +16,6 @@ public class visualizacaoMenu extends javax.swing.JFrame {
         // Atualiza a data
         atualizarData();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -203,19 +202,19 @@ public class visualizacaoMenu extends javax.swing.JFrame {
         envioV.setVisible(true);
     }//GEN-LAST:event_menuEmprestimos1ActionPerformed
 
-// Método para atualizar a data
-private void atualizarData() {
-    // Obtendo a data atual do dispositivo local
-    LocalDate dataAtual = LocalDate.now();
+    // Método para atualizar a data
+    private void atualizarData() {
+        // Obtendo a data atual do dispositivo local
+        LocalDate dataAtual = LocalDate.now();
 
-    // Formatando a data para exibição
-    DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    String dataFormatada = dataAtual.format(formatoData);
+        // Formatando a data para exibição
+        DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataFormatada = dataAtual.format(formatoData);
 
-    // Exibindo a data no JLabel
-    Data.setText("Data: " + dataFormatada);
-    Data.setBounds(10, 10, 200, 20); // Definindo a posição e tamanho do JLabel
-}
+        // Exibindo a data no JLabel
+        Data.setText("Data: " + dataFormatada);
+        Data.setBounds(10, 10, 200, 20); // Definindo a posição e tamanho do JLabel
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Data;

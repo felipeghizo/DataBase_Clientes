@@ -1,5 +1,5 @@
+// @author fe060311
 package visualizacao;
-
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -33,7 +33,6 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
         // Carrega os dados iniciais da tabela
         tabelaATT();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -676,9 +675,9 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
         // Limpa todas as linhas da tabela antes de atualizar com novos dados
         dtmCameras.setRowCount(0);
 
-        // Itera sobre a lista de câmeras e atualiza a tabela
+        // Itera sobre a lista de clientes e atualiza a tabela
         for (Object obj : lista) {
-            // Verifica se o objeto é uma instância de Camera
+            // Verifica se o objeto é uma instância de Cliente
             if (obj instanceof Cliente cliente1) {
 
                 String nome = cliente1.getNome();
@@ -693,37 +692,13 @@ public final class visualizacaoCliente extends javax.swing.JFrame {
                 Object[] dados = { clienteIDAtual, nome, telefone, email, endereco, numeroCliente};
                 dtmCameras.addRow(dados);
             } else {
-                System.out.println("O objeto na lista não é do tipo Camera.");
+                System.out.println("O objeto na lista não é do tipo Cliente.");
             }
         }
     }
     
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(visualizacaoCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new visualizacaoCliente().setVisible(true);
         });

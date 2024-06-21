@@ -12,8 +12,7 @@ import modelo.Camera;
 
 
 public class CameraDAO {
-    
-
+   
     ArrayList minhaLista = new ArrayList();
     Conexao conexao = new Conexao();
     
@@ -32,10 +31,10 @@ public class CameraDAO {
             // Executa a query
             try (ResultSet res = stmt.executeQuery()) {
                 if (res.next()) {
-                    // Obtém o total de amigos encontrados
+                    // Obtém o total de câmeras encontradas
                     int totalFerramentas = res.getInt("total");
                     if (totalFerramentas > 0) {
-                        // Pelo menos um amigo foi encontrado, vamos obter o amigoid
+                        // Pelo menos uma câmera foi encontrada
                         sql = "SELECT cameraid FROM cameras WHERE modelo = ? AND MAC = ?";
                         try (PreparedStatement stmt2 = conn.prepareStatement(sql)) {
                             stmt2.setString(1, modeloEditar);
@@ -48,13 +47,13 @@ public class CameraDAO {
                             }
                         }
                     } else {
-                        // Nenhum amigo foi encontrado, você pode lidar com isso aqui
+                        // Nenhuma câmera foi encontrada
                         return -1;
                     }
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao editar camera: " + e.getMessage());
+            System.out.println("Erro ao procurar câmera: " + e.getMessage());
         }
         return cameraid;
     }
@@ -74,7 +73,7 @@ public class CameraDAO {
                 if (res.next()) {
                     modelo = res.getString("modelo");
                 } else {
-                    // Nenhum amigo foi encontrado, você pode lidar com isso aqui
+                    // Nenhum modelo foi encontrado
                     System.out.println("Nenhum modelo encontrado com o id: " + cameraid);
                 }
             }
@@ -99,7 +98,7 @@ public class CameraDAO {
                 if (res.next()) {
                     MAC = res.getString("MAC");
                 } else {
-                    // Nenhum amigo foi encontrado, você pode lidar com isso aqui
+                    // Nenhum MAC foi encontrado
                     System.out.println("Nenhum MAC encontrado com o id: " + cameraid);
                 }
             }
@@ -144,7 +143,7 @@ public class CameraDAO {
         }
     }
     
-    // Retorna a Lista de Amigos(objetos)
+    // Retorna a Lista de câmeras
     public ArrayList getCamerasDAO() {
         minhaLista.clear(); // Limpa nosso ArrayList
         try {
@@ -158,12 +157,12 @@ public class CameraDAO {
             }
             stmt.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Deu ruim paizao!");
+            JOptionPane.showMessageDialog(null, "Erro: "+ex.getMessage());
         }
         return minhaLista;
     }
     
-    // Adiciona Camera
+    // Adiciona câmera
     public void addCameraDAO(String modelo, String MAC) {
         String sql = """
                     INSERT INTO cameras(modelo,MAC) 
@@ -181,7 +180,7 @@ public class CameraDAO {
         }
     }
     
-    // Exclui Camera
+    // Exclui câmera
     public void delCameraDAO(int cameraid) {
         String sql = """
                      DELETE FROM cameras 

@@ -12,8 +12,7 @@ import modelo.Cliente;
 
 
 public class ClienteDAO {
-    
-
+   
     ArrayList minhaLista = new ArrayList();
     Conexao conexao = new Conexao();
     
@@ -36,10 +35,10 @@ public class ClienteDAO {
             // Executa a query
             try (ResultSet res = stmt.executeQuery()) {
                 if (res.next()) {
-                    // Obtém o total de amigos encontrados
+                    // Obtém o total de clientes encontrados
                     int totalFerramentas = res.getInt("total");
                     if (totalFerramentas > 0) {
-                        // Pelo menos um amigo foi encontrado, vamos obter o amigoid
+                        // Pelo menos um cliente foi encontrado
                         sql = """
                               SELECT clienteid 
                               FROM clientes 
@@ -62,7 +61,7 @@ public class ClienteDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao editar camera: " + e.getMessage());
+            System.out.println("Erro ao procurar cliente: " + e.getMessage());
         }
         return clienteid;
     }
@@ -82,8 +81,8 @@ public class ClienteDAO {
                 if (res.next()) {
                     nome = res.getString("nome");
                 } else {
-                    // Nenhum amigo foi encontrado, você pode lidar com isso aqui
-                    System.out.println("Nenhum cliente encontrado com o id: " + clienteid);
+                    // Nenhum nome foi encontrado
+                    System.out.println("Nenhum nome encontrado com o id: " + clienteid);
                 }
             }
         } catch (SQLException e) {
@@ -107,7 +106,7 @@ public class ClienteDAO {
                 if (res.next()) {
                     telefone = res.getString("telefone");
                 } else {
-                    // Nenhum amigo foi encontrado, você pode lidar com isso aqui
+                    // Nenhum telefone foi encontrado
                     System.out.println("Nenhum telefone encontrado com o id: " + clienteid);
                 }
             }
@@ -132,12 +131,12 @@ public class ClienteDAO {
                 if (res.next()) {
                     email = res.getString("email");
                 } else {
-                    // Nenhum amigo foi encontrado, você pode lidar com isso aqui
-                    System.out.println("Nenhum email encontrado com o id: " + clienteid);
+                    // Nenhum E-mail foi encontrado
+                    System.out.println("Nenhum E-mail encontrado com o id: " + clienteid);
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar o email do cliente: " + e.getMessage());
+            System.out.println("Erro ao buscar o E-mail do cliente: " + e.getMessage());
         }
         return email;
     }
@@ -157,12 +156,12 @@ public class ClienteDAO {
                 if (res.next()) {
                     endereco = res.getString("endereco");
                 } else {
-                    // Nenhum amigo foi encontrado, você pode lidar com isso aqui
-                    System.out.println("Nenhum endereco encontrado com o id: " + clienteid);
+                    // Nenhum endereço foi encontrado
+                    System.out.println("Nenhum endereço encontrado com o id: " + clienteid);
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar o endereco do cliente: " + e.getMessage());
+            System.out.println("Erro ao buscar o endereço do cliente: " + e.getMessage());
         }
         return endereco;
     }
@@ -182,12 +181,12 @@ public class ClienteDAO {
                 if (res.next()) {
                     numero_cliente = res.getInt("numero_cliente");
                 } else {
-                    // Nenhum amigo foi encontrado, você pode lidar com isso aqui
-                    System.out.println("Nenhum numero_cliente encontrado com o id: " + clienteid);
+                    // Nenhum número de cliente foi encontrado
+                    System.out.println("Nenhum número de cliente encontrado com o id: " + clienteid);
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar o numero_cliente do cliente: " + e.getMessage());
+            System.out.println("Erro ao buscar o número de cliente do cliente: " + e.getMessage());
         }
         return numero_cliente;
     }
@@ -291,12 +290,12 @@ public class ClienteDAO {
             }
             stmt.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Deu ruim paizao!");
+            JOptionPane.showMessageDialog(null, "Erro: "+ex.getMessage());
         }
         return minhaLista;
     }
     
-    // Adiciona cliente
+    // Adiciona Cliente
     public void addClienteDAO(String nome, String telefone, String email, int numeroCliente, String endereco) {
         String sql = "INSERT INTO clientes(nome, telefone, email, numero_cliente, endereco) VALUES(?,?, ?, ?, ?)";
         try {

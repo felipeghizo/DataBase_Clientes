@@ -1,4 +1,4 @@
-
+// @author fe060311
 package visualizacao;
 
 import java.util.ArrayList;
@@ -346,9 +346,9 @@ public final class visualizacaoHistorico extends javax.swing.JFrame {
         // Limpa todas as linhas da tabela antes de atualizar com novos dados
         dtmCameras.setRowCount(0);
 
-        // Itera sobre a lista de câmeras e atualiza a tabela
+        // Itera sobre a lista de histórico e atualiza a tabela
         for (Object obj : lista) {
-            // Verifica se o objeto é uma instância de Camera
+            // Verifica se o objeto é uma instância de Envio
             if ((obj instanceof Envio envioO) && (envioO.getStatus().compareTo("Ativo") == 0)) {
                 int clienteID = envioO.getClienteid();
                 int clienteNumero = cliente.getNumeroClienteID(clienteID);
@@ -371,7 +371,7 @@ public final class visualizacaoHistorico extends javax.swing.JFrame {
                 Object[] dados = { clienteNumero, clienteNome, cameraModelo, cameraMAC, acesso, dataEnvio, DataEntrega, dataInstalacao, nota_fiscal, sequencia, numero_pedido };
                 dtmCameras.addRow(dados);
             } else {
-                System.out.println("O objeto na lista não é do tipo Camera.");
+                System.out.println("O objeto na lista não é do tipo Envio.");
             }
         }
     }
