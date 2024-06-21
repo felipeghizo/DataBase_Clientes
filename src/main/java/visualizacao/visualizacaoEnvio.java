@@ -504,7 +504,7 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
         // Itera sobre a lista de teste e atualiza a tabela
         for (Object obj : lista) {
             // Verifica se o objeto é uma instância de Envio
-            if (obj instanceof Envio envioO) {
+            if ((obj instanceof Envio envioO)) {
                 if (envioO.getStatus().compareTo("Ativo") == 0){
                     int clienteID = envioO.getClienteid();
                     int clienteNumero = cliente.getNumeroClienteID(clienteID);
@@ -521,7 +521,6 @@ public final class visualizacaoEnvio extends javax.swing.JFrame {
                     int nota_fiscal = envioO.getNotaFiscal();
                     int sequencia = envioO.getSequencia();
                     int numero_pedido = envioO.getNumero_Pedido();
-                    int ID = envioO.getEnvioid(clienteID, cameraID);
 
                     // Cria um novo array de objetos para adicionar à tabela
                     Object[] dados = { clienteNumero, clienteNome, cameraModelo, cameraMAC, acesso, dataEnvio, DataEntrega, dataInstalacao, nota_fiscal, sequencia, numero_pedido };
